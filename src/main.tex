@@ -1,0 +1,602 @@
+\documentclass[12pt]{article}
+
+\usepackage{fouriernc}%la fuente
+%\usepackage[sc]{mathpazo} %antigua fuente
+
+\usepackage{calligra}%esto es para tener el comando \calligra en textmode que permite escribir en cursiva el operador Hom muy lindo que es un haz.
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{booktabs}
+
+\usepackage{subfiles} %esto es para modularizar el overleaf
+%para usar este paquete solamente hay que usar el comando
+%\subfile{}
+
+\usepackage{graphicx}
+
+
+
+\graphicspath{{./Figuras/}} %esto es para que encuentre las figuras hechas con pdf_tex en inkscape
+
+
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor} %agrega mas colores para xcolor.
+
+\usepackage{tcolorbox}
+
+\usepackage{xparse}
+\usepackage{xstring}
+
+\usepackage{stmaryrd} %para poner el comando \mapsfrom "<---|"
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+
+\usepackage{subfig}
+
+\usepackage{mathrsfs} % para tener las fuentes \mathscr que es una letra mayuscula cursiva.
+
+\usepackage{tikz-cd}
+
+\usepackage{caption} %es para captionoffigure
+
+\usepackage[shortlabels]{enumitem}
+
+%\usetikzlibrary{babel} %CAUSA PROBLEMAS PARA COMPILAR TIKZCD QUE USA "" PARA DESIGNAR CADA TEXTO DE UNA FLECHA. SE ARREGLA USANDO \usetikzlibrary{babel} despues de \usepackage{tikz-cd}.
+\usetikzlibrary{
+  babel,%CAUSA PROBLEMAS PARA COMPILAR TIKZCD QUE USA "" PARA DESIGNAR CADA TEXTO DE UNA FLECHA. SE ARREGLA USANDO \usetikzlibrary{babel} despues de \usepackage{tikz-cd}.
+  %
+  %el resto es para agregar el QED Symbol custom como nudos
+  knots,
+  hobby,
+  decorations.pathreplacing,
+  shapes.geometric,
+  calc
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[spanish,activeacute]{babel} %CAUSA PROBLEMAS PARA COMPILAR TIKZCD QUE USA "" PARA DESIGNAR CADA TEXTO DE UNA FLECHA. SE ARREGLA USANDO \usetikzlibrary{babel} despues de \usepackage{tikz-cd}.
+
+\usepackage{braket} %para definir \set , \Set y que los conjuntos se vean mas lindos
+
+\usepackage{mathtools}
+
+\usepackage{mathabx}
+\let\widering\relax %esto es porque hay problemas con el comando \widering que se define en la fuenta fouriernc y en el paquete \usepackage{mathabx}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=red,
+    filecolor=red,
+    linkcolor=red,
+    urlcolor=red
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsthm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{customTheorem}% name of the style
+  {}% space above
+  {}% space below|
+  {\itshape}% body font
+  {}% indent amount
+  {\bfseries}% theorem head font
+  { {\rule[0.6ex]{0.5cm}{0.03cm}}}% punctuation after theorem head
+  { }% space after theorem head
+  {\ifstrempty{#3}{#1 \thmnumber{#2}.}{#1 \thmnumber{#2}. \textup{(#3)}}}% theorem head spec
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{customDefinition}% name of the style
+  {}% space above
+  {}% space below
+  {}% body font
+  {}% indent amount
+  {\bfseries}% theorem head font
+  { {\rule[0.6ex]{0.5cm}{0.03cm}}}% punctuation after theorem head
+  { }% space after theorem head
+  {\ifstrempty{#3}{#1 \thmnumber{#2}.}{#1 \thmnumber{#2}. \textup{(#3)}}}% theorem head spec
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{customTheorem}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{proposition/definition}[theorem]{Proposición/Definición}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{conjecture}[theorem]{Conjetura}
+\newtheorem{afirmacion}[theorem]{Afirmación}
+\newtheorem{recuerdo}[theorem]{Recuerdo}
+
+\theoremstyle{customDefinition}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{hypothesis}[theorem]{Hipótesis}
+\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{obs}[theorem]{Observación}
+\newtheorem{notation}[theorem]{Notación}
+\newtheorem{remark}[theorem]{Comentario}
+\newtheorem{construction}[theorem]{Construcción}
+
+
+%por alguna razon el teorema $warning  est aen uso, asi que lo remuevo de maqnera trucha
+\newtheorem{warn}[theorem]{\textbf{ADVERTENCIA}}
+\renewenvironment{warning}{\begin{warn}}{\end{warn}}
+
+%crear ejercicio
+\newtheorem{exercise}[theorem]{Ejercicio}
+%solución
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
+
+
+
+%como crear un nuevo ambiente de teorema o proposición que este sobreado con un recuadro de "color". primero hacemos
+
+%\newenvironment{Theorem}{\colorlet{shadecolor}{color} \begin{shaded} \begin{theorem} }{ \end{theorem} \end{shaded} }
+
+%Notar que primero hay que definir el color del sobreado con el comando
+%"\colorlet{shadecolor}{color}" y luego hay que usar el environment "shaded". Adentro de este ponemos el environment que queremos, en nuestro caso queremos "pintar" el environment "\begin{theorem}".
+
+
+%se puede cambiar la tonalidad de un color "yellow!80" es el color amarillo pero al 80%  y el 20% es mezclado con blanco, i.e. está aclarado. Pero "yellow!80!Black" es 80% amarillo y 20% negro, i.e. es obscurecido 20%.
+
+
+\newenvironment{Definition}{\begin{tcolorbox}[colback=Apricot!12] \begin{definition} }{ \end{definition} \end{tcolorbox} }
+
+\newenvironment{Example}{\begin{tcolorbox}[colback=Goldenrod!16] \begin{example}}{ \end{example} \end{tcolorbox}}
+
+\newenvironment{Remark}{\begin{tcolorbox}[colback=Orchid!12] \begin{remark}}{ \end{remark} \end{tcolorbox}}
+
+\newenvironment{Warning}{\begin{tcolorbox}[colback=red!12] \begin{warning}}{ \end{warning} \end{tcolorbox}}
+
+\newenvironment{Conjecture}{\begin{tcolorbox}[colback=magenta!16] \begin{conjecture}}{ \end{conjecture} \end{tcolorbox}}
+
+\newenvironment{Theorem}{\begin{tcolorbox}[colback=OliveGreen!18] \begin{theorem}}{ \end{theorem} \end{tcolorbox}}
+
+\newenvironment{Lemma}{\colorlet{shadecolor}{LimeGreen!12} \begin{tcolorbox}[colback=LimeGreen!12] \begin{lemma}}{ \end{lemma} \end{tcolorbox}}
+
+\newenvironment{Proposition}{\begin{tcolorbox}[colback=Green!12] \begin{proposition}}{ \end{proposition}\end{tcolorbox}}
+
+\newenvironment{Corollary}{\begin{tcolorbox}[colback=TealBlue!16] \begin{corollary}}{ \end{corollary} \end{tcolorbox}}
+
+\newenvironment{Obs}{\begin{tcolorbox}[colback=Dandelion!22] \begin{obs}}{ \end{obs} \end{tcolorbox}}
+
+\newenvironment{Exercise}{\begin{tcolorbox}[Lavender!12] \begin{exercise}}{ \end{exercise} \end{tcolorbox}}
+
+\newenvironment{Construction}{\begin{tcolorbox}[colback=Brown!20!Red!10] \begin{construction}}{ \end{construction} \end{tcolorbox}}
+
+%%%%%COLORES%%%%%%%%%%%%
+%Hay varios comandos del paquete Xcolor:
+%\color{blue,green,red,yellow,orange,black,white,pink,purble,etc...} hace que
+%todo el bloque de texto se transforme en este color, se puede encerrar entre llaves bloque de texto que uno quiere colorear
+%\textcolor{color}{text} escribe el texto "text" en "color".
+%\colorbox{color}{text} pinta un rectangulo de "color" detrás del "text".
+%\shaded
+
+
+
+%lista de colores base de xcolor, como son colores de la extension del paquetem, empiezan con la primera letra mayuscula: si usaramos solo el paquete {xcolor} entonces no sería necesario.
+
+%red, Green (fluorecente), Blue (muy obscuro), Cyan, Magenta, Yellow, Black, Gray, lightgray, White, darkgray, lightgray, Brown, lime (este verde mas lindo manzana), olive (marron verdoso feo), Orange, pink, Purple, teal (verde marino), Violet
+
+%marco los colores lindos: red, Cyan, Magenta, Yellow, Black, Gray, White,  lime, Orange, pink, teal, Violet
+
+%Colores que incluye el paquete dvipsnames: Apricot (color beige), Brown, Goldenrod, JungleGreen, Salmon, Lavender, SpringGreen, Turquoise, Plum, Emerald, BurntOrange (naranja piola), ForestGreen (verde oscuro), BrickRed (rojo obscuro)
+
+\definecolor{pedroblue}{RGB}{43, 138, 227}
+\definecolor{pedrogreen}{RGB}{86, 190, 82}
+
+\newcommand{\pedroblue}[1]{\textcolor{pedroblue}{#1}}
+\newcommand{\pedrogreen}[1]{\textcolor{pedrogreen}{#1}}
+
+\newcommand{\red}[1]{\textcolor{BrickRed}{#1}}
+
+\newcommand{\green}[1]{\textcolor{SpringGreen}{#1}}
+
+\newcommand{\blue}[1]{\textcolor{Cyan}{#1}}
+
+\newcommand{\yellow}[1]{\textcolor{yellow!80!Black}{#1}} %se puede cambiar la tonalidad de un color "yellow!80" es el color amarillo pero al 80%  y el 20% es mezclado con blanco, i.e. está aclarado. Pero "yellow!80!Black" es 80% amarillo y 20% negro, i.e. es obscurecido 20%.
+
+\newcommand{\black}[1]{\textcolor{Black}{#1}}
+
+\newcommand{\gray}[1]{\textcolor{Gray}{#1}}
+
+\newcommand{\purple}[1]{\textcolor{Purple}{#1}}
+
+\newcommand{\beige}[1]{\textcolor{Apricot}{#1}}
+
+\newcommand{\darkgreen}[1]{\textcolor{ForestGreen}{#1}}
+
+\newcommand{\pink}[1]{\textcolor{Lavender}{#1}}
+
+\newcommand{\salmon}[1]{\textcolor{Salmon}{#1}}
+
+\newcommand{\brown}[1]{\textcolor{RawSienna}{#1}}
+
+\newcommand{\white}[1]{\textcolor{White}{#1}}
+
+\newcommand{\orange}[1]{\textcolor{BurntOrange}{#1}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%DIBUJOS DE KNOTS
+
+
+%%DIBUJA EL five knot
+\newcommand{\fiveknot}{%
+\begin{tikzpicture}[transform canvas={scale=0.1}]
+\begin{knot}[
+  consider self intersections=true,
+%  draft mode=crossings,
+  flip crossing/.list={2,4},
+  only when rendering/.style={
+%    show curve controls
+  }
+]
+\strand[black, line width=8pt] (2,0) .. controls +(0,1) and +(54:1.0) .. (144:2) .. controls +(54:-1.0) and +(18:-1.0) .. (-72:2) .. controls +(18:1.0) and +(162:-1.0) .. (72:2) .. controls +(162:1.0) and +(126:1.0) .. (-144:2) .. controls +(126:-1.0) and +(0,-1.0) .. (2,0);
+\end{knot}
+\end{tikzpicture}
+}
+
+
+%DIBUJA EL TREFOIL KNOT
+\newcommand{\trefoilknot}{%
+\begin{tikzpicture}[transform canvas={scale=0.1}, line width=10pt]
+\begin{knot}[
+  consider self intersections=true,
+%  draft mode=crossings,
+  flip crossing=2,
+  only when rendering/.style={
+%    show curve controls
+  }
+  ]
+\strand[black, line width=10pt] (0,2) .. controls +(2.2,0) and +(120:-2.2) .. (210:2) .. controls +(120:2.2) and +(60:2.2) .. (-30:2) .. controls +(60:-2.2) and +(-2.2,0) .. (0,2);
+\end{knot}
+\end{tikzpicture}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%Teoría de Grupos%%%%%%%%%%%%
+
+%Grupo simétrico de n elementos
+\newcommand{\SymGrp}[1]{\mathbb{S}_{#1}}
+%Grupo alternado de n elementos
+\newcommand{\AltGrp}[1]{\mathbb{A}_{#1}}
+
+%Orden de un elemento $a \in G$ de un grupo
+\newcommand{\ord}[1]{\operatorname{ord} (#1)}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%Polinomios%%%%%%%%%%%%%%%%%%%%
+
+
+%grado de una extensión algebraica
+\newcommand{\degExt}[2]{[#1:#2]}
+\newcommand{\degSep}[2]{[#1 : #2]_s}
+\newcommand{\degInsep}[2]{[#1:#2]_i}
+
+
+%espacio afin A^n
+\newcommand{\afine}[1]{\mathbb{A}^{#1}}
+%espacio proyectivo P^n
+\newcommand{\projective}[1]{\mathbb{P}^{#1}}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%grupos de matrices
+%SL
+\newcommand{\SL}[2]{\operatorname{SL}_{#1} ( #2)}
+%GL
+\newcommand{\GL}[2]{\operatorname{GL}_{#1} ( #2)}
+
+%matriz identidad
+\newcommand{\Id}{\operatorname{Id}}
+
+
+
+%enteros Z
+\newcommand{\integers}{\mathbb{Z}}
+%racionales
+\newcommand{\rationals}{\mathbb{Q}}
+%naturales
+\newcommand{\naturals}{\mathbb{N}}
+%reales R
+\newcommand{\reals}{\mathbb{R}}
+%imaginarios
+\newcommand{\complex}{\mathbb{C}}
+%p-adicos
+\newcommand{\padics}{\mathbb{Q}_p}
+%enteros p-adicos
+\newcommand{\padicintegers}{\mathbb{Z}_p}
+
+%cuerpos finitos
+%Fp
+\newcommand{\Fp}{\mathbb{F}_p}
+%Fq
+\newcommand{\Fq}{\mathbb{F}_q}
+
+
+
+%valor absoluto
+\newcommand{\abs}[1]{\left \vert #1 \right \vert}
+%valor absoluto con dos barras
+\newcommand{\Abs}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+
+%valuacion p-adica
+\newcommand{\val}[1]{\operatorname{val} (#1)}
+
+%Hom
+\newcommand{\Hom}[3]{\operatorname{Hom}_{#1} (#2, #3)}
+%Hom con caligrafia cursiva
+\newcommand{\HomCalli}[3]{\operatorname{\text{\calligra{Hom}}}_{\: \: \: #1} (#2, #3)}
+
+%imagen y núcleo
+\newcommand{\Imagen}{\operatorname{Im}}
+\newcommand{\Ker}{\operatorname{Ker}}
+
+%coker
+\newcommand{\Coker}{\operatorname{Coker}}
+
+%limite inverso
+\newcommand{\liminv}{\varprojlim}
+
+
+%un poco de typeset para categorias
+\newcommand{\catname}[1]{{\operatorfont\textbf{#1}}}
+
+%flecha de isomorfismo a derecha corto \isomrightarrow
+\newcommand{\isomrightarrow}{\overset{\sim}{\rightarrow}}
+%flecha de isomorfismo a derecha largo \isomrightarrow
+\newcommand{\isomlongrightarrow}{\overset{\sim}{\longrightarrow}}
+
+%flecha de isomorfismo a izquierda corto \isomleftarrow
+\newcommand{\isomleftarrow}{\overset{\sim}{\leftarrow}}
+%flecha de isomorfismo a izquierda largo \isomleftarrow
+\newcommand{\isomlongleftarrow}{\overset{\sim}{\longleftarrow}}
+
+
+\renewcommand{\hat}[1]{\widehat{#1}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+
+%declaro un comando nuevo para escribir restricción de funciones
+\newcommand\rest[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+
+%%%%   COMANDO ALGEBRA CONMUTATIVA   %%%%
+
+%altura de un ideal:
+\newcommand{\height}{\textsc{height}}
+
+%Clausura topológica
+\newcommand{\closure}[1]{\overline{#1}}
+
+%longitud de un A-modulo. Notacion: \length_A M
+\newcommand{\length}{\operatorname{length}}
+
+%Anulador de un $A$-módulo.
+\newcommand{\Ann}[1]{\operatorname{Ann} (#1)}
+
+%Cuerpo de fracciones. Notacion $\FracField A$.
+\newcommand{\FracField}[1]{\operatorname{Fr} (#1)}
+
+\newcommand{\Spec}[1]{\operatorname{Spec}(#1)}
+
+%conjunto de Lugares de un cuerpo
+\newcommand{\places}[1]{\mathcal{Pl} (#1)}
+
+%volumen
+\newcommand{\Vol}[1]{\operatorname{vol}\left ( #1 \right)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%   COMANDO ANÁLISIS  %%%%
+
+%definimos el diferencial d de la integral "\int f(x) \dd x"
+\newcommand*\dd{\mathop{}\!\mathrm{d}}
+
+%definimos mas diferenciales
+\newcommand{\dmu}[1]{\dd \mu (#1)}
+\newcommand{\dnu}[1]{\dd \nu (#1)}
+\newcommand{\dtheta}[1]{\dd \theta (#1)}
+\newcommand{\dxi}[1]{\dd \xi (#1)}
+\newcommand{\deta}[1]{\dd \eta (#1)}
+
+
+
+
+
+
+%%%%   COMANDO TEORÍA DE NÚMEROS  %%%%
+
+%Morfismo de Frobenius
+\newcommand{\Frob}{\operatorname{Frob}}
+
+%Grupo de Galois
+\newcommand{\Gal}[2]{\operatorname{Gal} ( #1 / #2 )}
+
+%Discriminante
+\newcommand{\discriminant}[1]{\mathfrak{d} (#1 )}
+\newcommand{\disc}{\operatorname{d}}
+\newcommand{\Disc}[3]{\operatorname{D}_{#1 / #2} (#3)}
+
+%%%%Ideales primos%%%
+%escribe una letra en notación mathfrak, para denotar a un ideal o elemento primo.
+
+\newcommand{\primo}[1]{\mathfrak{#1}}
+\newcommand{\Primo}[1]{\mathfrak{\MakeUppercase{#1}}}
+
+%anillo de enteros O_K
+\renewcommand{\O}{\mathcal{O}}
+%anillo de enteros con subindice de cuerpo (input, por ejemplo $K$).
+\newcommand{\integralring}[1]{O_{#1}}
+
+%caracteristica de un cuerpo Char k
+\newcommand{\Char}[1]{\operatorname{Char} #1}
+
+%traza. Notación \trace = Tr
+\newcommand{\trace}{\operatorname{Tr}}
+
+%Traza de extensiones. Notación \Tr L K \alpha = \operatorname{Tr}_{L/K} (\alpha)
+\newcommand{\Tr}[1]{\operatorname{Tr}_{L/K} (#1)} %la extension es L/K por default
+\newcommand{\tr}[3]{\operatorname{Tr}_{#1/#2} (#3)}
+
+%Norma de extensiones. Notación \Norm L K \alpha = \operatorname{N}_{L/K} (\alpha)
+\newcommand{\Norm}[1]{\operatorname{N}_{L/K} (#1)}%la extension es L/K por default
+\newcommand{\norm}[3]{\operatorname{N}_{#1/#2} (#3)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%COMANDOS GEOMETRIA ALGEBRAICA
+
+%grupo de cohomología H^n (U,V)
+\renewcommand{\H}[3]{\operatorname{H}^{#1} (#2, #3)}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Cada dibujo se puede automatizar:
+%1) necesitamos el archivo "Dibujo n.png" en la carpeta "Clase m", donde $n$ es el número del dibujo y $m$ es el número de la clase.
+
+\newcounter{numeroDibujo}
+
+%\renewcommand\thefigure{\thesection.\arabic{figure}}  no se si esto vale la pena
+
+%el comando Inkscape tiene dos inputs \Inkscape{input 1}{input 2}, el primer input es [OPCIONAL] y representa el ancho del dibujo, y el segundo es el caption de la figura.
+
+\NewDocumentCommand{\Inkscape}{O{1} m}{
+\stepcounter{numeroDibujo}
+\begin{center}\label{Figura: Dibujo \thenumeroDibujo}
+\def\svgwidth{#1\textwidth}
+\input{"./Figuras/Figura \thenumeroDibujo.pdf_tex"}
+\captionof{figure}{#2}
+\end{center}
+}
+
+
+
+
+
+
+\title{Apuntes - Curvas Algebraicas - MAT 426}
+\author{Enzo Giannotta}
+
+
+
+
+
+
+\begin{document}
+\renewcommand{\qedsymbol}{\fiveknot}
+
+\maketitle
+
+%--------------------------------- ACA VA LA TABLA DE CONTENIDOS
+
+\tableofcontents
+
+%---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%subfile{"nombre de carpeta"/"Nombre del archivo"}
+%subfile{Capitulos/Apendice-CurvasElipticas.tex}
+
+
+
+
+
+
+
+
+%--------------------------------
+\newpage
+
+\bibliographystyle{alpha}
+\bibliography{main.bib}{}
+%--------------------------------
+
+
+
+
+
+
+\end{document}
+
