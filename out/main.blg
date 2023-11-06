@@ -1,13 +1,13 @@
 This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-The style file: alpha.bst
-I found no \citation commands---while reading file main.aux
+The style file: amsalpha.bst
 Database file #1: main.bib
+Warning--I didn't find a database entry for "3264"
 You've used 0 entries,
-            2543 wiz_defined-function locations,
-            558 strings with 4435 characters,
-and the built_in function-call counts, 24 in all, are:
+            2624 wiz_defined-function locations,
+            557 strings with 4354 characters,
+and the built_in function-call counts, 38 in all, are:
 = -- 0
 > -- 0
 < -- 0
@@ -27,7 +27,7 @@ if$ -- 2
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 3
+newline$ -- 10
 num.names$ -- 0
 pop$ -- 0
 preamble$ -- 1
@@ -44,5 +44,5 @@ type$ -- 0
 warning$ -- 0
 while$ -- 0
 width$ -- 0
-write$ -- 2
-(There was 1 error message)
+write$ -- 9
+(There was 1 warning)
