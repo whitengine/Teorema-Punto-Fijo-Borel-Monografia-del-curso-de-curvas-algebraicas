@@ -260,46 +260,47 @@
 
 
 
-\newtheorem{theorem}{Teorema}[section]
+\newtheorem{thm}{Teorema}[section]
 \newtheorem*{theorema}{Teorema A}
 \newtheorem*{theoremb}{Teorema B}
 \newtheorem*{theoremc}{Teorema C}
 \newtheorem*{theoremd}{Teorema D}
 \newtheorem*{theoreme}{Teorema E}
-\newtheorem{maintheorem}[theorem]{Teorema Principal}
-\newtheorem{question}[theorem]{Pregunta}
-\newtheorem{lemma}[theorem]{Lema}
-\newtheorem{corollary}[theorem]{Corolario}
-\newtheorem{corollaries}[theorem]{Corolarios}
-\newtheorem{proposition}[theorem]{Proposición}
-\newtheorem{criteria}[theorem]{Criterio}
-\newtheorem{conjecture}[theorem]{Conjectura}
-\newtheorem{principle}[theorem]{Principio}
-\newtheorem{warning}[theorem]{Cuidado}
+\newtheorem{maintheorem}[thm]{Teorema Principal}
+\newtheorem{question}[thm]{Pregunta}
+\newtheorem{lemma}[thm]{Lema}
+\newtheorem{corollary}[thm]{Corolario}
+\newtheorem{corollaries}[thm]{Corolarios}
+\newtheorem{proposition}[thm]{Proposición}
+\newtheorem{criteria}[thm]{Criterio}
+\newtheorem{conjecture}[thm]{Conjectura}
+\newtheorem{principle}[thm]{Principio}
+\newtheorem{complement}[thm]{Complemento}
+\newtheorem{warning}[thm]{Cuidado}
 
-\newtheorem*{theorem*}{Teorema}
+\newtheorem*{thm*}{Teorema}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definición}
-\newtheorem{condition}[theorem]{Condición}
-\newtheorem{say}[theorem]{}
-\newtheorem{hint}[theorem]{Hint}
-\newtheorem{trick}[theorem]{Truco}
-\newtheorem{exercise}[theorem]{Ejercicio}
-\newtheorem{problem}[theorem]{Problema}
-\newtheorem{construction}[theorem]{Construcción}
-\newtheorem{algorithm}[theorem]{Algoritmo}
-\newtheorem{obs}[theorem]{Observación}
-\newtheorem{observations}[theorem]{Observaciones}
+\newtheorem{definition}[thm]{Definición}
+\newtheorem{condition}[thm]{Condición}
+\newtheorem{say}[thm]{}
+\newtheorem{hint}[thm]{Hint}
+\newtheorem{trick}[thm]{Truco}
+\newtheorem{exercise}[thm]{Ejercicio}
+\newtheorem{problem}[thm]{Problema}
+\newtheorem{construction}[thm]{Construcción}
+\newtheorem{algorithm}[thm]{Algoritmo}
+\newtheorem{obs}[thm]{Observación}
+\newtheorem{observations}[thm]{Observaciones}
 %\renewcommand{\theremark}{}
-\newtheorem{note}[theorem]{Nota}            %\renewcommand{\thenote}{}
-\newtheorem{summary}[theorem]{Resumen}         %\renewcommand{\thesumm}{}
-\newtheorem{acknowledgement}{Agradecimientos}
-\newtheorem{notation}[theorem]{Notación}
-\newtheorem{atention}[theorem]{Atención}
-\newtheorem{definition-theorem}[theorem]{Definición-Teorema}
-\newtheorem{definition-lemma}[theorem]{Definición-Lema}
-\newtheorem{convention}[theorem]{Convención}
-\newtheorem{application}[theorem]{Aplicación}
+\newtheorem{note}[thm]{Nota}            %\renewcommand{\thenote}{}
+\newtheorem{summary}[thm]{Resumen}         %\renewcommand{\thesumm}{}
+\newtheorem{acknowledgement}{Agradecimientos}       \renewcommand{\theack}{}
+\newtheorem{notation}[thm]{Notación}
+\newtheorem{atention}[thm]{Atención}
+\newtheorem{definition-theorem}[thm]{Definición-Teorema}
+\newtheorem{definition-lemma}[thm]{Definición-Lema}
+\newtheorem{convention}[thm]{Convención}
+\newtheorem{application}[thm]{Aplicación}
 
 
 
@@ -312,13 +313,13 @@
 \newtheorem{step}{Paso}
 \newtheorem{approach}{Enfoque}
 %\newtheorem{principle}{Principle}
-\newtheorem{fact}[theorem]{Hecho}
+\newtheorem{fact}[thm]{Hecho}
 \newtheorem{subsay}{}
 \newtheorem*{notation-and-definition}{Notación y definición}
-\newtheorem{assumption}[theorem]{Hipótesis}
-\newtheorem{remark}[theorem]{Observación}
-\newtheorem{remarks}[theorem]{Observaciones}
-\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{assumption}[thm]{Hipótesis}
+\newtheorem{remark}[thm]{Observación}
+\newtheorem{remarks}[thm]{Observaciones}
+\newtheorem{example}[thm]{Ejemplo}
 
 
 \numberwithin{equation}{section}
@@ -500,6 +501,7 @@
 %Cuerpo de fracciones. Notacion $\FracField A$.
 \newcommand{\FracField}[1]{\operatorname{Fr} (#1)}
 
+\newcommand{\Spec}[1]{\operatorname{Spec}(#1)}
 
 %conjunto de Lugares de un cuerpo
 \newcommand{\places}[1]{\mathcal{Pl} (#1)}
@@ -615,15 +617,15 @@ La verdadera geometría algebraica comienza al considerar ecuaciones polinomiale
 
 El propósito de este artículo es estudiar superficies cúbicas, es decir, superficies $S\subseteq \mathbb{P}^3(k)$ dadas por un polinomio homogéneo $f(x_0,x_1,x_2,x_3)$ de grado 3. Más precisamente, probaremos el siguiente resultado descubierto originalmente por Cayley y Salmon en 1849.
 
-\begin{theorema}\label{teo:Teorema A}
+\begin{thma}\label{teo:Teorema A}
 Sea $k$ un cuerpo algebraicamente cerrado. Entonces, toda superficie cúbica suave $S\subseteq \mathbb{P}^3(k)$ posee exactamente 27 rectas.
-\end{theorema}
+\end{thma}
 
 Recordemos que una variedad algebraica $X$ es \emph{racional} si posee un abierto de Zariski no-vacío $U\subseteq X$ isomorfo a un abierto no-vacío $V$ del espacio afín $\mathbb{A}^n(k)$. Como aplicación del teorema anterior, probaremos que toda superficie cúbica suave es racional. Más precisamente, probaremos el siguiente resultado.
 
-\begin{theoremb}\label{teo:Teorema B}
+\begin{thmb}\label{teo:Teorema B}
 Sea $k$ un cuerpo algebraicamente cerrado. Entonces, toda superficie cúbica suave $S\subseteq \mathbb{P}^3(k)$ es isomorfa al blow-up del plano proyectivo $\mathbb{P}^2(k)$ en 6 puntos.
-\end{theoremb}
+\end{thmb}
 
 \subsection*{Estructura del artículo}
 La Sección 2 recopila notaciones, convenciones y hechos conocidos que serán usados a lo largo del artículo. También estableceremos algunos hechos preliminares. En particular, discutimos el hecho que el espacio de parámetros de superficies cúbicas en $\mathbb{P}^3$ es isomorfo a $\mathbb{P}^{19}$, y que las superficies singulares forman un divisor irreducible (i.e., una hipersuperficie de dimensión 18 dentro de dicho $\mathbb{P}^{19}$). La Sección 3 está dedicada a probar el Teorema A. Finalmente, en la Sección 4 recordamos el concepto de racionalidad y probamos el Teorema B.
@@ -646,19 +648,19 @@ Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de punt
 
 Comencemos por definir qué entenderemos por una superficie cúbica.
 
-\begin{definition}\label{definition:sup cubica}
+\begin{defn}\label{defn:sup cubica}
 Sea $f(x_0,x_1,x_2,x_3)\in k[x_0,x_1,x_2,x_3]$ un polinomio homogéneo de grado $3$ no-nulo. Diremos que la variedad proyectiva
 $$S=\{[x_0,x_1,x_2,x_3]\in \mathbb{P}^3\;|\;f(x_0,x_1,x_2,x_3)=0\}\subseteq \mathbb{P}^3 $$
 es una {\bf superficie cúbica}.
-\end{definition}
+\end{defn}
 
 A continuación recordamos la definición de una recta en un espacio proyectivo.
 
-\begin{definition}\label{definition:recta}
+\begin{defn}\label{defn:recta}
 Sea $\mathbb{P}^n$ el espacio proyectivo asociado al $k$-espacio vectorial $V=k^{n+1}$. Por definición, una {\bf recta} $\ell$ en $\mathbb{P}^n$ es un sub-espacio proyectivo $\ell \cong \mathbb{P}^1$ de $\mathbb{P}^n$ asociado a un sub-espacio vectorial $W\cong k^2$.
-\end{definition}
+\end{defn}
 
-\begin{example}\label{example:Fermat}
+\begin{exmp}\label{exmp:Fermat}
 Sea $k=\mathbb{C}$ el cuerpo de los números complejos. La superficie cúbica de Fermat en $\mathbb{P}^3$ dada por la ecuación
 $$x_0^3+x_1^3+x_2^3+x_3^3=0$$
 posee exactamente 27 rectas, cada una de la forma
@@ -668,7 +670,7 @@ donde $\{i,j,k\}=\{1,2,3\}$, $j<k$, y donde $\omega$ y $\omega'$ son raíces cú
 \vspace{2mm}
 
 En efecto, (...).
-\end{example}
+\end{exmp}
 
 
 \begin{lemma}
@@ -691,27 +693,11 @@ Supongamos que $\textup{car}(k)=0$. Entonces, el conjunto de superficies cúbica
 
 En esta sección probaremos el teorema principal de este artículo:
 
-\begin{theorem}[Teorema del punto fijo de Borel]\label{teorema:punto fijo de borel}
-Sea $G$ un grupo algebraico conexo soluble, y sea $X$ una variedad completa (no vacía) donde actúa $G$. Entonces $G$ tiene un punto fijo en $X$.
-\end{theorem}
 
-\section{Consecuencias}
 
-En esta sección probaremos varias consecuencias el Teorema del punto fijo de Borel. Sea $G$ un grupo conexo arbitrario.
+\section{Aplicación: toda superficie cúbica suave es racional}
 
-\begin{proposition}
-Si $\sigma$ es un automorfismo de $G$ que deja fijo todos los elementos de un subgrupo de Borel $B$, enntonces debe ser la identidad.
-\end{proposition}
-\begin{proof}
-El morfismo
-\begin{align*}
-\varphi : G &\longrightarrow G \\
-x &\longmapsto \sigma(x)x^{-1},
-\end{align*}
-envía $B$ en $1$, y por lo tanto se factoriza por la proyección al cociente $G \to G/B$....
-...
-....
-\end{proof}
+En esta sección probaremos el Teorema B, lo cual implicará en particular que toda superficie cúbica suave (sobre un cuerpo algebraicamente cerrado) es racional. Comencemos por recordar la noción de racionalidad, recordar la noción de blow-up, y notar que todo blow-up del espacio proyectivo $\mathbb{P}^n$ es racional.
 
 \bibliographystyle{amsalpha}
 \bibliography{main}
