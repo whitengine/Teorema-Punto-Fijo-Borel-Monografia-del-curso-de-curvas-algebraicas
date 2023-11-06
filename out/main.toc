@@ -5,7 +5,8 @@
 \contentsline {section}{\tocsection {}{2}{Notación, convenciones y hechos preliminares}}{2}{section.2}%
 \contentsline {subsection}{\tocsubsection {}{2.1}{Convención}}{2}{subsection.2.1}%
 \contentsline {subsection}{\tocsubsection {}{2.2}{Notación}}{2}{subsection.2.2}%
-\contentsline {subsection}{\tocsubsection {}{2.3}{Hechos preliminares}}{2}{subsection.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.3}{Resumen de variedades completas}}{2}{subsection.2.3}%
 \contentsline {section}{\tocsection {}{3}{Teorema del punto fijo de Borel}}{2}{section.3}%
 \contentsline {section}{\tocsection {}{4}{Consecuencias}}{3}{section.4}%
-\contentsline {section}{\tocsection {}{}{Referencias}}{3}{section*.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.0.1}{Subgrupos de Borel y Toros maximales}}{3}{subsubsection.4.0.1}%
+\contentsline {section}{\tocsection {}{}{Referencias}}{4}{section*.4}%

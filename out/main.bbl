@@ -5,6 +5,24 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{}
+\begin{thebibliography}{Hum12}
+
+\bibitem[Gec13]{geckMeinolf2013introductionToAlgebraicGeometryAndAlgebraicGroups}
+Meinolf Geck, \emph{An introduction to algebraic geometry and algebraic
+  groups}, Oxford University Press, 2013.
+
+\bibitem[Hum12]{humphreys2012linearAlgebraicGroups}
+James~E Humphreys, \emph{Linear algebraic groups}, vol.~21, Springer Science \&
+  Business Media, 2012.
+
+\bibitem[Mon23]{notas_pedro}
+Pedro Montero, \emph{Notas de curvas algebraicas (mat426)},
+  \url{http://pmontero.mat.utfsm.cl/mat426_2023_2.html}, 2023, Accedido el 6 de
+  noviembre de 2023.
+
+\bibitem[{Wik}]{wikipedia-lie-theorem}
+{Wikipedia contributors}, \emph{{Lie's Theorem}},
+  \url{https://en.wikipedia.org/wiki/Lie%27s_theorem}, Accedido el 6 de
+  noviembre de 2023.
 
 \end{thebibliography}

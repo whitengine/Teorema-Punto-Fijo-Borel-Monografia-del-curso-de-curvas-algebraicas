@@ -26,6 +26,10 @@
 
 \usepackage{epigraph}
 
+\usepackage{braket} %para definir \set , \Set y que los conjuntos se vean mas lindos
+
+\usepackage[shortlabels]{enumitem}
+
 \definecolor{violet}{rgb}{0.0,0.2,0.7}
 \definecolor{rouge2}{rgb}{0.8,0.0,0.2}
 \usepackage{hyperref}
@@ -638,54 +642,49 @@ Agradezco al profesor Pedro por sugerir este tema para el artículo, y por hacer
 \subsection{Convención} Durante todo el artículo, todas las variedades y morfismos estarán definidos sobre un cuerpo $k$ algebraicamente cerrado.
 
 \subsection{Notación}
-Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$) al espacio proyectivo $\mathbb{P}^n(k)$ (resp. espacio afín $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$.
+Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al espacio proyectivo $\mathbb{P}^n(k)$ (resp. espacio afín $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$.
 
 Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$.
 
-\subsection{Hechos preliminares}
+\subsection{Resumen de variedades completas}
 
-Comencemos por definir qué entenderemos por una superficie cúbica.
-
-\begin{definition}\label{definition:sup cubica}
-Sea $f(x_0,x_1,x_2,x_3)\in k[x_0,x_1,x_2,x_3]$ un polinomio homogéneo de grado $3$ no-nulo. Diremos que la variedad proyectiva
-$$S=\{[x_0,x_1,x_2,x_3]\in \mathbb{P}^3\;|\;f(x_0,x_1,x_2,x_3)=0\}\subseteq \mathbb{P}^3 $$
-es una {\bf superficie cúbica}.
+\begin{definition}
+Decimos que una variedad algebraica (o simplemente variedad) $X$ es \textbf{completa}, si para toda variedad algebraica $Y$, la proyección a la segunda coordenada
+\begin{align*}
+\operatorname{pr}_Y : X \times Y &\longrightarrow Y \\
+(x,y) &\longmapsto y
+\end{align*}
+es una función \textit{cerrada}.
 \end{definition}
 
-A continuación recordamos la definición de una recta en un espacio proyectivo.
-
-\begin{definition}\label{definition:recta}
-Sea $\mathbb{P}^n$ el espacio proyectivo asociado al $k$-espacio vectorial $V=k^{n+1}$. Por definición, una {\bf recta} $\ell$ en $\mathbb{P}^n$ es un sub-espacio proyectivo $\ell \cong \mathbb{P}^1$ de $\mathbb{P}^n$ asociado a un sub-espacio vectorial $W\cong k^2$.
-\end{definition}
-
-\begin{example}\label{example:Fermat}
-Sea $k=\mathbb{C}$ el cuerpo de los números complejos. La superficie cúbica de Fermat en $\mathbb{P}^3$ dada por la ecuación
-$$x_0^3+x_1^3+x_2^3+x_3^3=0$$
-posee exactamente 27 rectas, cada una de la forma
-$$\ell_{(i,j,k)} := \{[x_0,x_1,x_2,x_3]\in \mathbb{P}^3\;|\;x_0+\omega x_i = x_j+\omega'x_k=0\} \cong \mathbb{P}^1, $$
-donde $\{i,j,k\}=\{1,2,3\}$, $j<k$, y donde $\omega$ y $\omega'$ son raíces cúbicas de la unidad (eventualmente la misma).
-
-\vspace{2mm}
-
-En efecto, (...).
-\end{example}
-
-
-\begin{lemma}
-Sea $\mathcal{S}$ el espacio de parámetros de superficies cúbicas en $\mathbb{P}^3$. Entonces, $\mathcal{S}\cong \mathbb{P}^{19}$.
-\end{lemma}
-
+\begin{proposition}\label{proposicion:varios hechos sobre variedades completas}
+\begin{enumerate}[(a)]
+\item Una subvariedad cerrada de una variedad completa (respectivamente proyectiva) es completa (respectivamente proyectiva).
+\item Si $\varphi : X \to Y$ es un morfismo (regular) de variedades algebraicas, y $X$ es completo, entonces la imagen es cerrada en $Y$, y es completa.
+\item Las variedades afines completas tienen dimensión $0$.
+\item Las variedades proyectivas son completas; las variedades quasiproyectivas completas son proyectivas.
+\item La \textit{variedad bandera} de un espacio vectorial $V$ de dimensión finita es proyectiva, y en particular el ítem (d) dice que es completa.
+\end{enumerate}
+\end{proposition}
 \begin{proof}
-El espacio vectorial de polinomios homogéneos cúbicos en 4 variables puede ser identificado con el espacio de secciones globales $\textup{H}^0(\mathbb{P}^3,\mathcal{O}_{\mathbb{P}^3}(3))$. Más aún, tenemos que
-$$\dim_k \textup{H}^0(\mathbb{P}^n,\mathcal{O}_{\mathbb{P}^n}(d))=\binom{n+d}{d}, $$
-por lo que en nuestro caso $\dim_k \textup{H}^0(\mathbb{P}^3,\mathcal{O}_{\mathbb{P}^3}(3)) = \binom{6}{3}=20$. Finalmente, notamos que dos polinomios proporcionales definen la misma superficie cúbica y que, por definición, no debemos considerar el polinomio nulo. En otras palabras, el espacio de parámetros $\mathcal{S}$ está dado por la proyectivización $\mathcal{S}=\mathbb{P}(\textup{H}^0(\mathbb{P}^3,\mathcal{O}_{\mathbb{P}^3}(3)))\cong \mathbb{P}^{19}$.
+\begin{enumerate}[(a)]
+\item Se deduce inmediatamente de la definición de subvariedad cerrada.
+\item Es exactamente la misma demostración que el Corolario 2.7.10. de \cite{notas_pedro}; notar que usamos que la variedad algebraica $Y$ es \textit{separada}.
+\item En efecto, como $X$ es afín, podemos suponer sin pérdida de generalidad que es un cerrado de $\afine m$ para algún $m \geq 1$, luego basta ver que la imagen de cada proyección a la $i$-ésima coordenada es finita, digamos $f_i : X \to \afine 1$, ahora, considerando la incrustación $\afine 1 \hookrightarrow \projective 1$, $x \mapsto [x, 1]$, tenemos que por el ítem anterior que la composición $X \to \afine 1 \hookrightarrow \projective 1$ tiene imagen cerrada, y como no es sobreyectiva, debe ser finita, i.e., la imagen de $f_i$ es finita como queríamos probar.
+\item Que las \textit{variedades proyectivas} son completas ya lo vimos en \cite[Teorema \emph{2.7.9}]{notas_pedro}. Más generalmente, si $X$ es quasi-proyectiva, es decir, isomorfa a un abierto Zariski $U$ de una variedad algebraica proyectiva $Y$, entonces el morfismo inclusión $U \hookrightarrow Y$ tiene imagen cerrada por el ítem (b), y por lo tanto es una subvariedad cerrada de una variedad proyectiva, y concluimos utilizando el ítem (a).
+\item Una demostración de que las variedades banderas son proyectivas se puede encontrar en \cite[Teorema 3.3.11.]{geckMeinolf2013introductionToAlgebraicGeometryAndAlgebraicGroups}.
+\end{enumerate}
 \end{proof}
 
-El siguiente hecho será utilizado directamente sin demostración (ver \cite[\S 7.1]{3264} para más detalles) en el caso donde el cuerpo $k$ es de característica nula\footnote{La demostración pasa por el teorema de Bertini, que sólo es válido en $\textup{car}(k)=0$.}.
+Además de estos hechos, necesitamos un lema:
 
-\begin{fact}
-Supongamos que $\textup{car}(k)=0$. Entonces, el conjunto de superficies cúbicas singulares corresponde a una hipersuperficie irreducible $\sD$ dentro del espacio de parámetros $\mathcal{S}$, llamada usualmente el {\bf divisor discriminante}.
-\end{fact}
+\begin{lemma}\label{lema:lema para variedades completas}
+Supongamos que $G$ actua transitivamente sobre dos variedades algebraicas irreducibles $X$,$Y$, y sea $\varphi : X \to Y$ un morfismo regular biyectivo, $G$-equivariante. Si $Y$ es completo, entonces $X$ también.
+\end{lemma}
+\begin{proof}
+Ver \cite[Lema \S 21.1.]{humphreys2012linearAlgebraicGroups}.
+\end{proof}
+
 
 \section{Teorema del punto fijo de Borel}
 
@@ -694,10 +693,44 @@ En esta sección probaremos el teorema principal de este artículo:
 \begin{theorem}[Teorema del punto fijo de Borel]\label{teorema:punto fijo de borel}
 Sea $G$ un grupo algebraico conexo soluble, y sea $X$ una variedad completa (no vacía) donde actúa $G$. Entonces $G$ tiene un punto fijo en $X$.
 \end{theorem}
+\begin{proof}
+Si $\dim G = 0$, entonces $G = \{1\}$ y no hay nada que probar. Luego procedemos por inducción en la dimensión de $G$. Sea $H := [G, G]$, es conexo (ver \cite[(17.2)]{humphreys2012linearAlgebraicGroups}), soluble, y de menor dimensión que $G$ (pues $G$ es soluble), con lo cual, por hipótesis inductiva, el conjunto $Y$ de puntos fijos de $H$ en $X$ es no vacío. $Y$ es cerrado (ver \cite[Proposición 8.2.]{humphreys2012linearAlgebraicGroups}), con lo cual es completo por el ítem (a) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Como $G$ deja estable a $Y$, ya que $H$ es normal en $G$, basta ver que $G$ tiene un punto fijo en $Y$, así, reemplacemos $X$ por $Y$.
+
+Estamos entonces en el siguiente caso: $H \subset G_x$ para todo $x \in X$. En particular, todos los \textit{grupos de isotropía} son normales en $G$, por lo tanto $G/G_x$ es una variedad \textit{afin}. Que los grupos de isotropía son normales se deducen de lo siguiente, esto equivale a probar que para todo $g \in G$, $G_x \subset g G_x g^{-1}$, luego sea $z \in G_x$, i.e., $z \cdot x = x$, tenemos que $g^{-1}z g z^{-1} \in H \subset G_{z \cdot x}$, consecuentemente $x = z \cdot x = g^{-1} z g z^{-1} (z \cdot x) = g^{-1} z g \cdot x$, i.e. $g ^{-1} z g \in G_x$, o sea, $z \in g G_x g^{-1}$, como $z$ era arbitrario se prueba la inclusión deseada.
+
+Tomemos $x \in X$ cuya órbtia $G \cdot x$ sea cerrada, y por lo tanto nuevamente completo: esto se puede hacer, por \cite[Proposición 8.3.]{humphreys2012linearAlgebraicGroups}. Ahora el morfismo canónico $G / G_x \to G \cdot X$ es biyectivo, con el lado izquierdo afín y el derecho completo. El Lema \ref{lema:lema para variedades completas} implica que $G/G_x$ es completo. Pero el ítem (c) de \ref{proposicion:varios hechos sobre variedades completas} implica que $G/G_x$ es un grupo algebraico $0$-dimensional, i.e. trivial, es decir, $G_x = G$, y por lo tanto $x$ es un punto fijo.
+\end{proof}
 
 \section{Consecuencias}
 
 En esta sección probaremos varias consecuencias el Teorema del punto fijo de Borel. Sea $G$ un grupo conexo arbitrario.
+
+El siguiente teorema es un análogo del Teorema de Lie\footnote{Este teorema dice que sobre un cuerpo algebraicamente cerrado de \underline{característica cero}, si $\mathfrak g \to \mathfrak {gl} (V)$ es una representación de dimensión finita de una álgebra de Lie \textit{soluble} $\mathfrak g$, entonces existe una \textit{bandera} $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $\pi (g)$ para todo $g \in \mathfrak g$.}; esto vale en característica arbitraria, sin embargo el teorema para álgebras de Lie \underline{no}\footnote{En caaracterística $p > 0$, el Teorema de Lie vale para representaciones de dimensión menor que $p$, sin embargo, puede fallar en dimensión $p$: ver \cite{wikipedia-lie-theorem}.}.
+\begin{theorem}[Teorema de Lie-Kolchin]
+Sea $G$ un subgrupo algebraico conexo soluble de $\operatorname{GL} (V)$ para un espacio vectorial de dimensión finita no trivial. Entonces existe una bandera $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $g$ para todo $g \in G$.
+\end{theorem}
+\begin{proof}
+Sea $G$ un subgrupo cerrado conexo soluble de $\operatorname{GL} (V)$. Entonces $G$ actúa en la variedad bandera de $V$, la cual es completa por el ítem (e) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, con lo cual el Teorema \ref{teorema:punto fijo de borel} implica que la acción de $G$ deja fija una bandera
+\[
+    V = V_n \supset \cdots V_1 \supset V_0 = 0.
+\]
+Es decir, vale el enunciado del teorema.
+\end{proof}
+
+\subsubsection{Subgrupos de Borel y Toros maximales}
+
+\begin{definition}
+Un \textbf{subgrupo de Borel} de $G$ es un subgrupo cerrado conexo soluble que no está incluido propiamente en ningún otro subgrupo cerrado conexo soluble.
+\end{definition}
+Como los subgrupos de Borel de $G$ y $G^{\circ}$ coinciden, supondremos a partir de lo que sigue que $G$ es conexo. Un subgrupo conexo soluble de dimensión máxima en $G$ es claramente un subgrupo de Borel; pero no es obvio que todo subgrupo de borel tenga la misma dimensión, sin embargo, esto es cierto:
+
+\begin{theorem}
+Sea $B$ un subgrupo de borel de $G$. Entonces $G/B$ es una variedad proyectiva, y todos los otros subgrupos de borel son conjugados a $B$. En particular, son todos isomorfos entre sí y tienen la misma dimensión.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
 
 \begin{proposition}
 Si $\sigma$ es un automorfismo de $G$ que deja fijo todos los elementos de un subgrupo de Borel $B$, enntonces debe ser la identidad.
