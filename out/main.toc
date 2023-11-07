@@ -1,15 +1,16 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {section}{\tocsection {}{1}{Introducción}}{1}{section.1}%
-\contentsline {subsection}{\tocsubsection {}{}{Estructura del artículo}}{1}{section*.2}%
+\contentsline {subsection}{\tocsubsection {}{}{Estructura del artículo}}{2}{section*.2}%
 \contentsline {subsection}{\tocsubsection {}{}{Agradecimientos}}{2}{section*.3}%
 \contentsline {section}{\tocsection {}{2}{Notación, convenciones y hechos preliminares}}{2}{section.2}%
 \contentsline {subsection}{\tocsubsection {}{2.1}{Convención}}{2}{subsection.2.1}%
 \contentsline {subsection}{\tocsubsection {}{2.2}{Notación}}{2}{subsection.2.2}%
-\contentsline {subsection}{\tocsubsection {}{2.3}{Resumen de variedades completas}}{2}{subsection.2.3}%
-\contentsline {section}{\tocsection {}{3}{Teorema del punto fijo de Borel}}{2}{section.3}%
-\contentsline {section}{\tocsection {}{4}{Consecuencias}}{3}{section.4}%
-\contentsline {subsubsection}{\tocsubsubsection {}{4.0.1}{Subgrupos de Borel y Toros maximales}}{3}{subsubsection.4.0.1}%
-\contentsline {subsubsection}{\tocsubsubsection {}{4.0.2}{Más consecuencias}}{4}{subsubsection.4.0.2}%
-\contentsline {subsubsection}{\tocsubsubsection {}{4.0.3}{El Teorema del Normalizador}}{5}{subsubsection.4.0.3}%
-\contentsline {section}{\tocsection {}{5}{Cosas para agregar}}{7}{section.5}%
+\contentsline {section}{\tocsection {}{3}{Terminología de Teoría de Grupos}}{2}{section.3}%
+\contentsline {section}{\tocsection {}{4}{Resumen de variedades completas}}{2}{section.4}%
+\contentsline {section}{\tocsection {}{5}{Teorema del punto fijo de Borel}}{3}{section.5}%
+\contentsline {section}{\tocsection {}{6}{Consecuencias}}{3}{section.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.0.1}{Subgrupos de Borel y Toros maximales}}{4}{subsubsection.6.0.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.0.2}{Más consecuencias}}{5}{subsubsection.6.0.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.0.3}{El Teorema del Normalizador}}{6}{subsubsection.6.0.3}%
+\contentsline {section}{\tocsection {}{7}{Cosas para agregar}}{7}{section.7}%
 \contentsline {section}{\tocsection {}{}{Referencias}}{7}{section*.4}%

@@ -639,14 +639,35 @@ Agradezco al profesor Pedro por sugerir este tema para el artículo, y por hacer
 
 \section{Notación, convenciones y hechos preliminares}
 
-\subsection{Convención} Durante todo el artículo, todas las variedades y morfismos estarán definidos sobre un cuerpo $k$ algebraicamente cerrado.
+\subsection{Convención} Durante todo el artículo, todas las variedades y morfismos estarán definidos sobre un cuerpo $k$ algebraicamente cerrado, de característica arbitraria.
 
 \subsection{Notación}
 Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al espacio proyectivo $\mathbb{P}^n(k)$ (resp. espacio afín $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$.
 
 Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$.
 
-\subsection{Resumen de variedades completas}
+\section{Terminología de Teoría de Grupos}
+En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ un grupo, escribamos
+\begin{itemize}
+\item $Z(G)$ es el \textbf{centro} de $G$, es decir, todos los $x \in G$ tales que $x g = g x$ para todo $g \in G$.
+\item $R(G)$ es el \textbf{radical} de $G$, es decir, el subgrupo conexo normal soluble de $G$. Donde estamos suponiendo que $G$ es un \textit{grupo algebraico}.
+\item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$.
+\item Dado $S \subset G$, $N_G (S)$ es el \textbf{normalizador} de $S$, es decir, los $x \in G$ tales que $x g x^{-1} \in S$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $N_G (x)$ en lugar de $N_G (S)$.
+\item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$.
+\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ es un mapa
+\begin{align*}
+G \times X &\longrightarrow X \\
+(g,x) &\longmapsto g \cdot x
+\end{align*}
+tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G_S$.
+\end{itemize}
+
+Introduzcamos también definiciones básicas de Teoría de Grupos. Decimos que un subgrupo
+
+
+
+
+\section{Resumen de variedades completas}
 
 \begin{definition}
 Decimos que una variedad algebraica (o simplemente variedad) $X$ es \textbf{completa}, si para toda variedad algebraica $Y$, la proyección a la segunda coordenada
