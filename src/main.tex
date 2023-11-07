@@ -806,8 +806,117 @@ envía $B$ en $1$, y por lo tanto se factoriza por la proyección a través del 
 \]
 \end{corollary}
 \begin{proof}
-
+$Z(G)^\circ$ es conexo y soluble, por lo tanto está contenido en algún subgrupo de Borel de $G$, el cual podemos conjugar (sin afectar a $Z(G)^\circ$) para convertirlo en $B$ gracias al Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva}, con lo cual la primera inclusión vale. La segunda inclusión es obvia; también lo es $Z(G) \subset C_G (B)$. Finalmente, si $x \in C_G (B)$, entonces el autormofismo $\sigma : g \mapsto x g x^{-1}$ cumple las hipótesis de la proposición anterior, con lo cual es trivial, i.e., $x \in Z(G)$.
 \end{proof}
+
+\begin{remark}
+De hecho, se puede probar que $Z(G) = Z(B)$ (ver \cite[Corolario B \S 22.2.]{humphreys2012linearAlgebraicGroups}).
+\end{remark}
+
+\begin{proposition}
+\begin{enumerate}[(1)]
+\item Si un subgrupo de borel $B$ es nilpotente (en particular, si $B = B_s$ o $B = B_u$), entonces $G = B$.
+\item $G$ es nilpotente si y solo si $G$ tiene un único toro maximal.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(1)]
+\item Observemos primero que si $B = B_s$ o $B = B_u$, entonces $B$ es un toro o un grupo unipotente (ver \cite[Teorema 19.3]{humphreys2012linearAlgebraicGroups}), y por lo tanto nilpotente en cualquier ccacso. Siempre que $B$ sea nilpotente, de dimensión positiva, su centro también tiene dimensión positiva (\cite[Proposición 17.4 (a)]{humphreys2012linearAlgebraicGroups}). Sin embargo, el corolario anterior dice que $Z(G)^\circ \subset Z (B) \subset Z (G)$. Con lo cual, podemos pasar a un grupo de menor dimensión $G/Z(G)^{\circ}$, en donde $B / Z(G)^\circ$ es un subgrupo nilpotente de Borel. Por hipótesis inductiva, estos grupos son iguales, con lo cual $G = B$ (el caso base $\dim G = 0$ es trivial).
+\item Sabemos por \cite[(19.2)]{humphreys2012linearAlgebraicGroups} que un grupo nilpotente tiene un único toro maximal. Recíprocamente, si $T$ es el único toro maximal de $G$ y $B$ es algún subgrupo de borel conteniéndolo, debe ser que $B$ es nilpotente \cite[(19.2)(19.3)]{humphreys2012linearAlgebraicGroups}, con lo cual $B = G$ por el ítem (1).
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+Sea $T$ un toro maximal de $G$, $C := C_G (T)^\circ$. Entonces $C$ es nilpotente y $C = N_G (C)^\circ$.
+\end{corollary}
+\begin{proof}
+$T$ es el único toro maximal de $C$, gracias al Corolario \ref{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}, entonces $C$ es nilpotente por la proposición que acabamos de probar. Claramente $T$ es normal en $N_G (C)^\circ$, y por lo tanto también central (ver \cite[Corolario 16.3]{humphreys2012linearAlgebraicGroups}).
+\end{proof}
+
+\begin{definition}
+Sea $T$ un toro maximal de $G$, y $C := C_G (T)^\circ$. El grupo $C$ se lo suele llamar \textbf{subgrupo de Cartan}\footnote{En analogía con las subálgebras de Cartan en Teoría de Álgebras de Lie.}
+\end{definition}
+
+\begin{remark}
+De hecho, los subgrupos de Cartan son conexos (ver el Teorema \cite[\S 22.3.]{humphreys2012linearAlgebraicGroups}). En particular, como todos los toros maximales son conjugados entre sí, los subgrupos de Cartán también lo son.
+\end{remark}
+
+
+\subsubsection{El Teorema del Normalizador}
+Nuevamente $G$ es un grupo algebraico conexo.
+
+Primero probamos un lema:
+
+\begin{lemma}
+Sea $B$ un subgrupo de Borel de $G$, sea $N:= N_G(B)$. Entonces $B = N^\circ$.
+\end{lemma}
+\begin{proof}
+Claramente $B$ es un subgrupo de Borel de $N^\circ$. Gracias al Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} y al hecho que $B$ es normal en $N^\circ$, $B$ es el único subgrupo de Borel de $N^\circ$. Finalmente, \cite[Teorema de Densidad \S 22.2.]{humphreys2012linearAlgebraicGroups} fuerza a que $B$ sea igual a $N^\circ$.
+\end{proof}
+
+\begin{theorem}[Teorema del Normalizador]\label{teorema:teorema del normalizador}
+Sea $B$ un subgrupo de Borel de $G$. Entonces $B = N_G (B)$.
+\end{theorem}
+\begin{proof}
+Escribamos $N := N_G (B)$. Por el lema anteior tenemos que $B = N^\circ$. Para probar que $N = B$, procederemos por inducción en $\dim G$. Claramente $R(G)$ yace dentro de todos los subgrupos de Borel de $G$ (cf. \cite[Ejercicio 21.6]{humphreys2012linearAlgebraicGroups}), así que supongamos que sin pérdida de generalidad que $G$ es de dimensión positiva y \textit{semisimple}: si no, aplicamos hipótesis inductiva a $G/R(G)$.
+
+Sea $x \in N$, y sea $T$ un toro maximal de $G$ contenido en $B$. Entonces $x T x^{-1}$ es otro toro maximal de $G$ contenido en $B$, así que existe $y \in B$ tal que $y( x T x^{-1})y^{-1} = T$ (Corolario \ref{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}). Claramente $x $ pertenece a $B$ si y solo si $yx$ lo es, por lo que podemos asumir también que $x \in N_G (T)$. Tomemos $S := C_T (x)^\circ$, un subtoro $T$. Hay dos posibilidades:
+\begin{enumerate}
+\item[Caso 1:] $S \neq \{1\}$. Luego $C := C_G (S)$ tiene radical no trivial, con lo cual $C$ es un subgrupo propio de $G$. Se tiene que $B' := B \cap C$ es un subgrupo de Borel de $C$ (ver \cite[\S 22.4.]{humphreys2012linearAlgebraicGroups}). Más aún, $C$ es conexo (ver \cite[Teorema 22.3.]{humphreys2012linearAlgebraicGroups}). Por hipótesis inducitva, se sigue que $N_C (B') = B'$. Pero $x$ pertenece a $C$ y normaliza $B$, así que $x \in N_C (B') = B' \subset B$.
+\item[Caso 2:] $S = \{1\}$. Como $x$ normaliza $T$, y $T$ es conmutativo, es fácil de ver que el morfismo conmutador
+\begin{align*}
+\gamma_x : T &\longrightarrow T \\
+t &\longmapsto t x t^{-1}x^{-1}
+\end{align*}
+es de hecho un morfismo de grupos con núcleo $C_T (x)$. Este es finito, ya que $S = \{1\}$, así que $\gamma_x$ debe ser sobreyectivo por un argumento de dimensión (ver \cite[Proposición 7.4B]{humphreys2012linearAlgebraicGroups}). Consecuentemente, $T$ yace dentro de $[M, M]$, donde $M$ es el subgrupo de $N$ generado por $x$ y $B$. Así, $B = T B_u$ yace contenido en el subgrupo de $M$ generado por $B_u$ y $[M,M]$.
+
+Ahora, tomemos una representación racional $\rho : G \rightarrow \operatorname{GL}(V)$, donde $V$ contiene una recta $D$ cuyo grupo de isotropía en $G$ es precisamente $M$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). Sea $\chi : M \to \mathbb{G}_m$ su caracter asosciado. Entonces $\chi$ es trivial en $[M,M]$ y en grupo unipotente $B_u$; ergo, $\chi$ es trivial en $B$. Si $0 \neq v \in V$ genera $D$, se tiene que $\rho$ induce un morfismo $G/B \to Y =$ la órbita de $v$ bajo la acción de $\rho (G)$. Como $G/B$ es completo, su imagen $Y$ es cerrada en $V$ (y por lo tanto afín) y también completa gracias al ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Pero esto implica que $Y$ es un punto por el ítem (c) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Entonces $G = M$. Como $G$ es conexo y $[M : B] < \infty$ (lema anterior), no queda otra alternativa que $G$ sea igual a $B$, lo cual es imposible.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+$B$ es maximal en la colección de subgrupos solubles (no necesariamente conexos o cerrados) de $G$.
+\end{corollary}
+\begin{proof}
+Si $S$ es un subgrupo soluble maximal de $G$, entonces evidentemente $S$ es cerrado. Si $S \supset B$, entonces $S^\circ = B$ por definición de subgrupo de Borel, consecuentemente $S \subset N_G (B) = B$.
+\end{proof}
+
+\begin{corollary}
+Sea $P$ un subgrupo parabólico de $G$. Entonces $P = N_G (P)$. En particular, $P$ es conexo.
+\end{corollary}
+\begin{proof}
+Por definición, $P$ contiene algún subgrupo de Borel $B$ de $G$. Sea $x \in N_G (P)$. Entonces tanto $B$ como $x B x^{-1}$ son subgrupos de Borel de $P^\circ$, y por lo tanto son conjugados por algún elemento $y \in P^\circ$ (Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva}). Por lo tanto $xy \in N_G (B) = B$ (gracias al Teorema del Normalizador \ref{teorema:teorema del normalizador}). Sin embargo, $xy, y \in P^\circ$ fuerza a que $x \in P^\circ$, es decir, $P^\circ = P = N_G (P)$.
+\end{proof}
+
+\begin{corollary}
+Sean $P,Q$ subgrupos parabólicos de $G$, ambos conteniendo un subgrupo de Borel $B$. Si $P$ y $Q$ son conjugados en $G$, entonces $P = Q$.
+\end{corollary}
+\begin{proof}
+Supongamos que $Q = x^{-1} P x$. Entonces $B$ y $x^{-1}B x$ son ambos subgrupos de borel del grupo conexo $Q$ (corolario anterior), así existe $y \in Q$ tal que $B = y^{-1} (x ^{-1} B x) y$ (Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva}). Con lo cual, $xy \in N_G (B) = B$ fuerza que $x \in Q$, y luego $P = Q$.
+\end{proof}
+
+En otras palabras, el corolario anterior dice que la cantidad de clases de conjugación de subgrupos parabólicos de $G$ es precisamente la cantidad de subgrupos parabólicos conteniendo un subgrupo de Borel $B$ de $G$ dado.
+
+\begin{corollary}
+Sea $B$ un subgrupo de Borel de $G$, y $U = B_u$. Entonces $B = N_G (U)$.
+\end{corollary}
+\begin{proof}
+Sea $N := N_G (U)$. Como $U$ es un subgrupo conexo unipotente maximal de $N^\circ$, contiene un conjugado de cada elemento unipotente de $N^\circ$ (ver \cite[Teorema 22.2]{humphreys2012linearAlgebraicGroups}). Pero $U$ es normal en $N^\circ$, o sea que $N^\circ / U$ consiste de elementos semisimples y por ende es un toro (cf. \cite[Ejercicio 21.2]{humphreys2012linearAlgebraicGroups}). En particular, $N^\circ$ es soluble. Como $B \subset N^\circ$, tenemos que $B = N^\circ$. Sin embargo, $B = N_G (B)$ por el Teorema \ref{teorema:teorema del normalizador}, así que $N^\circ = N$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \bibliographystyle{amsalpha}
