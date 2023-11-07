@@ -707,7 +707,7 @@ En esta sección probaremos varias consecuencias el Teorema del punto fijo de Bo
 
 El siguiente teorema es un análogo del Teorema de Lie\footnote{Este teorema dice que sobre un cuerpo algebraicamente cerrado de \underline{característica cero}, si $\mathfrak g \to \mathfrak {gl} (V)$ es una representación de dimensión finita de una álgebra de Lie \textit{soluble} $\mathfrak g$, entonces existe una \textit{bandera} $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $\pi (g)$ para todo $g \in \mathfrak g$.}; esto vale en característica arbitraria, sin embargo el teorema para álgebras de Lie \underline{no}\footnote{En caaracterística $p > 0$, el Teorema de Lie vale para representaciones de dimensión menor que $p$, sin embargo, puede fallar en dimensión $p$: ver \cite{wikipedia-lie-theorem}.}.
 \begin{theorem}[Teorema de Lie-Kolchin]\label{teorema:Lie-Kolchin}
-Sea $G$ un subgrupo algebraico conexo soluble de $\operatorname{GL} (V)$ para un espacio vectorial de dimensión finita no trivial. Entonces existe una bandera $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $g$ para todo $g \in G$.
+Sea $G$ un subgrupo algebraico conexo soluble de $\operatorname{GL} (V)$ para un espacio vectorial de dimensión finita no trivial. Entonces existe una bandera $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $G$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $g$ para todo $g \in G$.
 \end{theorem}
 \begin{proof}
 Sea $G$ un subgrupo cerrado conexo soluble de $\operatorname{GL} (V)$. Entonces $G$ actúa en la variedad bandera de $V$, la cual es completa por el ítem (e) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, con lo cual el Teorema \ref{teorema:punto fijo de borel} implica que la acción de $G$ deja fija una bandera
@@ -834,7 +834,7 @@ $T$ es el único toro maximal de $C$, gracias al Corolario \ref{corolario:los to
 \end{proof}
 
 \begin{definition}
-Sea $T$ un toro maximal de $G$, y $C := C_G (T)^\circ$. El grupo $C$ se lo suele llamar \textbf{subgrupo de Cartan}\footnote{En analogía con las subálgebras de Cartan en Teoría de Álgebras de Lie.}
+Sea $T$ un toro maximal de $G$, y $C := C_G (T)^\circ$. El grupo $C$ se lo suele llamar \textbf{subgrupo de Cartan}\footnote{En analogía con las subálgebras de Cartan en Teoría de Álgebras de Lie.}.
 \end{definition}
 
 \begin{remark}
@@ -907,9 +907,21 @@ Sea $N := N_G (U)$. Como $U$ es un subgrupo conexo unipotente maximal de $N^\cir
 
 
 
+\section{Cosas para agregar}
 
+Suponer que $k$ es un cuerpo algebraicamente cerrado (no necesariamente de caracteristica $0$).
 
+Notacion: $Z ( G), R(G), C_G (x), C_G (S), [G,G], N_G (x), N_G (S), G_x , G\cdot x, B_u, B_s$
 
+definiciones basicas de grupos: solubilidad, subgrupo normal,  nilpotencia, toro maximal, unipotente conexo maximal que es una bandera, que es una bandera completa, una bandera standard (creo que es la bandera de $V = k^n$). Que es un grupo de isotropia. Que es una orbita. Que es el estabilizador. Que es una clase de Conjugación.
+
+definiciones algebraicas: que es un grupo algebraico, que es un grupo algebraico conexo. que es la componente conexa $G^\circ$. Como es la estructura algebraica de un espacio homogeneo. Que es una accion de un grupo algebraico $G$ en una variedad algebraica X. que es la variedad bandera de un espacio vectorial finito $V$, dar como ejemplo la accion natural de $\operatorname{GL}(V)$ allí. Que es un morfismo de grupos algebraicos.
+
+Teoremas de Humphreys: Teorema 11.2, 11.3, (8.3), Teorema 19.3, 19.2, Proposición 17.4, Corolario 16.3. Proposición 7.4B. No copiar solo citar el Teorema 22.4, el 22.3 y el 22.2.
+
+Hacer una observación para no volver a repetirlo que todo grupo algebraico de dimensión $0$ tiene que ser el grupo trivial $\{1\}$.
+
+Ejercicios: 21.5, 21.2
 
 
 

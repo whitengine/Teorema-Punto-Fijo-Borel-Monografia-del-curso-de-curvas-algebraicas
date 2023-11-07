@@ -11,4 +11,5 @@
 \contentsline {subsubsection}{\tocsubsubsection {}{4.0.1}{Subgrupos de Borel y Toros maximales}}{3}{subsubsection.4.0.1}%
 \contentsline {subsubsection}{\tocsubsubsection {}{4.0.2}{Más consecuencias}}{4}{subsubsection.4.0.2}%
 \contentsline {subsubsection}{\tocsubsubsection {}{4.0.3}{El Teorema del Normalizador}}{5}{subsubsection.4.0.3}%
+\contentsline {section}{\tocsection {}{5}{Cosas para agregar}}{7}{section.5}%
 \contentsline {section}{\tocsection {}{}{Referencias}}{7}{section*.4}%
