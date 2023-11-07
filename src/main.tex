@@ -642,7 +642,7 @@ Agradezco al profesor Pedro por sugerir este tema para el artículo, y por hacer
 \subsection{Convención} Durante todo el artículo, todas las variedades y morfismos estarán definidos sobre un cuerpo $k$ algebraicamente cerrado, de característica arbitraria.
 
 \subsection{Notación}
-Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al espacio proyectivo $\mathbb{P}^n(k)$ (resp. espacio afín $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$.
+Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al \textit{espacio proyectivo} $\mathbb{P}^n(k)$ (resp. \textit{espacio afín} $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$. Más generalmente, dado un espacio vectorial de dimensión finita $V$, denotamos por $\mathbb{P} (V)$ a la \textit{proyectivización} de $V$, i.e., el conjunto de todos los subespacios vectoriales de dimensión $1$ de $V$. El \textit{grupo multiplicativo} $\mathbb{G}_m := ( k^\times, \cdot)$.
 
 Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$.
 
@@ -663,6 +663,72 @@ tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in 
 \end{itemize}
 
 Introduzcamos también definiciones básicas de Teoría de Grupos. Decimos que un subgrupo
+
+\section{Variedades Bandera}
+
+En esta sección construiremos un ejemplo de variedades proyectivas: las \textit{variedades bandera}.
+
+Sea $V$ un espacio vectorial de dimensión $n$ sobre un cuerpo $k$. $\bigwedge V$ denota el \textbf{álgebra exterior} (el cociente del \textit{álgebra de tensores} de $V$ por el ideal bilátero generado por $v \otimes v$, $v \in V$). Recordemos que $\bigwedge V$ es una $k$-álgebra de dimensión finita, más aún, es una $k$-álgebra graduada por $\{\bigwedge^i V\}_{i = 0}^n$. En particular $\bigwedge^0 V = k$ y $\bigwedge^1 V = V$. Dada una base ordenada $(v_1, \ldots, v_n)$ de $V$, entonces los \textit{productos cuña} $v_{i_1} \wedge \cdots \wedge v_{i_d}$ ($i_1 < i_2 < \cdots < i_d$) forman una $k$-base de $\bigwedge^d V$ de cardinal $\binom n d$. En particular $\bigwedge^n V$ es $1$-dimensional, i.e., el producto cuña de una base arbitraria de $V$ está determinada salvo un múltiplo escalar. Si $W$ es un subespacio vectorial de $V$, entonces podemos identificar canónicamente a $\bigwedge^d W$ con un subespacio de $\bigwedge^d V$.
+
+Así, tenemos un mapa $\psi$ saliendo del conjunto $\mathfrak G_d (V)$ de todos los subespacios $d$-dimensionales de $V$ en $\mathbb{P} (\bigwedge^d V)$, que manda un subespacio $D$ al punto en la proyectivización $\mathbb{P} (\bigwedge^d V)$ correspondiente a $\bigwedge^d D$ ($d \geq 1$). Afirmamos que $\psi$ es inyectiva. En efecto, supongamos que $D,D'$ son dos subespacios $d$-dimensionales. Fijemos una base de $V$ de tal suerte que $v_1, \ldots, v_d$ genera $D$, mientras que $v_{r, \ldots, v_{r + d - 1}}$ genera $D'$. De esta manera $v_1 \wedge \cdots \wedge v_d$ no puede ser un múltiplo de $v_r \wedge \cdots \wedge v_{r+d - 1}$ a menos que $r = 1$, i.e. $D = D'$.
+
+Para poder brindarle a $\mathfrak G _d (V)$ una estructura de variedad proyectiva, basta ver que la imagen de $\psi$ es cerrada. Para esto, basta probarlo en cada cubrimiento afín de $\mathbb{P}(\bigwedge^d (V))$. Los casos $d = 1, d = n$ son triviales.
+
+Fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y asosciemos la base $\{v_{i_1} \wedge \cdots \wedge v_{i_d}\}_{i_1 < \cdots < i_d}$ de $\bigwedge^d V$. Consideremos los abiertos afines $U$ que cubren $\mathbb{P} (\bigwedge^d (V))$ que consisten de puntos cuya coordenada homogénea relativa a $v_{i_1} \wedge \cdots \wedge v_{i_d}$ ($i_1 < \cdots < i_d$) es no nula. Por ejemplo, veamos por simplicidad el caso dado por $v_1 \wedge \cdots \wedge v_d$. Veamos ahora que la intersección $\Imagen \psi \cap U$ es cerrada en $U$. Pongamos $D_0$ como el subespacio generado por $v_1, \ldots, v_d$. Claramente $\psi (D)$ pertenece a $U$ si y solo si la proyección natural de $V$ sobre $D_0$ manda $D$ de manera isomorfa a $D_0$. En este caso, las imágenes inversas de $v_1, \ldots, v_d$ forman una base de $D$ de la forma $v_i + x_i (D)$ donde $x_i (D) := \sum_{j > d} a_{ij} v_j$ (y esta es la única base de $D$ que tiene esta forma). El producto cuña luce de la siguiente forma
+\[
+    v_1 \wedge \cdots \wedge v_d + \sum_{i = 1}^d (v_1 \wedge \cdots \wedge x_i (D) \wedge \cdots \wedge v_d) + (\star),
+\]
+donde $(\star)$ involucre una base de vecctores con dos o más $v_1, \ldots, v_d$ omitidos. Aquí se tiene que $v_1 \wedge \cdots \wedge x_i (D) \wedge \cdots \wedge v_d = \sum_{j > d} a_{ij} (v_1 \wedge \cdots \wedge v_j \wedge \cdots \wedge v_d)$ con $v_j$ reemplazado por $v_i$. Por lo tanto $\pm a_{ij}$ ($ 1 \leq i \leq d, d + 1 \leq j \leq n$) puede recuperarse como el coeficiente de la base de elementos $v_1 \wedge \cdots \wedge \hat {v_i} \wedge \cdots \wedge v_d \wedge v_j$ ($v_i$ omitido), en el producto cuña de la base de $D$ dada arriba. Más aún, los coeficientes en $(\star)$ son obviamente funciones polinomiales de los $a_{ij}$, independientes de $D$.
+
+Recíprocamente, dados $d (n-d)$ escalares $a_{ij}$ arbitrarios, claramente los vectores resultantes $v_i + x_i (D)$ generan un subespacio $d$-dimensional de $V$, cuya imagen bajo $\psi$ yace en $U$. Consecuentemente, $\Imagen \psi \cap U$ consiste de todos los puntos cuyas coordenadas afines son $(\ldots a_{ij} \ldots, f_k (a_{ij}) \ldots)$, donde los $a_{ij}$ son arbitrarios y los $f_k$ son funciones polinomiales en $\afine {d (n-d)}$. Este conjunto se puede ver como el \textit{grafo} de un morfismo de $\afine{d (n-d)}$ en otro espacio afín. Como los grafos son cerrados en la \textit{topología Zariski producto} (\cite[Teorema 2.6.12.]{notas_pedro}), concluimos que $\Imagen \psi \cap U$ es cerrado en $U$.
+
+\begin{definition}
+Las \textbf{variedades Grassmannianas} son los $\mathfrak G _d (V)$. Una \textbf{bandera} en $V$, es por definición una cadena
+\[
+    0 \subset V_1 \subset \cdots \subset V_k = V
+\]
+de subespacios $k$-vectoriales de $V$, tales que las inclusiones son propias. Una \textbf{bandera completa} es una en la que $k = \dim V$, i.e., $\dim V_{i+1}/V_i = 1$. $\mathfrak F (V)$ denota al conjunto de todas las banderas completas de $V$. Una vez que brindemos a $\mathfrak F (V)$ una estructura de variedad proyectiva, llamaremos a estas variedades: \textbf{variedad bandera} de $V$.
+\end{definition}
+
+
+Como vimos en \cite[Corolario 2.7.17.]{notas_pedro}, el producto de grassmanianas $\mathfrak G_1 (V) \times \cdots \times \mathfrak G_n (V)$ tiene la estructura de variedad proyectiva. Por otro lado, $\mathfrak F (V)$ se identifica con un subconjunto en este producto de grassmanianas de manera obvia, luego para darle una estuctura de variedad proyectiva basta ver que este conjunto es cerrado. Para simplificar la notación, consideremos solamente el producto $\mathfrak G _d (V) \times \mathfrak G_{d+1} (V)$, y probemos que el conjunto $S$ de pares $(D, D')$ con $D \subset D'$ es cerrado.
+
+Nuevamente como antes, fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y consideremos dos abiertos afines de $\mathbb{P} (\bigwedge^d (V))$ y $\mathbb{P} (\bigwedge^{d+1} (V))$, de tal suerte que los productos cubren la vareidad $\mathfrak G _d (V) \times \mathfrak G _{d+1} (V)$. Otra vez para simplificar la notación, tomemos estos abiertos afines $U, U'$ definidos relativos a $v_1 \wedge \cdots \wedge v_d$, $v_1 \wedge \cdots \wedge v_{d+1}$ respectivamente. Si $D$ (respectivamente $D'$) es la imagen en $U$ (respectivamente $U'$), obtenemos como ante bases canónicas: $v_i + x_i (D)$ ($1 \leq i \leq d$); $v_i + y_i (D')$ ($1\leq i \leq d+ 1$). Con lo cual $x_i (D) = \sum_{j > d} a_{ij} v_j$, $y_i (D') = \sum_{j > d+1} b_{ij} v_j$. Notemos que $D \subset D'$ si y solo si $x_i (D) = y_i (D') + a_{i, d+1} (v_{d+1} + y_{d+1} (D'))$ para $1 \leq i \leq d$. Esto a su vez se convierte en condiciones polinomiales en los coeficientes $a_{ij}, b_{ij}$, con lo cual $S$ interseca $U \times U'$ en un cerrado de $U \times U'$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Introducción a Grupos Algebraicos}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

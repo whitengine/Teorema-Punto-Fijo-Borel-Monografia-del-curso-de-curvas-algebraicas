@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.11)  7 NOV 2023 14:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.11)  7 NOV 2023 16:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -859,18 +859,21 @@ LaTeX Info: Redefining \% on input line 1.
 \openout5 = `main.toc'.
 
  [1{/home/whitengine/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-] [2]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 729
+]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 673
 .
 
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [3{/home/whitengine/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super
--ts1.enc}]
-[4] [5] [6]
+) [2]
+Underfull \vbox (badness 5741) has occurred while \output is active []
+
+ [3]
+[4{/home/whitengine/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t
+s1.enc}] [5] [6] [7] [8]
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
-de-curvas-algebraicas/out/main.bbl) [7]
+de-curvas-algebraicas/out/main.bbl) [9]
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
 de-curvas-algebraicas/out/main.aux
@@ -878,18 +881,18 @@ LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4EA942C766F6F45835CBD83BA3D04B6A;498.
+(rerunfilecheck)             Checksum: 0ABF24943DF7A7E6C4A2D37785FEB468;627.
  ) 
 Here is how much of TeX's memory you used:
- 24204 strings out of 476017
- 456129 string characters out of 5786780
+ 24215 strings out of 476017
+ 456250 string characters out of 5786780
  1873666 words of memory out of 5000000
- 44000 multiletter control sequences out of 15000+600000
+ 44006 multiletter control sequences out of 15000+600000
  529081 words of font info for 96 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 116i,12n,118p,1342b,478s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,12n,118p,1342b,571s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-pdfTeX warning (dest): name{theorem.4.2} has been referenced but does not exist
+pdfTeX warning (dest): name{theorem.6.2} has been referenced but does not exist
 , replaced by a fixed one
 
 </home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10
@@ -897,34 +900,37 @@ pdfTeX warning (dest): name{theorem.4.2} has been referenced but does not exist
 mcsc10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmex10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmmi10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi6.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi8.pfb></home/whitengine/texlive/2023/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></home/whitengine/texlive/2023/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr6.pfb></home/whitengine/texlive/2023/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/whitengine/texlive/2023/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/whitengine/texlive/2023/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></home/whitengine/texlive/2023
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></home/whitengine/texlive
-/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/whitengine/te
-xlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/whitengin
-e/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/white
-ngine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/w
-hitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></h
-ome/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb
-></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9
-.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mtt8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/
-euler/eufm10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/a
-msfonts/symbols/msam10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb></home/whitengine/texlive/2023/texmf-dist/
-fonts/type1/public/cm-super/sfrm1000.pfb>
+ic/amsfonts/cm/cmmi5.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi6.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi7.pfb></home/whitengine/texlive/2023/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi8.pfb></home/whitengine/texlive/2023/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></home/whitengine/texlive/2023/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/whitengine/texlive/2023/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/whitengine/texlive/2023/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/whitengine/texlive/202
+3/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/whitengine/texlive/
+2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></home/whitengine/texli
+ve/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></home/whitengine/
+texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/whiten
+gine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></home/wh
+itengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></hom
+e/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+/home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmti8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti9.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmtt8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/publi
+c/amsfonts/euler/eufm10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/typ
+e1/public/amsfonts/symbols/msam10.pfb></home/whitengine/texlive/2023/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/whitengine/texlive/2023/
+texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
 Output written on "/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semes
 tre/monografia para el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Mon
-ografia-del-curso-de-curvas-algebraicas/out/main.pdf" (7 pages, 322298 bytes).
+ografia-del-curso-de-curvas-algebraicas/out/main.pdf" (9 pages, 364490 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 282 compressed objects within 3 object streams
- 71 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 383 PDF objects out of 1000 (max. 8388607)
+ 312 compressed objects within 4 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

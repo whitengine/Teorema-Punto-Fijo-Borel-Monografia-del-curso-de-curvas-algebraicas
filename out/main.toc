@@ -6,11 +6,13 @@
 \contentsline {subsection}{\tocsubsection {}{2.1}{Convención}}{2}{subsection.2.1}%
 \contentsline {subsection}{\tocsubsection {}{2.2}{Notación}}{2}{subsection.2.2}%
 \contentsline {section}{\tocsection {}{3}{Terminología de Teoría de Grupos}}{2}{section.3}%
-\contentsline {section}{\tocsection {}{4}{Resumen de variedades completas}}{2}{section.4}%
-\contentsline {section}{\tocsection {}{5}{Teorema del punto fijo de Borel}}{3}{section.5}%
-\contentsline {section}{\tocsection {}{6}{Consecuencias}}{3}{section.6}%
-\contentsline {subsubsection}{\tocsubsubsection {}{6.0.1}{Subgrupos de Borel y Toros maximales}}{4}{subsubsection.6.0.1}%
-\contentsline {subsubsection}{\tocsubsubsection {}{6.0.2}{Más consecuencias}}{5}{subsubsection.6.0.2}%
-\contentsline {subsubsection}{\tocsubsubsection {}{6.0.3}{El Teorema del Normalizador}}{6}{subsubsection.6.0.3}%
-\contentsline {section}{\tocsection {}{7}{Cosas para agregar}}{7}{section.7}%
-\contentsline {section}{\tocsection {}{}{Referencias}}{7}{section*.4}%
+\contentsline {section}{\tocsection {}{4}{Variedades Bandera}}{2}{section.4}%
+\contentsline {section}{\tocsection {}{5}{Introducción a Grupos Algebraicos}}{4}{section.5}%
+\contentsline {section}{\tocsection {}{6}{Resumen de variedades completas}}{4}{section.6}%
+\contentsline {section}{\tocsection {}{7}{Teorema del punto fijo de Borel}}{4}{section.7}%
+\contentsline {section}{\tocsection {}{8}{Consecuencias}}{5}{section.8}%
+\contentsline {subsubsection}{\tocsubsubsection {}{8.0.1}{Subgrupos de Borel y Toros maximales}}{5}{subsubsection.8.0.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{8.0.2}{Más consecuencias}}{6}{subsubsection.8.0.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{8.0.3}{El Teorema del Normalizador}}{7}{subsubsection.8.0.3}%
+\contentsline {section}{\tocsection {}{9}{Cosas para agregar}}{8}{section.9}%
+\contentsline {section}{\tocsection {}{}{Referencias}}{9}{section*.4}%
