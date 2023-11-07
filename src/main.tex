@@ -706,7 +706,7 @@ Tomemos $x \in X$ cuya órbtia $G \cdot x$ sea cerrada, y por lo tanto nuevament
 En esta sección probaremos varias consecuencias el Teorema del punto fijo de Borel. Sea $G$ un grupo conexo arbitrario.
 
 El siguiente teorema es un análogo del Teorema de Lie\footnote{Este teorema dice que sobre un cuerpo algebraicamente cerrado de \underline{característica cero}, si $\mathfrak g \to \mathfrak {gl} (V)$ es una representación de dimensión finita de una álgebra de Lie \textit{soluble} $\mathfrak g$, entonces existe una \textit{bandera} $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $\pi (g)$ para todo $g \in \mathfrak g$.}; esto vale en característica arbitraria, sin embargo el teorema para álgebras de Lie \underline{no}\footnote{En caaracterística $p > 0$, el Teorema de Lie vale para representaciones de dimensión menor que $p$, sin embargo, puede fallar en dimensión $p$: ver \cite{wikipedia-lie-theorem}.}.
-\begin{theorem}[Teorema de Lie-Kolchin]
+\begin{theorem}[Teorema de Lie-Kolchin]\label{teorema:Lie-Kolchin}
 Sea $G$ un subgrupo algebraico conexo soluble de $\operatorname{GL} (V)$ para un espacio vectorial de dimensión finita no trivial. Entonces existe una bandera $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $\mathfrak g$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $g$ para todo $g \in G$.
 \end{theorem}
 \begin{proof}
@@ -724,12 +724,68 @@ Un \textbf{subgrupo de Borel} de $G$ es un subgrupo cerrado conexo soluble que n
 \end{definition}
 Como los subgrupos de Borel de $G$ y $G^{\circ}$ coinciden, supondremos a partir de lo que sigue que $G$ es conexo. Un subgrupo conexo soluble de dimensión máxima en $G$ es claramente un subgrupo de Borel; pero no es obvio que todo subgrupo de borel tenga la misma dimensión, sin embargo, esto es cierto:
 
-\begin{theorem}
+\begin{theorem}\label{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva}
 Sea $B$ un subgrupo de borel de $G$. Entonces $G/B$ es una variedad proyectiva, y todos los otros subgrupos de borel son conjugados a $B$. En particular, son todos isomorfos entre sí y tienen la misma dimensión.
 \end{theorem}
 \begin{proof}
+Sea $S$ un subgrupo de Borel de dimensión máxima. Representemos a $G$ en $\operatorname{GL} (V)$ con un subespacio $1$-dimensional $V_1$ cuyo estabilizador en $G$ es precisamente $S$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). La acción inducida de $S$ en $V/V_1$ es \textit{trigonalizable} por el Teorema \ref{teorema:Lie-Kolchin}, co lo cual existe una bandera \textit{completa} $0 \subset V_1 \subset \cdots \subset V$ estabilizada por $S$, llamemoslá $f$. De hehco, $S$ es el grupo de isotropía de $f$ en $G$, por cómo elegimos $V_1$. Con lo cual el morfismo inducido de $G/S$ sobre la órbita de $f$ en la variedad bandera de $V$ es biyectiva. Por otro lado, el estabilizador de toda variedad bandera es soluble y por lo tanto tiene dimensión no mayor a $\dim S$. Consecuentemente, la órbita de $f$ tiene la dimensión más chica posible, por lo tanto es cerrado (ver \cite[(8.3)]{humphreys2012linearAlgebraicGroups}). Así, la órbita es completa por los ítems (a) y (e) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Esto fuerza a que $G/S$ sea completo por el Lema \ref{lema:lema para variedades completas}, o sea, es proyectivo por el ítem (d) de \ref{proposicion:varios hechos sobre variedades completas}.
 
+Ahora tomemos un subgrupo de Borel $B$, este actúa por multiplicación a izquierda en la variedad completa $G/S$. Luego el Teorema \ref{teorema:punto fijo de borel} implica que deja fijo un punto $xS$, es decir, $BxS = xS$, equivalentemente, $x^{-1} B x \subset S$. Como ambos son subgrupos de Borel, concluimos que $x^{-1} B x = S$ por maximalidad. Esto concluye ambas afirmaciones del teorema.
 \end{proof}
+
+\begin{corollary}\label{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}
+Los toros maximales (respectivamente los subgrupos conexos unipotentes maximales) de $G$ son los de los subgrupos de Borel de $G$, y son todos conjugados. En particular tienen la misma dimensión.
+\end{corollary}
+\begin{proof}
+Sea $T$ un toro maximal de $G$, $U$ un subgrupo conexo unipotente maximal. Evidentemente $T$ está inclluido en algún subgrupo de borel $B$, entonces es un toro maximal de $B$, y por lo tanto todos los demás toros maximales de $B$ son conjugados a $T$ en $B$ (ver \cite[Teorema 19.3]{humphreys2012linearAlgebraicGroups}). Similarmente, $U$ yace contenido en algún subgrupo de borel $B'$, con $U = B_u '$ por maximalidad. Como todos los subgrupos de Borel de $G$ son conjugados, el corolario se sigue.
+\end{proof}
+
+\begin{definition}
+A la dimensión de cualquier toro maximal de $G$ se le dice el \textbf{rango} de $G$.
+\end{definition}
+
+\begin{example}
+El rango de $\operatorname{SL}_n (k)$ es $n-1$.
+\end{example}
+
+\begin{definition}
+Decimos que un subgrupo cerrado $P$ de $G$ es \textbf{parabólico}, si el \textit{espacio homogéneo} $G/P$ es proyectivo (equivalentemente completo por el ítem (d) de \ref{proposicion:varios hechos sobre variedades completas}).
+\end{definition}
+
+\begin{corollary}\label{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel}
+Un subgrupo cerrado $P$ de $G$ es parabólico si y solo si contiene un subgrupo de Borel. En particular, todo subgrupo conexo $H$ de $G$ es un subgrupo de Borel si y solo si $H$ es soluble y $G/H$ es proyectivo.
+\end{corollary}
+\begin{proof}
+Si $H$ es un subgrupo cerrado de $G$ tal que $G/H$ es proyectivo, entonces $B$ deja fijo un punto por el Teorema \ref{teorema:punto fijo de borel}, y por lo tanto tiene un conjugado en $H$, esto fuerza a que $\dim G/H \leq \dim G/B$. Recíprocamente, si $H$ es un subgrupo cerrado incluyendo un subgrupo de Borel $B$ de $G$, entonces $G/B \to G/H$ es un morfismo sobreyectivo con dominio una variedad comleta, forzando a $G/H$ a ser completo (ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}). Pero $G/H$ es proyectivo (ítem (d) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}), ya que todos los espacios homogéneos son quasi-proyectivos por construcción (ver \cite[(11.3)]{humphreys2012linearAlgebraicGroups}). Esto prueba el Corolario.
+\end{proof}
+
+\begin{example}
+Sea $G = \operatorname{GL}_n (k)$ y $B = \operatorname{T}_n (k)$ las matrices triangulares superioes de $G$. El Teorema de Lie-Kolchin \ref{teorema:Lie-Kolchin} dice que $B$ es un subgrupo de Borel de $G$. En efecto, $G/B$ es justamente la órbita en la variedad bandera de $V = k^n$ de la \textit{bandera standard}. Calculemos los subgrupos parabólicos de $G$ que contienen a $B$. Si $(e_1, \ldots, e_n)$ es la base canónica de $k^n$, entonces para cada bandera parcial $(e_1, \ldots, e_{i(1)}) \subset (e_1, \ldots, e_{i(2)}) \subset \cdots$, el estabilizador de $G$ es evidentemente un subgrupo cerrado incluyendo a $B$.
+
+Más concretamente, si $G = \operatorname{GL}_3 (k)$, entonces existen solamente dos subgrupos parabólicos propios distintos de $B$: los dos grupos de matrices de la siguiente forma
+\[
+    \begin{pmatrix}
+    * &* & * \\
+    * & * & * \\
+    0 & 0 & *
+    \end{pmatrix}, \quad
+    \begin{pmatrix}
+    * &* & * \\
+    0 & * & * \\
+    0 & * & *
+    \end{pmatrix}.
+\]
+\end{example}
+
+\begin{corollary}\label{corolario:los epimorfismos preservan subgrupos}
+Sea $\varphi : G \to G'$ un epimorfismo de grupos algebraicos conexos. Sea $H$ un subgrupo de Borel (respectivamente un subgrupo parabolico, un toro maximal, o un subgrupo conexo unipotente maximal) de $G$. Entonces $\varphi (H)$ es un subgrupo  de Borel (respectivamente un subgrupo parabolico, un toro maximal, o un subgrupo conexo unipotente maximal) de $G'$ y todos los subgrupos de este tipo en $G'$ se obtienen de esta manera.
+\end{corollary}
+\begin{proof}
+Debido a los Corolarios \ref{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}, \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel}, basta ver que esto vale en el caso $H = B$ subgrupo de borel de $G$. Claramente $B' := \varphi (B)$ es conexo y soluble. Pero el mapa natural $G \to G' \to G'/B'$ induce un morfismo sobreyectivo $G/B \to G'/B'$, y por lo tanto $G'/B'$ es completo por el ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, es decir, $B'$ es un subgrupo parabólico de $G'$. El Corolario \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel} implica luego que es un subgrupo de Borel de $G'$. Como algún subgrupo de Borel de $G'$ tiene que ser de la forma $\varphi (B)$, se sigue del Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} aplicado a $G'$ que son todos conjugados a $\varphi (B)$, consecuentemente, por sobreyectividad de $\varphi$, deben ser de esta forma.
+\end{proof}
+
+\subsubsection{Más consecuencias}
+
 
 
 \begin{proposition}
