@@ -7,6 +7,15 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{Hum12}
 
+\bibitem[Car89]{carter1989simpleGroupsOfLieType}
+Roger~W Carter, \emph{Simple groups of lie type}, vol.~22, John Wiley \& Sons,
+  1989.
+
+\bibitem[Die56]{dieudonne1956groupesDeLieEtHyperalgebresDeLieSurUnCorpsDeCaracteristiqueP}
+Jean Dieudonn{\'e}, \emph{Groupes de lie et hyperalg{\`e}bres de lie sur un
+  corps de caract{\'e}ristique $ p> 0$.}, Bulletin de la Soci{\'e}t{\'e}
+  Math{\'e}matique de France \textbf{84} (1956), 207--239.
+
 \bibitem[Gec13]{geckMeinolf2013introductionToAlgebraicGeometryAndAlgebraicGroups}
 Meinolf Geck, \emph{An introduction to algebraic geometry and algebraic
   groups}, Oxford University Press, 2013.

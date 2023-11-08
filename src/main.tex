@@ -654,12 +654,14 @@ En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ u
 \item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$.
 \item Dado $S \subset G$, $N_G (S)$ es el \textbf{normalizador} de $S$, es decir, los $x \in G$ tales que $x g x^{-1} \in S$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $N_G (x)$ en lugar de $N_G (S)$.
 \item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$.
-\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ es un mapa
+\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$) es un mapa
 \begin{align*}
-G \times X &\longrightarrow X \\
+\varphi : G \times X &\longrightarrow X \\
 (g,x) &\longmapsto g \cdot x
 \end{align*}
-tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G_S$.
+tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} o \textbf{grupo de isotropía} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$; claramente es un subgrupo de $G$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G_S$. Quitando redundancias (i.e. $G \cdot x = G \cdot x'$), las órbitas particionan $X$.
+\item Decimos que un grupo $G$ actúa \textbf{transitivamente} (sobre un conjunto $X$) si $G \cdot x = X$ para algún $x \in X$ (equivalentemente para todo $x \in X$). En particular, $G$ actúa transitivamente en cada órbita.
+\item Si $G$ actúa en $X$, entonces denotamos por $X^{G}$ al conjunto de \textbf{puntos fijos} de $G$, i.e., aquellos $x \in X$ tales que $G \cdot x = \{x\}$, en otras palabras, los elementos cuya órbita es un singleton.
 \end{itemize}
 
 Introduzcamos también definiciones básicas de Teoría de Grupos. Decimos que un subgrupo
@@ -787,17 +789,17 @@ Sea $G$ un grupo algebraico. Afirmamos que una sola componente irreducible de $G
 Sea $G$ un grupo algebraico. Denotamos por $G^\circ$ a la única componente irreducible de $G$ que contiene a $1$. La llamaremos \textbf{componente de la identidad} de $G$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{proposicion:componente de la identidad}
 Sea $G$ un grupo algebraico. Entonces:
 \begin{enumerate}[(1)]
-\item $G^\circ$ es un subgrupo normal cerrado de índice finito en $G$, cuyos cosets son las componentes conexas, como también las componentes irreducibles de $G$.
+\item $G^\circ$ es un subgrupo normal cerrado de índice finito en $G$, cuyos coclases son las componentes conexas, como también las componentes irreducibles de $G$.
 \item Todo subgrupo cerrado de índice finito de $G$ contiene a $G^\circ$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(1)]
-\item Para cada $x \in G^\circ$, $x^{-1} G^\circ$ es una componente irreducible de $G$ que contiene a $1$, luego por unicidad $x^{-1} G^\circ = G^{\circ}$. Es decir, $G^\circ = (G^{\circ})^{-1}$ y por lo tanto $G^\circ G^\circ = G ^\circ$, i.e., $G^\circ$ es un subgrupo cerrado (es una componente irreducible) de $G$. Para todo $x \in G$, nuevamente $x G^{\circ} x^{-1}$ es una componente irreducible de $G$ que contiene a $1$, con lo cual la unicidad fuerza a que $x G^\circ x^{-1} = G^{\circ}$, i.e., $G^\circ$ es normal en $G$. Sus cosets a izquierda o derecha son traslaciones de $G^\circ$, y por lo tanto deben ser componentes irreducibles de $G$; solamente puede haber un número finito de estos ($G$ es un espacio Noetheriano; ver \cite[Teorema 2.8.9.]{notas_pedro}), en particular $G^\circ$ tiene índice finito. Como estos conjuntos son disjuntos, deben ser también componentes conexas de $G$, ya que los conjuntos irreducibles en un espacio topológico son conexos, y al ser finitos cerrados (son componentes irreducibles) disjuntos también son abiertos.
-\item Si $H$ es un subgrupo cerrado de índice finito en $G$, entonces cada uno de sis finitos cosets a izquierda son también cerrados, con lo cual la unión de los cosets distintos de $H$ también lo es. Como el complemento de un cerrado es abierto, tenemos que $H$ es abierto. Consecuentemente, los cosets a izquierda de $H$ particionan $G^\circ$ en una unión finita de abiertos-cerrados, como $G^\circ$ es conexo e interseca $H$, debe ser que $G^\circ \subset H$.
+\item Para cada $x \in G^\circ$, $x^{-1} G^\circ$ es una componente irreducible de $G$ que contiene a $1$, luego por unicidad $x^{-1} G^\circ = G^{\circ}$. Es decir, $G^\circ = (G^{\circ})^{-1}$ y por lo tanto $G^\circ G^\circ = G ^\circ$, i.e., $G^\circ$ es un subgrupo cerrado (es una componente irreducible) de $G$. Para todo $x \in G$, nuevamente $x G^{\circ} x^{-1}$ es una componente irreducible de $G$ que contiene a $1$, con lo cual la unicidad fuerza a que $x G^\circ x^{-1} = G^{\circ}$, i.e., $G^\circ$ es normal en $G$. Sus coclases a izquierda o derecha son traslaciones de $G^\circ$, y por lo tanto deben ser componentes irreducibles de $G$; solamente puede haber un número finito de estos ($G$ es un espacio Noetheriano; ver \cite[Teorema 2.8.9.]{notas_pedro}), en particular $G^\circ$ tiene índice finito. Como estos conjuntos son disjuntos, deben ser también componentes conexas de $G$, ya que los conjuntos irreducibles en un espacio topológico son conexos, y al ser finitos cerrados (son componentes irreducibles) disjuntos también son abiertos.
+\item Si $H$ es un subgrupo cerrado de índice finito en $G$, entonces cada uno de sis finitas coclases a izquierda son también cerrados, con lo cual la unión de los coclases distintos de $H$ también lo es. Como el complemento de un cerrado es abierto, tenemos que $H$ es abierto. Consecuentemente, las coclases a izquierda de $H$ particionan $G^\circ$ en una unión finita de abiertos-cerrados, como $G^\circ$ es conexo e interseca $H$, debe ser que $G^\circ \subset H$.
 \end{enumerate}
 \end{proof}
 
@@ -810,13 +812,91 @@ Diremos que un grupo algebraico es \textbf{conexo}\footnote{El uso del término 
 La mayoría de los grupos algebraicos que hemos mencionado son conexos: $\mathbb G_a$, $\mathbb{G}_m$, $\operatorname{GL}_n (k), \operatorname{SL}_n (k)$. Que $\operatorname{GL}_n (k)$ es conexo es consecuencia de ser un abierto principal del espacio afín $\afine {n^2}$. Sin embargo, probar tanto que $\operatorname{SL}_n (k)$ como otros grupos clásicos son conexos no se deduce trivialmente de la definición de estos grupos (ver \cite[(7.5)]{humphreys2012linearAlgebraicGroups}).
 \end{example}
 
+\section{Subgrupos y Homomorfismos}
+
+Usaremos en esta sección un lema útil:
+\begin{lemma}
+Sean $U,V$ dos abiertos densos de un grupo algebraico $G$. Entonces $G = U V$.
+\end{lemma}
+\begin{proof}
+Como invertir es un isomorfismo de variedades, $V^{-1}$ es un abierto denso de $G$; similarmente, las traslaciones $x V^{-1}$ con $x \in G$ son abiertos densos. Por lo tanto $U$ interseca $x V^{-1}$, forzando a que $x \in U V$. Como $x \in G$ era arbitrario se tiene el lema.
+\end{proof}
+
+\begin{definition}
+Un \textbf{morfismo de grupos algebraicos} es un homomorfismo de grupos $\varphi : G \to G'$ que también es un morfismo de variedades algebraicas.
+\end{definition}
+
+\begin{proposition}
+Sea $H$ un subgrupo de un gruo algebraico $G$, sea $\bar H$ su clausura en la topología Zariski. Entonces:
+\begin{enumerate}[(a)]
+\item $\bar H$ es un subgrupo de $G$. En particular, como es cerrado es un subgrupo algebraico de $G$.
+\item Si $H$ es \textit{constructible}\footnote{Unión finita de conjuntos $U \cap V$ con $U$ abiertos y $V$ cerrado.}, entonces $H = \bar H$.
+\item Más en general, si $\varphi : G \to G'$ es un morfismo de variedades algebraicas y $H$ es un subgrupo constructible de $G$, entonces $\varphi (H)$ es cerrado en $G'$ (en particular, como los cerrados de $G$ son constructibles, $\varphi$ es \textit{cerrado}).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(a)]
+\item Como invertir es un isomorfismo de variedades, $\bar H ^{-1} = \bar{H^{-1}} = \bar H$. Similarmente, trasladar por $x \in H$ es un isomorfismo de $G$, por lo tanto $x \bar H = \bar{x H} = \bar H$, es decir, $H \bar H \subset \bar H$. Similarmente $\bar H H \subset H$. Esto prueba que $\bar H$ es un grupo.
+\item Si $H$ es constructible, contiene un conjunto $U \cap V$ con $U$ abierto (no vacío) y $V$ cerrado, entonces $W := U \cap V \subset \bar H$ es un abierto denso de $\bar H$. Por el ítem (a) sabemos que $\bar H$ es un grupo algebraico, y por el lema de arriba $\bar H = W W \subset H H = H$.
+\item Sea $H' := \varphi (H)$, es un subgrupo de $G'$. El Teorema de Chevalley probado en la entrega de ejercicios del curso MAT426 dice que $H'$ es constructible. Luego el ítem (b) implica que $H'$ es cerrado.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Si $B$ \textit{normaliza}\footnote{Es decir, $B \subset N_G (A)$.} $A$, entonces $AB$ es un subgrupo cerrado de $G$.
+\end{corollary}
+\begin{proof}
+Como $B \subset N_G (A)$, $AB$ es un subgrupo de $G$. Como $A \times B$ es un subgrupo cerrado, en particular constructible en $G \times G$, el ítem (c) de la proposición de arriba dice que la imagen $AB$ del morfismo de grupos $\mu : G \times G \to G$ es cerrado en $G$.
+\end{proof}
+
+\begin{proposition}
+Sea $\varphi : G \to G'$ un morfismo de grupos algebraicos. Entonces:
+\begin{enumerate}[(a)]
+\item $\Ker \varphi$ es un subgrupo cerrado de $G$.
+\item $\Imagen \varphi$ es un subgrupo cerrado de $G'$.
+\item $\varphi (G^\circ) = \varphi (G)^\circ$.
+\item $\dim G = \dim \Ker \varphi + \dim \Imagen \varphi$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(a)]
+\item Como $\varphi$ es continuo y el $\Ker \varphi$ es por definición la preimagen del conjunto cerrado $\{1\}$, entonces $\Ker \varphi$ es cerrado. Ya sabemos que es un subgrupo.
+\item $\varphi (G)$ es un subgrupo de $G'$. Como $G$ es trivialmente constructible en $G$, el ítem (c) de la proposición de arriba implica que la imagen es cerrada.
+\item $\varphi (G^\circ)$ es cerrada por el ítem (c) de la proposición de arriba ($G^\circ$ es cerrado en $G$, en particular constructible) y es conexo ($G^\circ$ es conexo), como contiene al $1$, debe estar contenido en $\varphi (G)^\circ$ (esta notación cobra sentido pues el ítem (b) dice que la imagen de $\varphi$ es una subvariedad algebraica de $G'$), ya que las coclases de $\varphi (G)^\circ$ son las componentes conexas de $\varphi (G)$ (ítem (1) de la Proposición \ref{proposicion:componente de la identidad}). Por otro lado, como $G^\circ$ tiene índice finito en $G$, $\varphi (G^\circ)$ tiene índice finito en $\varphi (G)$, con lo cual contiene a $\varphi (G)^\circ$, i.e., $\varphi (G^\circ) = \varphi (G)^\circ$, por el ítem (b) de la Proposición \ref{proposicion:componente de la identidad}.
+\item EL Teorem \ref{} nos dice que para casi todo $x \in \varphi (G)$, $\dim G - \dim \varphi (G) = \dim \varphi^{-1} (x)$. Pero todas las fibras $\varphi^{-1} (x)$ tienen la dimensión de $\Ker \varphi$, y se sigue la afirmación. En efecto, $\varphi^{-1} (x) = x \Ker \varphi $, y trasladar por $x$ es un isomorfismo de variedades. Como las componentes irreducibles de $G$ son traslaciones de $\G^\circ$ (ítem (a) de la Proposición \ref{proposicion:componente de la identidad}), y trasladar es un isomorfismo de variedades algebraicas, tenemos que $\dim G = \dim G^\circ$ y $\dim \varphi (G) = \dim \varphi (G)^\circ$, por lo tanto el ítem anterior nos permite restringirnos a $\rest \varphi {G^\circ} : G^\circ \twoheadrightarrow \varphi (G)^\circ$, con lo cual podemos suponer que $\varphi$ es sobreyectiva y que $G$ y $G'$ son variedades irreducibles. El ítem (c) de la proposición de arriba dice que $\varphi$ es cerrado, por lo que podemos rematar la demostración utilizando \cite[Teorema 2.12.13.]{notas_pedro}:
+\begin{quote}
+Sea $f : X \twoheadrightarrow Y$ un morfismo regular sobreyectivo y cerrado entre variedades algebraicas. Supongamos que
+\begin{enumerate}[(i)]
+\item $Y$ es irreducible, y que
+\item Todas las fibras de $f$ son irreducibles de la misma dimensión $d \in \naturals N$.
+\end{enumerate}
+Entonces, $X$ es irreducible y $\dim (X) = \dim (Y) + d$.
+\end{quote}
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+Consideremos el morfismo de grupos algebraicos $\varphi = \det : \operatorname{GL}_n (k) \to \operatorname{GL}_{1} (k)$ sobreyectivo y el núcleo es $\operatorname{SL}_n (k)$. Por el ítem (d) del corolario de arriba, tenemos que $\dim \operatorname{SL}_n (k) = n^2 -1$ (la dimensión de $\operatorname{GL}_n (k)$ es $n^2$ pues es un abierto de $\afine{n^2}$).
+\end{example}
+
+\begin{obs}
+Dado un $k$-espacio vectorial $n$-dimensional $V$, podemos fijar una base de $V$ e identificar al grupo transformaciones lineales invertibles $\operatorname{GL} (V)$ de $V$ con el grupo de matrices $\operatorname{GL}_n (k)$, y hacerle heredar la estructura de grupo algebraico proveniente del grupo general lineal; llamemos \textbf{topología Zariski} a esta topología en $\operatorname{GL}(V)$. Como cambiar de base en $k^n$ corresopnde con aplicar un automorfismo $x \mapsto y x y^{-1}$ en $\operatorname{GL}_n (k)$, la topología Zariski de $\operatorname{GL} (V)$ no depende de la base de $V$ elegida.
+\end{obs}
+
+Un resultado útil para probar que algunos grupos algebraicos son grupos conexos, es el siguiente:
+\begin{proposition}
+Sea $G$ un grupo algebraico, $Y_i $ con $i \in I$ una familia de subgrupos conexos y cerrados de $G$ que lo generan como grupo. Entonces $G$ es conexo.
+\end{proposition}
+\begin{proof}
+La demostración de este resultado se obtiene como corolario de \cite[Proposición \S 7.5.]{humphreys2012linearAlgebraicGroups}.
+\end{proof}
+
+\begin{example}
+Se tiene entonces que $\operatorname{SL}_n (k)$ y $U_n (k)$ son grupos conexos. En efecto, el primero está generado por los subgrupos $U_{ij}$ con $i \neq j$, donde $U_{ij}$ consiste de las matrices con $1$ en la diagonal, una entrada arbitraria en la posición $(i, j)$, y ceros en el resto; similarmente, el segundo grupo está generado por los $U_{ij}$ con $i < j$. Notar que $U_{ij}$ es isomorfo como grupo algebraico a $\mathbb{G}_a$ pues la multiplicación de matrices se convierte en $(k, +)$ en la coordenada $(i,j)$, i.e., $U_{ij}$ es conexo.
+\end{example}
 
 
-
-
-
-
-
+\section{Acciones de grupos algebraicos sobre variedades}
 
 
 
