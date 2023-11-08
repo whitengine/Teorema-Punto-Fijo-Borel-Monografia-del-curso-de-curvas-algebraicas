@@ -644,7 +644,7 @@ Agradezco al profesor Pedro por sugerir este tema para el artículo, y por hacer
 \subsection{Notación}
 Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al \textit{espacio proyectivo} $\mathbb{P}^n(k)$ (resp. \textit{espacio afín} $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$. Más generalmente, dado un espacio vectorial de dimensión finita $V$, denotamos por $\mathbb{P} (V)$ a la \textit{proyectivización} de $V$, i.e., el conjunto de todos los subespacios vectoriales de dimensión $1$ de $V$. El \textit{grupo multiplicativo} $\mathbb{G}_m := ( k^\times, \cdot)$.
 
-Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$.
+Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$. En contraste, definimos $X_{\textup{reg}}$ al sub-conjunto de puntos suaves de $X$.
 
 \section{Terminología de Teoría de Grupos}
 En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ un grupo, escribamos
@@ -717,8 +717,98 @@ Nuevamente como antes, fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y 
 
 \section{Introducción a Grupos Algebraicos}
 
+Sea $G$ una variedad algebraica dotada de estructura de grupo. Si los mapas
+\[
+    \begin{array}{ll}
+    \mu : G \times G &\longrightarrow G \\
+    (x,y) &\longmapsto xy
+    \end{array}, \quad
+    \begin{array}{ll}
+    \iota : G &\longrightarrow G \\
+    x &\longmapsto x^{-1}
+    \end{array}
+\]
+son morfismos de variedades, decimos que $G$ es un \textbf{grupo algebraico}. Notar que un grupo algebraico \underline{no es un grupo topológico}, excepto cuando la dimensión es $0$. En efecto, para grupos topológicos, $T_1$ es quivalente a $T_2$, con lo cual si $G$ fuera un grupo topológico con la topología Zariski, entonces sería de dimensión $0$.
+
+Trasladar por un elemento $y \in G$, i.e. $x \mapsto x y$, es un isomorfismo de variedades algebraicas $G \to G$, entonces todas las propiedades geométricas que sucedan en un punto de $G$ se transfieren a cualquier otro punto al hacer variar $y$. Por ejemplo, como $G$ tiene algún punto suave (el conjunto $G_{\textup{reg}}$ es un abierto denso de $G$ por \cite[Teorema 2.13.12.]{notas_pedro}), todos los puntos de $G$ son suaves, es decir, $G$ es suave.
+
+Definimos un \textbf{isomorfismo} de grupos algebraicos $G$ y $G'$, como un isomorfismo de variedades algebraicas $\varphi : G \to G'$ el cual es a su vez un isomorfismo de grupos. Así, un \textbf{automorfismo} de $G$ es un isomorfismo de $G$ en $G$. A partir de ahora nos concentraremos en el caso en el cual la estructura de variedad de $G$ sea afín, y seguiremos llamandolá ``grupo algebraico''.
+
+\begin{example}
+El \textbf{grupo aditivo} $\mathbb{G}_a$ es la recta afín $\afine 1$ con la estructura de grupo dada por la suma $\mu (x,y) = x + y$ y $\iota (x) = -x$. El \textbf{grupo multiplicativo} $\mathbb{G}_m$ es el abierto afín $k^\times \subset \afine 1$ con la estructura de grupo dada por la multiplicación $\mu (x,y) = xy$ y $\iota (x) = x^{-1}$. Notar que ambos grupos son variedades irreducibles de dimensión $1$.
+
+Más en general, $\afine n$ es un grupo algebraico con la estructura aditiva.
+\end{example}
+
+\begin{example}
+Sea $\operatorname{GL}_n (k)$ el conjunto de todas las matrices invertibles con coeficientes en $k$ y de tamaño $n \times n$. Es un grupo con la multiplicación de matrices, y se lo suele llamar el \textbf{grupo general lineal}. El conjunto $M_n (k)$ de las matrices con coeficientes en $k$ y de tamaño $n \times n$ puede ser identificado con $\afine {n^2}$, y $\operatorname{GL}_n (k)$ con el abierto principal definido por la función polinomial $\det$. Así, visto como una variedad afín, $\operatorname{GL}_n (k)$ tiene su álgebra de funciones regulares generada por las restricciónes de las $n^2$ funciones coordenada $T_{ij}$ junto con $1 / \det (T_{ij})$. Claramente la multiplicación e inversión de matrices son morfismos de variedades algebraicas, y por lo tanto $\operatorname{GL}_n (k)$ es un grupo algebraico.
+\end{example}
+
+\begin{obs}
+Un subgrupo cerrado de un grupo algebraico es nuevamente un grupo algebraico.
+\end{obs}
+\begin{proof}
+Sea $H \leq G$ un subgrupo cerrado para la topología Zariski de un grupo algebraico $G$, entonces $H$ tiene una estructura de variedad inducida por $G$. Más aún, los morfismos $\mu : G \times G \to G$ y $\iota : G \to G$ se restringen y corestringen a $H \times H \to H$ y $H \to H$, respectivamente, y siguen siendo morfismos regulares.
+\end{proof}
+
+Gracias a esta observación, podemos construir más ejemplos de grupos algebraicos:
+\begin{example}
+El grupo de \textbf{matrices triangulares superiores} (análogamente las triangulares inferiores) $T_n (k)$ es el conjunto de ceros en $\operatorname{GL}_n (k)$ de los polinomios $T_{ij}$ con $i >j$. También tenemos los subgrupos $D_n (k)$ y $U_n (k)$ de las matrices diagonales y las matrices triangulares superiores con entradas $1$ en la diagonal son cerrados de $\operatorname{GL}_n (k)$. En efecto, como recién, las matrices diagonales es el conjunto de ceros de $T_{ij}$ con $i \neq j$ y las matrices de $U_n (k)$ son los ceros de $T_{ij}$ con $i > j$ y $T_{ii} - 1$.
+\end{example}
+
+\begin{obs}
+El \textbf{producto directo} de finitos grupos algebraicos es nuevamente un grupo algebraico con la topología producto Zariski y la estructura de grupo dada por el producto cartesiano de grupos.
+\end{obs}
+\begin{proof}
+Veamos solo el caso de producto de dos grupos algebraicos $G_1, G_2$, el caso general se sigue por inducción. Solo tenemos que probar que
+\[
+    \begin{array}{ll}
+    \mu : G_1 \times G_2 \times G_1 \times G_2 &\longrightarrow G_1 \times G_2 \\
+    ((x_1,x_2),(y_1,y_2)) &\longmapsto (x_1 y_1, x_2 y_2)
+    \end{array}, \quad
+    \begin{array}{ll}
+    \iota : G_1 \times G_2 &\longrightarrow G_1 \times G_2 \\
+    (x_1, x_2) &\longmapsto (x_1^{-1}, x_2^{-1})
+    \end{array}
+\]
+son morfismos regulares. Pero por la propiedad universal del producto de variedades (ver \cite[Teorema 2.6.5.]{notas_pedro}) basta ver que estos mapas son regulares cuando componemos por la proyección a la primera o segunda coordenada. Esto es obvio, pues $G_1$ y $G_2$ son grupos algebraicos, con lo cual sus respectivos mapas $\mu$ y $\iota$ son regulares.
+\end{proof}
+
+Finalmente, mencionamos algunos otros nombres de grupos algebraicos clásicos: el \textbf{grupo especial lineal} $\operatorname{SL}_n (k)$ de matrices de $\operatorname{GL}_n (k)$ con determinante $1$ (es el conjunto de ceros de $\det (T_{ij}) - 1$); el \textbf{grupo simpléctico} $\operatorname{Sp}_{2n} (k)$ dada por las matrices $x \in \operatorname{GL}_{2n} (k)$ tales que ${}^t x \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix} x = \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix}$, donde $J$ es la matriz de tamaño $n \times n$ que tiene $1$ en la antidiagonal y ceros en el resto de los lugares, y ${}^t x$ es la matriz transpuesta de $x$ (es el conjunto de ceros dada por ciertas condiciones polinomiales en $x$); el \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n + 1} (k)$ que en $\Char k \neq 2$ consiste de las matrices $x \in \operatorname{SL}_{2n+1} (k)$ tales que ${}^t x s x = s$, donde $s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & J \\ 0 & J & 0 \end{pmatrix}$, y también exist otro \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n} (k)$ dada por ${}^t x s x = s$, donde ahora $s = \begin{pmatrix} 0 & J \\ J & 0 \end{pmatrix}$ si $\Char k \neq 2$\footnote{En general los grupos simpléctico y especial ortogonales surgen geométricamente de grupos de transformaciones lineales que preservan ciertas formas bilineales, pero en caractéristica $\Char k = 2$ hay que tener cierto cuidado al definirlos, cf \cite{dieudonne1956groupesDeLieEtHyperalgebresDeLieSurUnCorpsDeCaracteristiqueP}, \cite[Ch. 1]{carter1989simpleGroupsOfLieType}.}.
 
 
+
+
+\section{La componente de la identidad}
+
+Sea $G$ un grupo algebraico. Afirmamos que una sola componente irreducible de $G$ (como variedad algebraica) puede pasar por $1$. En efecto, sea $X_1, \ldots, X_m$ las componentes distintas que contengan a $1$. La imagen de la variedad irreducible $X_1 \times \cdots \times X_m$ en $G$ bajo el morfismo producto es un subconjunto irreducible $X_1 \cdots X_m$ de $G$, que vuelve a contener a $e$. Por lo tanto $X_1 \cdots X_m$ está contenido en algún $X_i$. Por otro lado, claramente todas las componentes $X_1, \ldots, X_m$ están contenidas en $X_1 \cdots X_m$. Esto fuerza a que $m = 1$. Con lo cual, la siguiente definición tiene sentido:
+
+\begin{definition}
+Sea $G$ un grupo algebraico. Denotamos por $G^\circ$ a la única componente irreducible de $G$ que contiene a $1$. La llamaremos \textbf{componente de la identidad} de $G$.
+\end{definition}
+
+\begin{proposition}
+Sea $G$ un grupo algebraico. Entonces:
+\begin{enumerate}[(1)]
+\item $G^\circ$ es un subgrupo normal cerrado de índice finito en $G$, cuyos cosets son las componentes conexas, como también las componentes irreducibles de $G$.
+\item Todo subgrupo cerrado de índice finito de $G$ contiene a $G^\circ$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(1)]
+\item Para cada $x \in G^\circ$, $x^{-1} G^\circ$ es una componente irreducible de $G$ que contiene a $1$, luego por unicidad $x^{-1} G^\circ = G^{\circ}$. Es decir, $G^\circ = (G^{\circ})^{-1}$ y por lo tanto $G^\circ G^\circ = G ^\circ$, i.e., $G^\circ$ es un subgrupo cerrado (es una componente irreducible) de $G$. Para todo $x \in G$, nuevamente $x G^{\circ} x^{-1}$ es una componente irreducible de $G$ que contiene a $1$, con lo cual la unicidad fuerza a que $x G^\circ x^{-1} = G^{\circ}$, i.e., $G^\circ$ es normal en $G$. Sus cosets a izquierda o derecha son traslaciones de $G^\circ$, y por lo tanto deben ser componentes irreducibles de $G$; solamente puede haber un número finito de estos ($G$ es un espacio Noetheriano; ver \cite[Teorema 2.8.9.]{notas_pedro}), en particular $G^\circ$ tiene índice finito. Como estos conjuntos son disjuntos, deben ser también componentes conexas de $G$, ya que los conjuntos irreducibles en un espacio topológico son conexos, y al ser finitos cerrados (son componentes irreducibles) disjuntos también son abiertos.
+\item Si $H$ es un subgrupo cerrado de índice finito en $G$, entonces cada uno de sis finitos cosets a izquierda son también cerrados, con lo cual la unión de los cosets distintos de $H$ también lo es. Como el complemento de un cerrado es abierto, tenemos que $H$ es abierto. Consecuentemente, los cosets a izquierda de $H$ particionan $G^\circ$ en una unión finita de abiertos-cerrados, como $G^\circ$ es conexo e interseca $H$, debe ser que $G^\circ \subset H$.
+\end{enumerate}
+\end{proof}
+
+Esto motiva a la siguiente definición:
+\begin{definition}
+Diremos que un grupo algebraico es \textbf{conexo}\footnote{El uso del término ``irreducible'' tiene reservado un significado totalmente distinto en el contexto de grupos lineales y representaciones de grupos.} si $G = G^\circ$.
+\end{definition}
+
+\begin{example}
+La mayoría de los grupos algebraicos que hemos mencionado son conexos: $\mathbb G_a$, $\mathbb{G}_m$, $\operatorname{GL}_n (k), \operatorname{SL}_n (k)$. Que $\operatorname{GL}_n (k)$ es conexo es consecuencia de ser un abierto principal del espacio afín $\afine {n^2}$. Sin embargo, probar tanto que $\operatorname{SL}_n (k)$ como otros grupos clásicos son conexos no se deduce trivialmente de la definición de estos grupos (ver \cite[(7.5)]{humphreys2012linearAlgebraicGroups}).
+\end{example}
 
 
 
