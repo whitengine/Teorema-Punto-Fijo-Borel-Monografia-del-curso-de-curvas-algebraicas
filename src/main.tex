@@ -750,7 +750,7 @@ Más en general, $\afine n$ es un grupo algebraico con la estructura aditiva.
 Sea $\operatorname{GL}_n (k)$ el conjunto de todas las matrices invertibles con coeficientes en $k$ y de tamaño $n \times n$. Es un grupo con la multiplicación de matrices, y se lo suele llamar el \textbf{grupo general lineal}. El conjunto $M_n (k)$ de las matrices con coeficientes en $k$ y de tamaño $n \times n$ puede ser identificado con $\afine {n^2}$, y $\operatorname{GL}_n (k)$ con el abierto principal definido por la función polinomial $\det$. Así, visto como una variedad afín, $\operatorname{GL}_n (k)$ tiene su álgebra de funciones regulares generada por las restricciónes de las $n^2$ funciones coordenada $T_{ij}$ junto con $1 / \det (T_{ij})$. Claramente la multiplicación e inversión de matrices son morfismos de variedades algebraicas, y por lo tanto $\operatorname{GL}_n (k)$ es un grupo algebraico.
 \end{example}
 
-\begin{obs}
+\begin{obs}\label{obs:subrupo cerrado de grupo algebraico es algebraico}
 Un subgrupo cerrado de un grupo algebraico es nuevamente un grupo algebraico.
 \end{obs}
 \begin{proof}
@@ -853,7 +853,7 @@ Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Si $B$ \textit{normali
 Como $B \subset N_G (A)$, $AB$ es un subgrupo de $G$. Como $A \times B$ es un subgrupo cerrado, en particular constructible en $G \times G$, el ítem (c) de la proposición de arriba dice que la imagen $AB$ del morfismo de grupos $\mu : G \times G \to G$ es cerrado en $G$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}
 Sea $\varphi : G \to G'$ un morfismo de grupos algebraicos. Entonces:
 \begin{enumerate}[(a)]
 \item $\Ker \varphi$ es un subgrupo cerrado de $G$.
@@ -970,11 +970,58 @@ f &\longmapsto R_g (f) (y) = f(x \cdot g) , \forall x \in X
 para cualquier $g \in G$ fijo. A la función $L_g$ la llamamos \textbf{traslación a izquierda} y a $R_g$ \textbf{traslación a derecha} (por $g$). Así, $g \mapsto L_g$ y $g \mapsto R_g$ son acciones de $G$ en $\Gamma$. Estas operaciones son importantes, por ejemplo caracterizan contención en un subgrupo cerrado:
 
 \begin{proposition}
-Sea $H$ un subgrupo cerrado de un grupo algebraico $G$. Sea $I$ el ideal de $\Gamma (G, \O_G)$ de las funciones regulares de $G$ que se anulan en $H$. Entonces $H = \set{g \in G | R_g (I) \subset I}$.
+Sea $H$ un subgrupo cerrado de un grupo algebraico afín $G$. Sea $I$ el ideal de $\Gamma (G, \O_G)$ de las funciones regulares de $G$ que se anulan en $H$. Entonces $H = \set{g \in G | R_g (I) \subset I}$.
 \end{proposition}
 \begin{proof}
 Por un lado, si $g \in H$ y $f \in I$, entonces $L_g (x) = f(x \cdot g) = 0$ para todo $x \in H$ pues $H$ es cerrado por el producto, i.e., $L_g (f) \in I$. Por otro lado, si $L_g (I) \subset I$, se tiene que $L_g (f)$ se anula en $1 \in H$ para todo $f \in I$, es decir, $f(g) = 0$, consecuentemente, $g \in \bar H = H$.
 \end{proof}
+
+
+
+\subsection{Linearización de grupos afines}
+
+Habíamos observado (\ref{obs:subrupo cerrado de grupo algebraico es algebraico}) que todo subgrupo cerrado de $\operatorname{GL}_n (k)$ es un grupo algebraico (afín). Sin embargo, vale también la recíproca cuando $G$ es afín: construiremos un subespacio de dimensión finita de $\Gamma := \Gamma (G, \O_G)$, en el cual $G$ actuará por traslación. Antes necesitamos algunos resultados preliminares:
+
+\begin{proposition}
+Sea $G$ un grupo algebraico actuando afín mórficamente en una variedad afín $X$, y sea $V$ un subespacio de dimensión finito de $\Gamma(X, \O_X)$. Entonces:
+\begin{enumerate}[(a)]
+\item Existe un subespacio de dimensión finita $W$ de $\Gamma (X,\O_X)$ conteniendo a $V$, el cual es estable por traslaciones $L_g$, $g \in G$.
+\item $V$ es estable por la acción de los $L_g$, $g \in G$ si y solo si $\psi^{*} (V) \subset \Gamma \otimes_k V$, donde $\psi : G \times X \to X$ está dada por $\psi (g,x) := g^{-1} \cdot x$.
+\item Valen los ítems (a) y (b) cambiando $L_g$ por $R_g$, y cambiando $\psi$ por $\nu : X \times G \to X$ dada por $\nu (x, g) = x \cdot g$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(a)]
+\item Sin pérdida de generalidad podemos suponer que $V$ es $1$-dimensional y está generado por un solo elemento $f \in \Gamma (X, \O_X)$, pues podemos sumar los subespacios $W$ obtenidos. Escribamos $\psi^* (f) = \sum_i f_i \otimes g_i \in \Gamma \otimes_k \Gamma (X, \O_X)$. Para cada $g\in G$, $x \in X$, tenemos $L_g (f) (x) = f(g^{-1} \cdot x) = \sum_i f_i (g) g_i (x)$, y por lo tanto $L_g f = \sum_i f_i (g) g_i$. Las funciones $g_i$ por lo tanto genera un subespacio de dimensión finita de $\Gamma (X, \O_X)$, el cual contiene a $f$. Así, podemos tomar $W$ como el generado por los $L_g f$ funciona.
+\item Si $\psi^* V \subset \Gamma \otimes_k V$, entonces inspeccionando la demostración del ítem anterior vemos que las funciones $g_i$  pueden tomarse en $V$, es decir, $V$ es estable bajo los $L_g$, $g \in G$. Recíprocamente, sea $V$ estable por estas traslaciones, y extendamos una base $\{f_i\}_i$ del espacio vectorial $V$ a una base $\{f_i\}_i \cup \{g_j\}_j$ de $\Gamma (X, \O_X)$. Escribiendo $\psi^* f = \sum_i r_i \otimes f_i + \sum_j s_j \otimes g_j$, se sigue que $L_g f = \sum_i r_i (g) f_i + \sum_j s_j (g) g_j$. Como $L_g f$ pertenece a $V$, las funciones $s_j$ deben anularse en $G$ (y por lo tanto son cero porque $k$ es algebraicamente cerrado), es decir, $\psi^* V \subset \Gamma \otimes_k V$.
+\item La demostración de este hecho es completamente análogo a lo que ya hicimos.
+\end{enumerate}
+\end{proof}
+
+
+\begin{theorem}
+Sea $G$ un grupo algebraico afín. Entonces $G$ es isomorfo a un subgrupo cerrado para algún $\operatorname{GL}_n k$.
+\end{theorem}
+\begin{proof}
+Tomemos generadores $f_1, \ldots, f_n$ de la $k$-álgebra finitamente generada $\Gamma$. Por el ítem (c) de la proposición anterior, aplicado al subespacio $V$ generado por estos $f_i$, podemos encontrar un subespacio de dimension finita $W$ de $\Gamma$, estable por las traslaciones $R_g$ con $g \in G$. Cambiando de notación, podemos suponer que los $f_i$ generan una base de $W$ (y también la $k$-álgebra $\Gamma$). Sea $\nu : G \times G \to G$ dada por $\nu (x,y) = yx$, el ítem (c) de la proposición de arriba, podemos escribir $\nu^* f_i = \sum_{j} m_{ij} \otimes f_j$, con $m_{ij} \in \Gamma$. Entonces $R_x f_i (y) = f_i (y x) = \sum_j m_{ij} (x) f_j (y)$, por lo tanto $R_x f_i = \sum_j m_{ij (x) f_j}$. En otras palabras, la matriz de $\rest{L_x} W$ relativa a la base $(f_1, \ldots,f_n)$ es $(m_ij (x))_{ij}$. Esto prueba que
+\begin{align*}
+    \sigma : G &\longrightarrow \operatorname{GL}_n (k) \\
+    x &\longmapsto (m_{ij} (x))_{ij}
+\end{align*}
+es un morfismo de grupos algebraicos ($m_{ij} \in \Gamma$).
+
+Observemos que $f_i (x) = f_i (1 \cdot x) = \sum_{j} m_{ij} (x) f_j (1)$, i.e., $f_i = \sum_j f_j (1) m_{ij}$. Esto muestra que los $m_{ij}$ generan $\Gamma$; en particular $\sigma$ es inyectivo. Más aún, la imagen $G' := \sigma (G)$ es un subgrupo cerrado en $\operatorname{GL}_n (k)$ por el ítem (b) de la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}. Finalmente, nos resta probar que $\sigma$ es un isomorfismo de variedades algebraicas. Pero la restricción a $G'$ de las funciones coordenada $T_{ij}$ son enviadas vía $\sigma^*$ a los $m_{ij}$ respectivos, los cuales generan $\Gamma$. Luego $\sigma^*$ es sobreyectivo, e induce un isomorfismo de $k$-álgebras entre $\Gamma (G', \O_{G'})$ y $\Gamma$.
+\end{proof}
+
+
+
+
+\section{Grupos solubles y nilpotentes}
+
+
+
+
+
 
 
 
