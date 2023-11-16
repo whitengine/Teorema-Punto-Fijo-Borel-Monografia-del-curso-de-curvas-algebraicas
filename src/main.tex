@@ -646,15 +646,15 @@ Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al \textit{espacio proyecti
 
 Dada una variedad $X$, denotamos por $X_{\textup{sing}}$ al sub-conjunto de puntos singulares de $X$. En particular, $X$ es una variedad suave si y sólo si $X_{\textup{sing}}=\emptyset$. En contraste, definimos $X_{\textup{reg}}$ al sub-conjunto de puntos suaves de $X$.
 
-\section{Terminología de Teoría de Grupos}
+\section{Terminología de teoría de grupos y acciones}
 En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ un grupo, escribamos
 \begin{itemize}
 \item $Z(G)$ es el \textbf{centro} de $G$, es decir, todos los $x \in G$ tales que $x g = g x$ para todo $g \in G$.
 \item $R(G)$ es el \textbf{radical} de $G$, es decir, el subgrupo conexo normal soluble de $G$. Donde estamos suponiendo que $G$ es un \textit{grupo algebraico}.
-\item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$.
+\item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$. Dado $y \in G$, definimos la \textbf{clase de conjugación} (de $y$), como el conjunto de elementos de $G$ de la forma $z y z^{-1}$, $z \in G$. Las clases de conjugación particionan $G$.
 \item Dado $S \subset G$, $N_G (S)$ es el \textbf{normalizador} de $S$, es decir, los $x \in G$ tales que $x g x^{-1} \in S$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $N_G (x)$ en lugar de $N_G (S)$.
 \item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$.
-\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$) es un mapa
+\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$, o para no confundirnos con otras estructuras que aparecerán más adelante, que $G$ \textbf{actúa mórficamente} en $X$) es un mapa
 \begin{align*}
 \varphi : G \times X &\longrightarrow X \\
 (g,x) &\longmapsto g \cdot x
@@ -662,9 +662,13 @@ En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ u
 tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} o \textbf{grupo de isotropía} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$; claramente es un subgrupo de $G$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G_S$. Quitando redundancias (i.e. $G \cdot x = G \cdot x'$), las órbitas particionan $X$.
 \item Decimos que un grupo $G$ actúa \textbf{transitivamente} (sobre un conjunto $X$) si $G \cdot x = X$ para algún $x \in X$ (equivalentemente para todo $x \in X$). En particular, $G$ actúa transitivamente en cada órbita.
 \item Si $G$ actúa en $X$, entonces denotamos por $X^{G}$ al conjunto de \textbf{puntos fijos} de $G$, i.e., aquellos $x \in X$ tales que $G \cdot x = \{x\}$, en otras palabras, los elementos cuya órbita es un singleton.
+\item Dados $Y,Z \subset X$, definimos el \textbf{transportador}, como el conjunto $\operatorname{Tran}_G (Y, Z) := \set{g \in G | g \cdot Y \subset Z}$.
 \end{itemize}
 
-Introduzcamos también definiciones básicas de Teoría de Grupos. Decimos que un subgrupo
+\begin{example}
+Con estas definiciones y terminologías, dado un grupo $G$, este actúa sobre sus elementos vía \textbf{automorfismos interiores}, es decir, $y \mapsto x y x^{-1} =: \operatorname{Int}_x (y)$, correspondiente al homomorfismo $G \to \operatorname{Aut}G$; el núcleo es $Z(G)$ y la imagen es $\operatorname{Int} G$ (el cual es un subgrupo normal de $\operatorname{Aut} (G)$). La órbita de $y$ son las clases de conjugación, y su grupo de isotropía el centralizador $C_G (y)$. Los puntos fijos corresponden con el núcleo del homomorfismo, i.e., $Z(G)$.
+\end{example}
+
 
 \section{Variedades Bandera}
 
@@ -827,7 +831,7 @@ Un \textbf{morfismo de grupos algebraicos} es un homomorfismo de grupos $\varphi
 \end{definition}
 
 \begin{proposition}
-Sea $H$ un subgrupo de un gruo algebraico $G$, sea $\bar H$ su clausura en la topología Zariski. Entonces:
+Sea $H$ un subgrupo de un grupo algebraico $G$, sea $\bar H$ su clausura en la topología Zariski. Entonces:
 \begin{enumerate}[(a)]
 \item $\bar H$ es un subgrupo de $G$. En particular, como es cerrado es un subgrupo algebraico de $G$.
 \item Si $H$ es \textit{constructible}\footnote{Unión finita de conjuntos $U \cap V$ con $U$ abiertos y $V$ cerrado.}, entonces $H = \bar H$.
@@ -897,6 +901,83 @@ Se tiene entonces que $\operatorname{SL}_n (k)$ y $U_n (k)$ son grupos conexos. 
 
 
 \section{Acciones de grupos algebraicos sobre variedades}
+
+\begin{definition}
+Sea $G$ un grupo algebraico y $X$ una variedad algebraica. Supongamos que tenemos una acción del grupo subyacente $G$ en el conjunto $X$, digamos $\varphi : G \times X \to X$ de tal suerte que es un morfismo de variedades algebraicas (el dominio es la variedad producto), entonces decimos que $G$ \textbf{actúa mórficamente} en $X$ (o cuando no haya confusión, diremos simplemente que actúa en $X$).
+
+Si $G$ actua mórficamente sobre dos varieades algebraicas $X,Y$, decimos que un morfismo $f : X \to Y$ es \textbf{$G$-equivariante} si $f(g \cdot x) = g \cdot f(x)$ para todo $g \in G$ y $x \in X$.
+\end{definition}
+
+\begin{proposition}
+Sea un grupo algebraico $G$ actuando mórficamente en una variedad algebraica $X$. Sean $Y,Z $ subconjuntos de $X$ con $Z$ cerrado. Entonces:
+\begin{enumerate}
+\item $\operatorname{Tran}_G (Y,Z)$ es cerrado en $G$.
+\item Para cada $x \in X$, $G_x$ es un subgrupo cerrado de $G$; en particular $G_S$ es cerrado para todo $S \subset X$.
+\item El conjunto de puntos fijos de $g \in G$ es cerrado en $X$; en particular, $X^G$ es cerrado.
+\item Si $G$ es un grupo algebraico conexo, entonces estabiliza cada componente irreducible de $X$, en particular actúa trivialmente en $X$ si este es finito.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+\item Para cada $x \in X$, tenemos el mapa de la órbita de $x$, es decir
+\begin{align*}
+\varphi_x : G &\longrightarrow X \\
+g &\longmapsto g \cdot x,
+\end{align*}
+el cual es la composición de $g \mapsto (g, x)$ con $\varphi$, y por lo tanto es un morfismo de variedades algebraicas. Como
+\[
+    \operatorname{Tran}_G (Y, Z) = \bigcap_{x \in Y} \varphi_x^{-1} (Z)
+\]
+es la intersección de cerrados, es cerrado en $G$.
+\item Como $G_x = \operatorname{Tran}_G (\{x\}, \{x\})$, $G_x$ es cerrado de $G$ por el ítem anterior. Así, $G_S = \bigcap_{x \in S} G_x$ también es cerrado.
+\item Sea $g \in G$, consideremos el morfismo algebraico $\psi : X \to X \times X$ dado por $x \mapsto (x, g\cdot x)$. El conjunto de puntos fijos $X^g$ es precisamente la preimagen de la diagonal vía $\psi$, la cual es cerrada porque $X$ es una variedad algebraica, luego $X^g$ es cerrado.
+\item Supongamos que $G$ es un grupo conexo. El estabilizador $H$ en $G$ de una componente irreducible de $X$ es cerrada por el primer ítem, además es un subgrupo de $G$. Como $G$ permuta estas finitas componentes de $X$, $H$ tiene índice finito en $G$. Con lo cual el ítem (2) de la Proposición \ref{proposicion:componente de la identidad} implica que $H = G$.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+Sea $G$ un grupo algebraico, y $H$ un subgrupo cerrado. Entonces $N_G (H)$ y $C_G (H)$ son subgrupos cerrados; también lo es $C_G (g)$, para cualquier $g \in G$.
+\end{corollary}
+\begin{proof}
+Para probar que $C_G (H)$ o $C_G (x)$ son cerrados, basta aplicar el ítem 2. de la proposición de arriba, simplemente hay que considerar la acción mórfica de $G$ en si mismo por automorfismos internos. Para $N_G (H)$, aplicamos el ítem 1. y el hecho de que $N_G (H) = \operatorname{Tran}_G (H,H)$ vía esta acción. En efecto, el automorfismo $\operatorname{Int}_x$ con $x \in G$ manda $H$ a un subgrupo cerrado de $G$, de la misma dimensión que $H$ (es un isomorfismo de variedades algebraicas), y la componente de la identidad tiene índice $[H : H^\circ]$. Con lo cual $\operatorname{Int}_x$ manda $H$ inyectivamente en $H$ si y solo si manda $H$ sobreyectivamente a $H$. En otras palabras, $x \in N_G (H)$ si y solo si $x \in \operatorname {Tran}_G (H, H)$.
+\end{proof}
+
+
+
+\subsection{Órbitas cerradas}
+
+\begin{proposition}
+Sea $G$ un grupo algebraico actuando mórficamente en una variedad algebraica $X$. Entonces cada órbita es un subconjunto suave localmente cerrado de $X$, cuya frontera es la unión de algunas órbitas con dimensión estrictamente menor. En particular, las órbitas de dimensión minimal son cerradas (y por lo tanto existen órbitas cerradas).
+\end{proposition}
+
+\begin{proof}
+Sea $Y := G \cdot y$ la órbita de $y \in X$. Como la imagen de $G$ bajo el mapa de la órbita $\varphi_y : G \to X$, $Y$ es constructible, luego el Teorema de Chevalley dice que existe un abierto denso de $\bar Y$. Como $G$ actúa transitivamente en $Y$ (dejando $\bar Y$ estable), $Y$ tiene que ser suave (existe almenos un punto suave y podemos trasladarlo a cualquier punto de $Y$), así $Y$ es suave y contiene un abierto de $\bar Y$ en cada uno de sus puntos (trasladando), luego $Y$ es abierto en $\bar Y$. Por lo tanto $\bar Y \setminus Y$ es cerrado y de dimensión estrictamente menor que $\bar Y$. Como es $G$-estable, esta fronte es justamente la unión de las otras $G$-órbitas.
+\end{proof}
+
+\subsection{Traslación de funciones}
+
+Es interesante notar que dado un grupo algebraico $G$ actuando sobre una variedad afín $X$, entonces $G$ actua naturalmente sobre $\Gamma = \Gamma (X, \O_X)$:
+\[
+    \begin{array}{rl}
+    L_g : \Gamma &\longrightarrow \Gamma \\
+f &\longmapsto L_g (f) (y) = f(g^{-1} \cdot x) , \forall x \in X
+    \end{array}, \quad
+    \begin{array}{rl}
+    R_g : \Gamma &\longrightarrow \Gamma \\
+f &\longmapsto R_g (f) (y) = f(x \cdot g) , \forall x \in X
+    \end{array}
+\]
+para cualquier $g \in G$ fijo. A la función $L_g$ la llamamos \textbf{traslación a izquierda} y a $R_g$ \textbf{traslación a derecha} (por $g$). Así, $g \mapsto L_g$ y $g \mapsto R_g$ son acciones de $G$ en $\Gamma$. Estas operaciones son importantes, por ejemplo caracterizan contención en un subgrupo cerrado:
+
+\begin{proposition}
+Sea $H$ un subgrupo cerrado de un grupo algebraico $G$. Sea $I$ el ideal de $\Gamma (G, \O_G)$ de las funciones regulares de $G$ que se anulan en $H$. Entonces $H = \set{g \in G | R_g (I) \subset I}$.
+\end{proposition}
+\begin{proof}
+Por un lado, si $g \in H$ y $f \in I$, entonces $L_g (x) = f(x \cdot g) = 0$ para todo $x \in H$ pues $H$ es cerrado por el producto, i.e., $L_g (f) \in I$. Por otro lado, si $L_g (I) \subset I$, se tiene que $L_g (f)$ se anula en $1 \in H$ para todo $f \in I$, es decir, $f(g) = 0$, consecuentemente, $g \in \bar H = H$.
+\end{proof}
+
+
+
 
 
 
@@ -977,7 +1058,7 @@ Es decir, vale el enunciado del teorema.
 \subsubsection{Subgrupos de Borel y Toros maximales}
 
 \begin{definition}
-Un \textbf{subgrupo de Borel} de $G$ es un subgrupo cerrado conexo soluble que no está incluido propiamente en ningún otro subgrupo cerrado conexo soluble.
+Un \textbf{subgrupo de Borel} de $G$ es un subgrupo cerrado conexo soluble maximal.
 \end{definition}
 Como los subgrupos de Borel de $G$ y $G^{\circ}$ coinciden, supondremos a partir de lo que sigue que $G$ es conexo. Un subgrupo conexo soluble de dimensión máxima en $G$ es claramente un subgrupo de Borel; pero no es obvio que todo subgrupo de borel tenga la misma dimensión, sin embargo, esto es cierto:
 
