@@ -15,11 +15,13 @@
 \contentsline {subsection}{\tocsubsection {}{8.2}{Traslación de funciones}}{8}{subsection.8.2}%
 \contentsline {subsection}{\tocsubsection {}{8.3}{Linearización de grupos afines}}{9}{subsection.8.3}%
 \contentsline {section}{\tocsection {}{9}{Grupos solubles y nilpotentes}}{9}{section.9}%
-\contentsline {section}{\tocsection {}{10}{Resumen de variedades completas}}{9}{section.10}%
-\contentsline {section}{\tocsection {}{11}{Teorema del punto fijo de Borel}}{10}{section.11}%
-\contentsline {section}{\tocsection {}{12}{Consecuencias}}{10}{section.12}%
-\contentsline {subsubsection}{\tocsubsubsection {}{12.0.1}{Subgrupos de Borel y Toros maximales}}{11}{subsubsection.12.0.1}%
-\contentsline {subsubsection}{\tocsubsubsection {}{12.0.2}{Más consecuencias}}{12}{subsubsection.12.0.2}%
-\contentsline {subsubsection}{\tocsubsubsection {}{12.0.3}{El Teorema del Normalizador}}{13}{subsubsection.12.0.3}%
-\contentsline {section}{\tocsection {}{13}{Cosas para agregar}}{14}{section.13}%
-\contentsline {section}{\tocsection {}{}{Referencias}}{14}{section*.4}%
+\contentsline {subsection}{\tocsubsection {}{9.1}{Grupos solubles}}{10}{subsection.9.1}%
+\contentsline {subsection}{\tocsubsection {}{9.2}{Subgrupos nilpotentes}}{11}{subsection.9.2}%
+\contentsline {section}{\tocsection {}{10}{Resumen de variedades completas}}{11}{section.10}%
+\contentsline {section}{\tocsection {}{11}{Teorema del punto fijo de Borel}}{11}{section.11}%
+\contentsline {section}{\tocsection {}{12}{Consecuencias}}{12}{section.12}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.0.1}{Subgrupos de Borel y Toros maximales}}{12}{subsubsection.12.0.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.0.2}{Más consecuencias}}{13}{subsubsection.12.0.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{12.0.3}{El Teorema del Normalizador}}{14}{subsubsection.12.0.3}%
+\contentsline {section}{\tocsection {}{13}{Cosas para agregar}}{15}{section.13}%
+\contentsline {section}{\tocsection {}{}{Referencias}}{16}{section*.4}%

@@ -653,7 +653,7 @@ En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ u
 \item $R(G)$ es el \textbf{radical} de $G$, es decir, el subgrupo conexo normal soluble de $G$. Donde estamos suponiendo que $G$ es un \textit{grupo algebraico}.
 \item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$. Dado $y \in G$, definimos la \textbf{clase de conjugación} (de $y$), como el conjunto de elementos de $G$ de la forma $z y z^{-1}$, $z \in G$. Las clases de conjugación particionan $G$.
 \item Dado $S \subset G$, $N_G (S)$ es el \textbf{normalizador} de $S$, es decir, los $x \in G$ tales que $x g x^{-1} \in S$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $N_G (x)$ en lugar de $N_G (S)$.
-\item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$.
+\item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$. Notar que $[S_1,S_2]$ es normal en $G$ si y solo si $S_1$ y $S_2$ son normales en $G$.
 \item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$, o para no confundirnos con otras estructuras que aparecerán más adelante, que $G$ \textbf{actúa mórficamente} en $X$) es un mapa
 \begin{align*}
 \varphi : G \times X &\longrightarrow X \\
@@ -846,7 +846,7 @@ Sea $H$ un subgrupo de un grupo algebraico $G$, sea $\bar H$ su clausura en la t
 \end{enumerate}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{corollary:si A y B son cerrados entonces AB es cerrado}
 Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Si $B$ \textit{normaliza}\footnote{Es decir, $B \subset N_G (A)$.} $A$, entonces $AB$ es un subgrupo cerrado de $G$.
 \end{corollary}
 \begin{proof}
@@ -867,7 +867,7 @@ Sea $\varphi : G \to G'$ un morfismo de grupos algebraicos. Entonces:
 \item Como $\varphi$ es continuo y el $\Ker \varphi$ es por definición la preimagen del conjunto cerrado $\{1\}$, entonces $\Ker \varphi$ es cerrado. Ya sabemos que es un subgrupo.
 \item $\varphi (G)$ es un subgrupo de $G'$. Como $G$ es trivialmente constructible en $G$, el ítem (c) de la proposición de arriba implica que la imagen es cerrada.
 \item $\varphi (G^\circ)$ es cerrada por el ítem (c) de la proposición de arriba ($G^\circ$ es cerrado en $G$, en particular constructible) y es conexo ($G^\circ$ es conexo), como contiene al $1$, debe estar contenido en $\varphi (G)^\circ$ (esta notación cobra sentido pues el ítem (b) dice que la imagen de $\varphi$ es una subvariedad algebraica de $G'$), ya que las coclases de $\varphi (G)^\circ$ son las componentes conexas de $\varphi (G)$ (ítem (1) de la Proposición \ref{proposicion:componente de la identidad}). Por otro lado, como $G^\circ$ tiene índice finito en $G$, $\varphi (G^\circ)$ tiene índice finito en $\varphi (G)$, con lo cual contiene a $\varphi (G)^\circ$, i.e., $\varphi (G^\circ) = \varphi (G)^\circ$, por el ítem (b) de la Proposición \ref{proposicion:componente de la identidad}.
-\item EL Teorem \ref{} nos dice que para casi todo $x \in \varphi (G)$, $\dim G - \dim \varphi (G) = \dim \varphi^{-1} (x)$. Pero todas las fibras $\varphi^{-1} (x)$ tienen la dimensión de $\Ker \varphi$, y se sigue la afirmación. En efecto, $\varphi^{-1} (x) = x \Ker \varphi $, y trasladar por $x$ es un isomorfismo de variedades. Como las componentes irreducibles de $G$ son traslaciones de $\G^\circ$ (ítem (a) de la Proposición \ref{proposicion:componente de la identidad}), y trasladar es un isomorfismo de variedades algebraicas, tenemos que $\dim G = \dim G^\circ$ y $\dim \varphi (G) = \dim \varphi (G)^\circ$, por lo tanto el ítem anterior nos permite restringirnos a $\rest \varphi {G^\circ} : G^\circ \twoheadrightarrow \varphi (G)^\circ$, con lo cual podemos suponer que $\varphi$ es sobreyectiva y que $G$ y $G'$ son variedades irreducibles. El ítem (c) de la proposición de arriba dice que $\varphi$ es cerrado, por lo que podemos rematar la demostración utilizando \cite[Teorema 2.12.13.]{notas_pedro}:
+\item \cite[Ítem (2) del Teorema 2.12.9.]{notas_pedro} nos dice que para casi todo $x \in \varphi (G)$, $\dim G - \dim \varphi (G) = \dim \varphi^{-1} (x)$. Pero todas las fibras $\varphi^{-1} (x)$ tienen la dimensión de $\Ker \varphi$, y se sigue la afirmación. En efecto, $\varphi^{-1} (x) = x \Ker \varphi $, y trasladar por $x$ es un isomorfismo de variedades. Como las componentes irreducibles de $G$ son traslaciones de $\G^\circ$ (ítem (a) de la Proposición \ref{proposicion:componente de la identidad}), y trasladar es un isomorfismo de variedades algebraicas, tenemos que $\dim G = \dim G^\circ$ y $\dim \varphi (G) = \dim \varphi (G)^\circ$, por lo tanto el ítem anterior nos permite restringirnos a $\rest \varphi {G^\circ} : G^\circ \twoheadrightarrow \varphi (G)^\circ$, con lo cual podemos suponer que $\varphi$ es sobreyectiva y que $G$ y $G'$ son variedades irreducibles. El ítem (c) de la proposición de arriba dice que $\varphi$ es cerrado, por lo que podemos rematar la demostración utilizando \cite[Teorema 2.12.13.]{notas_pedro}:
 \begin{quote}
 Sea $f : X \twoheadrightarrow Y$ un morfismo regular sobreyectivo y cerrado entre variedades algebraicas. Supongamos que
 \begin{enumerate}[(i)]
@@ -888,7 +888,7 @@ Dado un $k$-espacio vectorial $n$-dimensional $V$, podemos fijar una base de $V$
 \end{obs}
 
 Un resultado útil para probar que algunos grupos algebraicos son grupos conexos, es el siguiente:
-\begin{proposition}
+\begin{proposition}\label{proposition:proposicion util para probar que un grupo algebraico es conexo}
 Sea $G$ un grupo algebraico, $Y_i $ con $i \in I$ una familia de subgrupos conexos y cerrados de $G$ que lo generan como grupo. Entonces $G$ es conexo.
 \end{proposition}
 \begin{proof}
@@ -1018,9 +1018,75 @@ Observemos que $f_i (x) = f_i (1 \cdot x) = \sum_{j} m_{ij} (x) f_j (1)$, i.e., 
 
 \section{Grupos solubles y nilpotentes}
 
+Un lema útil de teoría de grupos es el siguiente:
+\begin{lemma}\label{lemma:lema util de teoria de grupos}
+Sean $A,B$ subgrupos normales de un grupo $G$, y supongamos que el conjunto $S = \{[x,y] | x \in A, y \in B\}$ es finito. Entonces $[A,B]$ es finito. En particular, si $[G : Z(G)] < \infty$, luego $[G,G]$ es finito.
+\end{lemma}
+\begin{proof}
+La primera afirmación es el Lema B y la segunda el Lema A de \cite{humphreys2012linearAlgebraicGroups}.
+\end{proof}
+
+Ahora bien, queremos estudiar cómo se comporta el subgrupo conmutador $[A,B]$ de $G$, dados subgrupos cerrados arbitrarios $A$ y $B$. Sin embargo, $[A,B]$ no tiene por qué ser cerrado!
+%{Ejercicio 1 17.2 Humphreys}
+Esta situación mejora cuando $A$ o $B$ son subgrupos algebraicos conexos, o cuando ambos son normales en $G$:
+
+\begin{proposition}\label{proposition: el conmutador de conexo es conexo}
+Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Entonces
+\begin{enumerate}[(a)]
+\item Si $A$ es un subgrupo algebraico conexo, entonces $[A,B]$ es cerrado y conexo.
+\item Si $A$ y $B$ son normales en $G$, entonces $[A,B]$ es cerrado (y normal en $G$). En particular, $[G,G]$ siempre es cerrado.
+\end{enumerate}
+\end{proposition}
+\begin{proposition}
+\begin{enumerate}[(a)]
+\item Asociado a cada $b \in B$ tenemos el morfismo $\psi_b : A \to G$ definido por $\psi_b (a) = [a,b]$. Como $A$ es conexo, y $\psi_b (1) = 1$, por la Proposición \cite[7.5]{humphreys2012linearAlgebraicGroups}, el grupo generado por todos los $\psi_b (A)$, $b \in B$ es cerrado y conexo; pero este grupo es $[A,B]$.
+\item Por el ítem anterior $[A^\circ, B]$ y $[A, B^\circ]$ son cerrados, conexos (y normales) en $G$, luego el producto, digamos $C$, también es cerrado, conexo (y normal) en $G$: lo primero es por el Corolario \ref{corollary:si A y B son cerrados entonces AB es cerrado}, lo segundo es porque el producto de variedades irreducibles es irreducible (ver \cite[Proposición 2.8.5]{notas_pedro}), y si $X,Y$ son subgrupos algebraicos de $G$ tales que $XY$ es un subgrupo, entonces $X \times Y \to XY$ es un isomorfismo algebraico. Con lo cual, para probar que $[A,B]$ es cerrado, basta ver que $C$ tiene índice finito en $[A,B]$; esta es una afirmación sobre grupos abstractos: en el grupo abstracto $G/C$, la imagen de $A^\circ$ (respectivamente $B^\circ$) centraliza la imagen de $B$ (respectivamente $A$). Como $[A : A^\circ]$ y $[B: B^\circ]$ son finitos, esto implica que existen finitos conmutadores en $G/C$ construidos a partir de las imágenes de $A$ y $B$. Así, el Lema \ref{lemma:lema util de teoria de grupos} garantiza que $[A,B]/C$ es finito, i.e., $C$ tiene índice finito en $[A,B]$ como queríamos.
+\end{enumerate}
+\end{proposition}
 
 
+\subsection{Grupos solubles}
 
+Recordemos que un grupo abstracto $G$ es \textbf{soluble} si su \textbf{serie derivada} eventualmente termina en $\{1\}$, es decir, la serie definida inductivamente por
+\[
+    \mathcal D ^0 G :=G, \quad \mathcal D^{i + 1} G = [\mathcal D ^i G, \mathcal D^i G]
+\]
+cumple que para $i$ lo suficientemente grande $\mathcal D^i G = \{1\}$ (notar que $\mathcal D ^i G \unrhd \mathcal D^{i + 1} G$).
+
+Cuando $G$ es un grupo algebraico, $\mathcal D^1 G := [G,G]$ es un subgrupo cerrado normal de $G$, y más aún, si $G$ es conexo, luego $\mathcal D^1 G$ también lo es por la Proposición \ref{proposition: el conmutador de conexo es conexo}. Así, por inducción en $i$, se sigue que esto sigue valiendo para los $\mathcal D^i G$. Con lo cual, en el contexto de grupos algebraicos tiene sentido hablar de serie derivada, pues $\mathcal D^i G$ eventualmente es constante (no necesariamente $\{1\}$). Al igual que en el caso de grupos abstractos, no es difícil ver que un grupo algebraico $G$ es soluble si y solo si existe una cadena
+\[
+    G =: G_0 \supset G_1 \supset \cdots \supset G_r = \{1\}
+\]
+de subgrupos cerrados tales que $[G_i,G_i] \subset G_{i+1}$.
+
+\begin{obs}
+Notemos que si $G$ es un grupo algebraico conexo soluble de dimensión positiva, entonces
+\[
+    \dim [G,G] < \dim G.
+\]
+En efecto, de lo contrario, como $G$ es irreducible y $[G,G] \subset G$ es cerrado, se tendría que $G = [G,G]$; en particular no es soluble.
+\end{obs}
+Esta observación es útil, pues nos permitirá realizar argumentos inductivos en la dimensión de $G$.
+
+Las siguientes hechos de grupos abstractos son buenos de tener presentes:
+\begin{lemma}
+\begin{enumerate}[(a)]
+\item Subgrupos e imágenes de homomorfismos de grupos abstractos solubles son solubles.
+\item Si $N$ es normal soluble en $G$ y $G/N$ es soluble, entonces $G$ es soluble.
+\item Si $A,B$ son subgrupos normales solubles de $G$, entonces $AB$ también.
+\end{enumerate}
+\end{lemma}
+
+\begin{example}
+El grupo de las matrices triangulares superiores $T_n (k)=:T$ es soluble. Es claro que $[T,T]$ está contenido en $U_n (k) =: U$. Escribamos $U_{ij} := \{1 + a_{e_{ij} | a \in k}\}$ si $i < j$, cada uno cerrado y conexo, pues es isomorfo a $\mathbb{G}_a$. Por lo tanto, el ítem (a) de la Proposición \ref{proposition: el conmutador de conexo es conexo} dice que $[D, U_{ij}] \subset U_{ij}$ es cerrado conexo, donde $D := D_n (k)$, y claramente este grupo es no trivial. Consecuentemente, $U_{ij} = [D, U_{ij}] \subset [T,T]$ para cada $i<j$, forzando a que $[T,T] = U$.
+
+Ahora, consideremos $[U,U]$. Escribamos $\mathfrak I$ para el conjunto de matrices triangulares, visto como una subálgebra asosciativa de $M_n (k)$ (el producto es el producto de matrices usual). Evidentemente, el subconjunto $\mathfrak R$ de matrices con $0$ en la diagonal es un ideal bilátero de $\mathfrak I$. Por lo tanto, los productos de ideales $\mathfrak R^h$ con $h \geq 1$, consistiendo de sumas de productos de $h$ matrices en $\mathfrak R$, son nuevamente un ideales biláteros. Pero $\mathfrak R^h$ está generado linealmente por los $E_{ij}$ con $j - i \geq h$ (matrices con $1$ en $(i,j)$ y $0$ en el resto). Ahora, $U = 1 + \mathfrak R$, con lo cual $U_h := 1 + \mathfrak R^h$ es un subgrupo cerrado normal de $U$, que además cumple $[U_h, U_l] \subset U_{h+ l}$. En particular, $U$ es soluble, y luego $T$ también.
+\end{example}
+
+De hecho, es interesante mencionar que al igual que el caso de grupos abstractos, intentar describir todos los grupos algebraicos solubles es una tarea formidable, sin embargo, veremos que los grupos algebraicos conexos solubles son isomorfos a un subgrupo cerrado de algún $T_n (k)$.
+
+
+\subsection{Subgrupos nilpotentes}
 
 
 
