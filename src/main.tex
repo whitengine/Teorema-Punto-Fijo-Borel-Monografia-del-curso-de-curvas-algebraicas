@@ -763,7 +763,7 @@ El grupo de \textbf{matrices triangulares superiores} (análogamente las triangu
 \end{example}
 
 \begin{obs}
-El \textbf{producto directo} de finitos grupos algebraicos es nuevamente un grupo algebraico con la topología producto Zariski y la estructura de grupo dada por el producto cartesiano de grupos.
+El \textbf{producto directo} de finitos grupos algebraicos es nuevamente un grupo algebraico con la topología producto Zariski y la estructura de grupo dada por el producto cartesiano de grupos. Con un poco más de esfuerzo se puede probar que el \textbf{producto semidirecto} de dos grupos algebraicos es nuevamente un grupo algberacio con la topología producto Zariski y la estructura de grupo dada por el producto semidirecto de grupos abstractos.
 \end{obs}
 \begin{proof}
 Veamos solo el caso de producto de dos grupos algebraicos $G_1, G_2$, el caso general se sigue por inducción. Solo tenemos que probar que
@@ -1014,6 +1014,21 @@ Observemos que $f_i (x) = f_i (1 \cdot x) = \sum_{j} m_{ij} (x) f_j (1)$, i.e., 
 \end{proof}
 
 
+\section{Cocientes}
+
+Dado un subgrupo cerrado $H$ de un grupo algebraico afín $G$, existe un morfismo $G$-equivariante \textit{separable}\footnote{No definiremos esto ya que no lo usaremos en ningún momento, pero se puede consultar la definición formal en \cite{humphreys2012linearAlgebraicGroups}.} $\pi : G \to Y$ con fibras las coclases $g H$. Cuando $H$ es normal en $G$, $Y$ se puede tomar como un grupo algebraico afín y $\pi$ un homomorfismo de grupos. Más aún, se verifica la siguiente propiedad universal: dada una variedad algebraica $X$ y un morfismo $\varphi : G \to X$ cuyas fibras no vacías son uniones de coclases $gH$, entonces existe un único morfismo $\bar \varphi : Y \to X$ tal que $\varphi = \bar \varphi \circ \pi$. Como es usual, el par $(\pi, Y)$ es único salvo isomorfismo de variedades. Por lo tanto tenemos todo el derecho de llamar a $Y$ el \textbf{espacio homogéneo} $G/H$ y llamar a $\pi$ el \textbf{morfismo canónico}. De manera análoga, podemos hablar del espacio $H\backslash G$ de coclases $Hg$. Para una discusión rigurosa se sugiere consultar las secciones 11 y 12 de \cite{humphreys2012linearAlgebraicGroups}.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Grupos solubles y nilpotentes}
@@ -1077,7 +1092,7 @@ Las siguientes hechos de grupos abstractos son buenos de tener presentes:
 \end{enumerate}
 \end{lemma}
 
-\begin{example}
+\begin{example}\label{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}
 El grupo de las matrices triangulares superiores $T_n (k)=:T$ es soluble. Es claro que $[T,T]$ está contenido en $U_n (k) =: U$. Escribamos $U_{ij} := \{1 + a_{e_{ij} | a \in k}\}$ si $i < j$, cada uno cerrado y conexo, pues es isomorfo a $\mathbb{G}_a$. Por lo tanto, el ítem (a) de la Proposición \ref{proposition: el conmutador de conexo es conexo} dice que $[D, U_{ij}] \subset U_{ij}$ es cerrado conexo, donde $D := D_n (k)$, y claramente este grupo es no trivial. Consecuentemente, $U_{ij} = [D, U_{ij}] \subset [T,T]$ para cada $i<j$, forzando a que $[T,T] = U$.
 
 Ahora, consideremos $[U,U]$. Escribamos $\mathfrak I$ para el conjunto de matrices triangulares, visto como una subálgebra asosciativa de $M_n (k)$ (el producto es el producto de matrices usual). Evidentemente, el subconjunto $\mathfrak R$ de matrices con $0$ en la diagonal es un ideal bilátero de $\mathfrak I$. Por lo tanto, los productos de ideales $\mathfrak R^h$ con $h \geq 1$, consistiendo de sumas de productos de $h$ matrices en $\mathfrak R$, son nuevamente un ideales biláteros. Pero $\mathfrak R^h$ está generado linealmente por los $E_{ij}$ con $j - i \geq h$ (matrices con $1$ en $(i,j)$ y $0$ en el resto). Ahora, $U = 1 + \mathfrak R$, con lo cual $U_h := 1 + \mathfrak R^h$ es un subgrupo cerrado normal de $U$, que además cumple $[U_h, U_l] \subset U_{h+ l}$. En particular, $U$ es soluble, y luego $T$ también.
@@ -1087,6 +1102,66 @@ De hecho, es interesante mencionar que al igual que el caso de grupos abstractos
 
 
 \subsection{Subgrupos nilpotentes}
+
+
+Recordemos que un grupo abstracto $G$ es \textbf{nilpotente} si su \textbf{serie central} eventualmente termina en $\{1\}$, es decir, la serie definida inductivamente por
+\[
+    \mathcal C ^0 G :=G, \quad \mathcal C^{i + 1} G = [ G, \mathcal C^i G]
+\]
+cumple que para $i$ lo suficientemente grande $\mathcal C^i G = \{1\}$ (notar que $\mathcal C ^i G \unrhd \mathcal C^{i + 1} G$).
+
+Cuando $G$ es un grupo algebraico, $\mathcal C^1 G := [G,G]$ es un subgrupo cerrado normal de $G$, y más aún, si $G$ es conexo, luego $\mathcal C^1 G$ también lo es por la Proposición \ref{proposition: el conmutador de conexo es conexo}. Así, por inducción en $i$, se sigue que esto sigue valiendo para los $\mathcal C^i G$. Con lo cual, en el contexto de grupos algebraicos tiene sentido hablar de serie central, pues $\mathcal C^i G$ eventualmente es constante (no necesariamente $\{1\}$). Por ejemplo, los grupos conmutativos son nilpotentes: $\mathcal C^1 G = \{1\}$. Por otro lado, ser nilpotente implica ser soluble, pues $\mathcal D^i G \subset \mathcal C^i G$ para todo $i$.
+
+Las siguientes hechos de grupos abstractos son buenos de tener presentes:
+\begin{lemma}
+\begin{enumerate}[(a)]
+\item Subgrupos e imágenes de homomorfismos de grupos abstractos nilpotentes son nilpotentes.
+\item Si $G/Z(G)$ es nilpotente, entonces $G$ es nilpotente.\footnote{Sin embargo, no necesariamente si $N$ es un subgrupo normal nilpotente de $G$ y $G/N$ es nilpotente, se puede concluir que $G$ es nilpotente. Por ejemplo, se tiene que el grupo simétrico $\mathbb{S}_3$ no es nilpotente pues $[\mathbb{S}_3, \mathbb{S}_3] = \mathbb A_3$ (el subgrupo normal de permutaciones pares), y $\mathbb{S}_3 / \mathbb{A}_3 \cong \integers /2 \integers$ es abeliano, luego nilpotente, y $\mathbb{A}_3$ también es nilpotente, pues es isomorfo a un grupo dihedral}
+\item Sea $G$ nilpotente. Si $r$ es el índice mas grande tal que $\mathcal C^r G \neq \{1\}$, entonces $\mathcal C^r G \subset \integers Z(G)$. En particular, $Z(G) \neq \{1\}$ si $G$ es no trivial.
+\item Sea $G$ nilpotente y $H$ un subgrupo propio de $G$. Entonces $H$ está incluido propiamente en $N_G (H)$.
+\end{enumerate}
+\end{lemma}
+
+Para grupos algebraicos podemos decir un poco más:
+\begin{proposition}
+Sea $G$ un grupo algebraico conexo nilpotente con $\dim G > 0$. Entonces:
+\begin{enumerate}[(a)]
+\item $\dim (Z(G)) > 0$.
+\item Si $H$ es un subgrupo propio cerrado de $G$, entonces $\dim (H) < dim N_G (H)$. En particular, si $\operatorname{codim} H = 1$, entonces $H$ es normal en $G$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(a)]
+\item Como los $\mathcal C^i G$ son conexo, el ítem (c) del lema anterior implica que $Z(G)^\circ \neq \{1\}$, y por lo tanto, la dimensión de la componente de la identidad de $Z(G)$ es positiva, i.e., $Z(G)$ tiene dimensión positiva.
+\item Haremos inducción en $\dim G$. Si $Z = Z(G)^\circ$ está contenido en $H$, entonces cambiamos $G$ por el grupo algebraico conexo nilpotente $G/Z$(ver \cite[\S 12]{humphreys2012linearAlgebraicGroups}) para una definición riguroza de $G/Z$ como grupos algebraico) de menor dimensión que $G$ por el ítem (d) de la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}. Por inducción, la imagen de $H$ en $G/Z$ tiene menor dimensión que su normalizador pues $H$ es un subgrupo propio de $G/Z$; luego vale lo mismo para $H$ gracias a que $Z \subset H$ y el último ítem de . Por otro lado, si $Z$ no está contenido en $H$, entonces $ZH$ es un subgrupo de $N_G (H)$ de mayor dimensión que $H$, pues en este caso $ZH$ es isomorfo como grupo algebraico al producto semidirecto de grupos algebraicos $Z \rtimes H$, cuya estructura de variedad subyacente es la variedad producto $Z \times H$, y su dimensión es $\dim Z + \dim H > \dim H$ por el ítem anterior.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+Inspeccionando el segundo párrafo del Ejemplo \ref{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}, podemos ver que de hecho $U_n (k)$ es nilpotente, sin embargo $T_n (k)$ no para todo $n \geq 2$. En efecto, utilizando la misma notación, por un lado vimos que $[T,T] = U$, con lo cual, $[T,[T,T]] = [T,U] \subset [T,T] = U$, y por otro lado, $U$ está generado por los $U_{ij}$, $i< j$, los cuales cumplen que $U_{ij} = [D, U_{ij}] \subset [T,U] = [T,[T,T]]$, con lo cual, $\mathcal C^i T = U \neq \{1\}$ para todo $i \geq 2$. Que $U$ es nilpotente se deduce de la identidad probada dicho ejemplo: $[U, U_h] = [U_1, U_h] \subset U_{h+1}$ para todo $h \geq 1$.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1362,11 +1437,11 @@ Sea $N := N_G (U)$. Como $U$ es un subgrupo conexo unipotente maximal de $N^\cir
 
 Suponer que $k$ es un cuerpo algebraicamente cerrado (no necesariamente de caracteristica $0$).
 
-Notacion: $Z ( G), R(G), C_G (x), C_G (S), [G,G], N_G (x), N_G (S), G_x , G\cdot x, B_u, B_s$
+Notacion: , $B_u, B_s$
 
-definiciones basicas de grupos: solubilidad, subgrupo normal,  nilpotencia, toro maximal, unipotente conexo maximal que es una bandera, que es una bandera completa, una bandera standard (creo que es la bandera de $V = k^n$). Que es un grupo de isotropia. Que es una orbita. Que es el estabilizador. Que es una clase de Conjugación.
+toro maximal, unipotente conexo maximal
 
-definiciones algebraicas: que es un grupo algebraico, que es un grupo algebraico conexo. que es la componente conexa $G^\circ$. Como es la estructura algebraica de un espacio homogeneo. Que es una accion de un grupo algebraico $G$ en una variedad algebraica X. que es la variedad bandera de un espacio vectorial finito $V$, dar como ejemplo la accion natural de $\operatorname{GL}(V)$ allí. Que es un morfismo de grupos algebraicos.
+definiciones algebraicas:  Como es la estructura algebraica de un espacio homogeneo.  que es la variedad bandera de un espacio vectorial finito $V$, dar como ejemplo la accion natural de $\operatorname{GL}(V)$ allí.
 
 Teoremas de Humphreys: Teorema 11.2, 11.3, (8.3), Teorema 19.3, 19.2, Proposición 17.4, Corolario 16.3. Proposición 7.4B. No copiar solo citar el Teorema 22.4, el 22.3 y el 22.2.
 
