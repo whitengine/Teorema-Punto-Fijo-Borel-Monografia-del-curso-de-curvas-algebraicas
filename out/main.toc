@@ -12,7 +12,7 @@
 \contentsline {section}{\tocsection {}{7}{Subgrupos y Homomorfismos}}{6}{section.7}%
 \contentsline {section}{\tocsection {}{8}{Acciones de grupos algebraicos sobre variedades}}{7}{section.8}%
 \contentsline {subsection}{\tocsubsection {}{8.1}{Órbitas cerradas}}{8}{subsection.8.1}%
-\contentsline {subsection}{\tocsubsection {}{8.2}{Traslación de funciones}}{9}{subsection.8.2}%
+\contentsline {subsection}{\tocsubsection {}{8.2}{Traslación de funciones}}{8}{subsection.8.2}%
 \contentsline {subsection}{\tocsubsection {}{8.3}{Linearización de grupos afines}}{9}{subsection.8.3}%
 \contentsline {section}{\tocsection {}{9}{Cocientes}}{10}{section.9}%
 \contentsline {section}{\tocsection {}{10}{Descomposición de Jordan-Chevalley}}{10}{section.10}%
@@ -26,8 +26,7 @@
 \contentsline {section}{\tocsection {}{13}{Resumen de variedades completas}}{15}{section.13}%
 \contentsline {section}{\tocsection {}{14}{Teorema del punto fijo de Borel}}{16}{section.14}%
 \contentsline {section}{\tocsection {}{15}{Consecuencias}}{16}{section.15}%
-\contentsline {subsubsection}{\tocsubsubsection {}{15.0.1}{Subgrupos de Borel y Toros maximales}}{16}{subsubsection.15.0.1}%
-\contentsline {subsubsection}{\tocsubsubsection {}{15.0.2}{Más consecuencias}}{18}{subsubsection.15.0.2}%
-\contentsline {subsubsection}{\tocsubsubsection {}{15.0.3}{El Teorema del Normalizador}}{18}{subsubsection.15.0.3}%
-\contentsline {section}{\tocsection {}{16}{Cosas para agregar}}{20}{section.16}%
+\contentsline {subsection}{\tocsubsection {}{15.1}{Subgrupos de Borel y Toros maximales}}{16}{subsection.15.1}%
+\contentsline {subsection}{\tocsubsection {}{15.2}{Más consecuencias}}{18}{subsection.15.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{15.2.1}{El Teorema del Normalizador}}{18}{subsubsection.15.2.1}%
 \contentsline {section}{\tocsection {}{}{Referencias}}{20}{section*.4}%
