@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.11)  20 NOV 2023 00:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.11)  6 DEC 2023 17:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -722,11 +722,105 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \c@approach=\count317
 \c@subsay=\count318
 
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibrarybabel.code.tex
+File: tikzlibrarybabel.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/spath3/tikzlibraryknots.cod
+e.tex (/home/whitengine/texlive/2023/texmf-dist/tex/latex/spath3/spath3.sty
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2023-03-30 L3 programming layer (loader) 
+
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.
 def
 File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count319
 \l__pdf_internal_box=\box66
+))
+Package: spath3 2022/08/24 v2.7 Functions for manipulating PGF soft paths
+
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.st
+y
+Package: xparse 2023-02-02 L3 Experimental document command parser
+)
+\g__spath_output_int=\count320
+\l__spath_tmpa_dim=\dimen284
+\l__spath_tmpb_dim=\dimen285
+\l__spath_tmpa_int=\count321
+\l__spath_tmpb_int=\count322
+\l__spath_move_x_dim=\dimen286
+\l__spath_move_y_dim=\dimen287
+\l__spath_rectx_dim=\dimen288
+\l__spath_recty_dim=\dimen289
+\g__spath_anon_int=\count323
+)
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibraryintersections.code.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryi
+ntersections.code.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryf
+pu.code.tex)
+\pgf@intersect@solutions=\count324
+))
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/spath3/tikzlibraryspath3.co
+de.tex
+\l__tikzspath_tmpa_int=\count325
+)
+\l__knot_tmpa_int=\count326
+\l__knot_strands_int=\count327
+\g__knot_intersections_int=\count328
+\g__knot_filaments_int=\count329
+\l__knot_component_start_int=\count330
+\l__knot_tmpa_dim=\dimen290
+\l__knot_tmpb_dim=\dimen291
+\l__knot_tolerance_dim=\dimen292
+\l__knot_redraw_tolerance_dim=\dimen293
+\l__knot_clip_bg_radius_dim=\dimen294
+\l__knot_clip_draw_radius_dim=\dimen295
+)
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/hobby/tikzlibraryhobby.code
+.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/hobby/pgflibraryhobby.code.
+tex (/home/whitengine/texlive/2023/texmf-dist/tex/latex/hobby/hobby.code.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/latex/hobby/pml3array.sty
+\l_array_base_int=\count331
+\l_array_top_int=\count332
+\l_array_tmp_int=\count333
+\g_array_base_int=\count334
+)
+\l_hobby_npoints_int=\count335
+\l_hobby_draw_int=\count336
+)))
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibrarydecorations.pathreplacing.code.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibrarydecorations.code.tex
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduledeco
+rations.code.tex
+\pgfdecoratedcompleteddistance=\dimen296
+\pgfdecoratedremainingdistance=\dimen297
+\pgfdecoratedinputsegmentcompleteddistance=\dimen298
+\pgfdecoratedinputsegmentremainingdistance=\dimen299
+\pgf@decorate@distancetomove=\dimen300
+\pgf@decorate@repeatstate=\count337
+\pgfdecorationsegmentamplitude=\dimen301
+\pgfdecorationsegmentlength=\dimen302
+)
+\tikz@lib@dec@box=\box67
+)
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations
+/pgflibrarydecorations.pathreplacing.code.tex))
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/libraries/shapes/pgfl
+ibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/home/whitengine/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
+braries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
@@ -736,57 +830,57 @@ LaTeX Info: Redefining \% on input line 22.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 590.
-LaTeX Font Info:    ... okay on input line 590.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 590
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 645.
+LaTeX Font Info:    ... okay on input line 645.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 645
 .
 
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 590
+LaTeX Font Info:    Trying to load font information for U+msb on input line 645
 .
 
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 59
-0.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 64
+5.
 
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Info: Redefining \. on input line 590.
-LaTeX Info: Redefining \% on input line 590.
+LaTeX Info: Redefining \. on input line 645.
+LaTeX Info: Redefining \% on input line 645.
 
 (/home/whitengine/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count320
-\scratchdimen=\dimen284
-\scratchbox=\box67
-\nofMPsegments=\count321
-\nofMParguments=\count322
+\scratchcounter=\count338
+\scratchdimen=\dimen303
+\scratchbox=\box68
+\nofMPsegments=\count339
+\nofMParguments=\count340
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count323
-\MPscratchDim=\dimen285
-\MPnumerator=\count324
-\makeMPintoPDFobject=\count325
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen304
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
 \everyMPtoPDFconversion=\toks45
 )
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.
@@ -800,7 +894,7 @@ g
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 590.
+Package hyperref Info: Link coloring ON on input line 645.
 
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
@@ -860,62 +954,93 @@ LaTeX Info: Redefining \% on input line 1.
 
  [1{/home/whitengine/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 ] [2]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 674
-.
+Overfull \hbox (63.56345pt too wide) in paragraph at lines 718--719
+[]\OT1/cmr/m/n/12 Dados $\OML/cmm/m/it/12 Y; Z \OMS/cmsy/m/n/12 ^^Z \OML/cmm/m/
+it/12 X$\OT1/cmr/m/n/12 , de-fi-ni-mos el \OT1/cmr/bx/n/12 trans-por-ta-dor\OT1
+/cmr/m/n/12 , co-mo el con-jun-to $[][](\OML/cmm/m/it/12 Y; Z\OT1/cmr/m/n/12 ) 
+:= []$. 
+ []
 
+LaTeX Font Info:    Trying to load font information for U+euf on input line 732
+.
 (/home/whitengine/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) [3]
-[4] [5] [6] [7{/home/whitengine/texlive/2023/texmf-dist/fonts/enc/dvips/cm-supe
-r/cm-super-ts1.enc}] [8] [9]
+Overfull \hbox (8.57443pt too wide) in paragraph at lines 742--743
+\OT1/cmr/m/n/12 te-men-te, $[] \OML/cmm/m/it/12   \OMS/cmsy/m/n/12 \ \OML/cmm/m
+/it/12 U$ \OT1/cmr/m/n/12 con-sis-te de to-dos los pun-tos cu-yas coor-de-na-da
+s afi-nes son $([] \OML/cmm/m/it/12 a[] [] ; f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/
+12 a[]\OT1/cmr/m/n/12 ) [])$,
+ []
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1031.
+[4] [5] [6] [7] [8] [9{/home/whitengine/texlive/2023/texmf-dist/fonts/enc/dvips
+/cm-super/cm-super-ts1.enc}] [10]
+Overfull \hbox (12.40717pt too wide) in paragraph at lines 1026--1027
+\OT1/cmr/m/n/12 ^^@(\OML/cmm/m/it/12 G; \OMS/cmsy/m/n/12 O[]\OT1/cmr/m/n/12 )$ 
+\OT1/cmr/m/it/12 de las fun-cio-nes re-gu-la-res de $\OML/cmm/m/it/12 G$ \OT1/c
+mr/m/it/12 que se anu-lan en $\OML/cmm/m/it/12 H$\OT1/cmr/m/it/12 . En-ton-ces 
+$\OML/cmm/m/it/12 H \OT1/cmr/m/n/12 = []$\OT1/cmr/m/it/12 .
+ []
 
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1032.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1033.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1034.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1035.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1044.
+[11]
+Overfull \hbox (3.19102pt too wide) in paragraph at lines 1072--1073
+[]\OT1/cmr/m/n/12 Dado un sub-gru-po ce-rra-do $\OML/cmm/m/it/12 H$ \OT1/cmr/m/
+n/12 de un gru-po al-ge-brai-co af^^S^^Pn $\OML/cmm/m/it/12 G$\OT1/cmr/m/n/12 ,
+ exis-te un mor-fis-mo $\OML/cmm/m/it/12 G$\OT1/cmr/m/n/12 -equivariante
+ []
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1045.
+(Font)              using `OT1/cmr/m/sc' instead on input line 1089.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1046.
+(Font)              using `OT1/cmr/m/sc' instead on input line 1090.
+
+[12]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1091.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1047.
+(Font)              using `OT1/cmr/m/sc' instead on input line 1092.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
-(Font)              using `OT1/cmr/m/sc' instead on input line 1048.
+(Font)              using `OT1/cmr/m/sc' instead on input line 1093.
 
-[10]
 
-LaTeX Warning: Command \L invalid in math mode on input line 1091.
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1102.
 
-[11] [12] [13] [14] [15] [16] [17] [18]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1103.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1104.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1105.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/scit' undefined
+(Font)              using `OT1/cmr/m/sc' instead on input line 1106.
+
+[13] [14]
+Overfull \hbox (7.82593pt too wide) in paragraph at lines 1155--1156
+[]\OT1/cmr/m/n/12 Consideremos am-bos ca-sos por se-pa-ra-do. Si $\OML/cmm/m/it
+/12 x \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 E$ \OT1/cmr/m/n/12 es se-mi-sim-ple, 
+to-me-mos una ba-se $(\OML/cmm/m/it/12 v[]; [] ; v[]\OT1/cmr/m/n/12 )$
+ []
+
+[15] [16] [17] [18] [19] [20] [21] [22] [23] [24]
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
-de-curvas-algebraicas/out/main.bbl [19]) [20]
+de-curvas-algebraicas/out/main.bbl) [25]
 (/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semestre/monografia par
 a el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Monografia-del-curso-
 de-curvas-algebraicas/out/main.aux
@@ -926,13 +1051,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 7A231F5ECC9E5C973BE2A2A6BA6FC88B;1062.
  ) 
 Here is how much of TeX's memory you used:
- 24507 strings out of 476017
- 461812 string characters out of 5786780
- 1877666 words of memory out of 5000000
- 44152 multiletter control sequences out of 15000+600000
- 529440 words of font info for 97 fonts, out of 8000000 for 9000
+ 28754 strings out of 476017
+ 579276 string characters out of 5786780
+ 1879666 words of memory out of 5000000
+ 48333 multiletter control sequences out of 15000+600000
+ 532608 words of font info for 109 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 116i,15n,118p,1653b,985s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,15n,384p,1653b,1226s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{theorem.12.6} has been referenced but does not exis
 t, replaced by a fixed one
@@ -943,43 +1068,41 @@ t, replaced by a fixed one
 
 </home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10
 .pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbxti10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmcsc10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></home/whitengine/texlive/2023/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi6.pfb></home/whitengine/texlive/2023/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/whitengine/texlive/2023/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/whitengine/texlive/2023/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/whitengine/texlive/2
-023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></home/whitengine/texliv
-e/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/whitengine/tex
-live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/whitengine/
-texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/whitengi
-ne/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></home/white
-ngine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></home/
-whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pf
-b></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-6.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy7.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmti10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmti8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmti9.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmtt8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/
-type1/public/amsfonts/euler/eufm10.pfb></home/whitengine/texlive/2023/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/whitengine/texlive/2023
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/whitengine/te
-xlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+mbx12.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbxti10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmcsc10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmex10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb></home/whitengine/texlive/2023/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi12.pfb></home/whitengine/texlive/2023/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/whitengine/texlive/2023/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/whitengine/texlive/2023/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/whitengine/texlive/202
+3/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/whitengine/texlive
+/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/whitengine/tex
+live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/whitengine/
+texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/whitengi
+ne/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/white
+ngine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></home/wh
+itengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></ho
+me/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6
+.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy7.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti12.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmtt10.pfb></home/whitengine/texlive/2023/texmf-dist/fonts/typ
+e1/public/amsfonts/euler/eufm10.pfb></home/whitengine/texlive/2023/texmf-dist/f
+onts/type1/public/amsfonts/symbols/msam10.pfb></home/whitengine/texlive/2023/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/whitengine/texli
+ve/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
 Output written on "/home/enzo/Desktop/Doctorado Chile/Clases/2023/Segundo semes
 tre/monografia para el curso de curvas algebraicas/Teorema-Punto-Fijo-Borel-Mon
-ografia-del-curso-de-curvas-algebraicas/out/main.pdf" (20 pages, 480937 bytes).
+ografia-del-curso-de-curvas-algebraicas/out/main.pdf" (25 pages, 500309 bytes).
 
 PDF statistics:
- 667 PDF objects out of 1000 (max. 8388607)
- 579 compressed objects within 6 object streams
- 221 named destinations out of 1000 (max. 500000)
+ 688 PDF objects out of 1000 (max. 8388607)
+ 599 compressed objects within 6 object streams
+ 227 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

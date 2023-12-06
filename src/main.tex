@@ -1,7 +1,7 @@
 %\documentclass[english,10pt,draft]{amsart}
 %\documentclass[english,10pt]{amsart}
 
-\documentclass[spanish,10pt]{amsart}
+\documentclass[spanish,12pt]{amsart}
 
 %\usepackage[english]{babel}
 \usepackage[spanish]{babel}
@@ -580,6 +580,61 @@
 
 
 
+%%%DIBUJOS DE KNOTS
+
+
+\usetikzlibrary{
+  babel,%CAUSA PROBLEMAS PARA COMPILAR TIKZCD QUE USA "" PARA DESIGNAR CADA TEXTO DE UNA FLECHA. SE ARREGLA USANDO \usetikzlibrary{babel} despues de \usepackage{tikz-cd}.
+  %
+  %el resto es para agregar el QED Symbol custom como nudos
+  knots,
+  hobby,
+  decorations.pathreplacing,
+  shapes.geometric,
+  calc
+}
+
+%%DIBUJA EL five knot
+\newcommand{\fiveknot}{%
+\begin{tikzpicture}[transform canvas={scale=0.1}]
+\begin{knot}[
+  consider self intersections=true,
+%  draft mode=crossings,
+  flip crossing/.list={2,4},
+  only when rendering/.style={
+%    show curve controls
+  }
+]
+\strand[black, line width=8pt] (2,0) .. controls +(0,1) and +(54:1.0) .. (144:2) .. controls +(54:-1.0) and +(18:-1.0) .. (-72:2) .. controls +(18:1.0) and +(162:-1.0) .. (72:2) .. controls +(162:1.0) and +(126:1.0) .. (-144:2) .. controls +(126:-1.0) and +(0,-1.0) .. (2,0);
+\end{knot}
+\end{tikzpicture}
+}
+
+
+%DIBUJA EL TREFOIL KNOT
+\newcommand{\trefoilknot}{%
+\begin{tikzpicture}[transform canvas={scale=0.1}, line width=10pt]
+\begin{knot}[
+  consider self intersections=true,
+%  draft mode=crossings,
+  flip crossing=2,
+  only when rendering/.style={
+%    show curve controls
+  }
+  ]
+\strand[black, line width=10pt] (0,2) .. controls +(2.2,0) and +(120:-2.2) .. (210:2) .. controls +(120:2.2) and +(60:2.2) .. (-30:2) .. controls +(60:-2.2) and +(-2.2,0) .. (0,2);
+\end{knot}
+\end{tikzpicture}
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -588,6 +643,9 @@
 
 
 \begin{document}
+
+%%%% CAMBIAR EL QUED POR UN 5-KNOT
+\renewcommand{\qedsymbol}{\fiveknot}
 
 \title{Teorema del punto fijo de Borel}
 
@@ -600,7 +658,7 @@
 
 
 \begin{abstract}
-En este artículo probaremos el Teorema del punto fijo de Borel, el cual dice que todo grupo algebraico afín y soluble actuando en una variedad algebraica proyectiva admite un punto fijo. Como consecuencia obtendremos varios resultados sobre la estructura de un grupo algebraico.
+En este artículo probaremos el Teorema del punto fijo de Borel, el cual dice que todo grupo algebraico afín y soluble actuando en una variedad algebraica completa (por ejemplo, proyectiva) admite un punto fijo. Como consecuencia obtendremos varios resultados sobre la estructura de un grupo algebraico.
 \end{abstract}
 
 \maketitle
@@ -625,7 +683,7 @@ Sea $G$ un grupo algebraico conexo soluble, y sea $X$ una variedad completa (no 
 
 \subsection*{Estructura del artículo}
 
-Comenzamos en la Sección 2 y 3 fijando notación y lenguaje sobre grupos abstractos que utilizaremos a lo largo de todo el artículo. En la Sección 4 hablamos de la variedades Bandera. En las secciones 5,6,7,8 y 9 introducimos las nociones básicas de grupos algebraicos, homomorfismos de grupos algebraicos y acciones. Luego pasamos a hablar sobre la descomposición de Jordan-Chevalley, y definimos grupos diagonalizables, solubles y nilpotentes en el contexto de grupos algebraicos, además introducimos resultados (y varios los demostramos) que serán necesarios para probar el Teorema del punto fijo de Borel, en las secciones 10 a 12. Finalmente, en la Sección 13 repasamos rápidamente las propiedades importantes de las variedades completas para poder pasar a la demostración del Teorema del punto fijo en la Sección 14; en la Sección 15 terminamos con consecuencias importantes de este.
+Comenzamos en la Sección 2 y 3 fijando notación y lenguaje sobre grupos abstractos que utilizaremos a lo largo de todo el artículo. En la Sección 4 hablamos de las variedades Bandera. En las secciones 5,6,7,8 y 9 introducimos las nociones básicas de grupos algebraicos, homomorfismos de grupos algebraicos y acciones. Luego pasamos a hablar sobre la descomposición de Jordan-Chevalley, y definimos grupos diagonalizables, solubles y nilpotentes en el contexto de grupos algebraicos, además introducimos resultados (y varios los demostramos) que serán necesarios para probar el Teorema del punto fijo de Borel, en las secciones 10 a 12. Finalmente, en la Sección 13 repasamos rápidamente las propiedades importantes de las variedades completas para poder pasar a la demostración del Teorema del punto fijo en la Sección 14; en la Sección 15 terminamos con consecuencias importantes de este.
 
 
 
@@ -639,22 +697,22 @@ Agradezco al profesor Pedro por sugerir este tema para el artículo, y por hacer
 \subsection{Convención} Durante todo el artículo, todas las variedades y morfismos estarán definidos sobre un cuerpo $k$ algebraicamente cerrado, de característica arbitraria.
 
 \subsection{Notación}
-Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$)S al \textit{espacio proyectivo} $\mathbb{P}^n(k)$ (resp. \textit{espacio afín} $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$. Más generalmente, dado un espacio vectorial de dimensión finita $V$, denotamos por $\mathbb{P} (V)$ a la \textit{proyectivización} de $V$, i.e., el conjunto de todos los subespacios vectoriales de dimensión $1$ de $V$. El \textit{grupo multiplicativo} $\mathbb{G}_m := ( k^\times, \cdot)$.
+Denotamos por $\mathbb{P}^n$ (resp. $\mathbb{A}^n$) al \textit{espacio proyectivo} $\mathbb{P}^n(k)$ (resp. \textit{espacio afín} $\mathbb{A}^n(k)$) de dimensión $n$ sobre el cuerpo $k$. Más generalmente, dado un espacio vectorial de dimensión finita $V$, denotamos por $\mathbb{P} (V)$ a la \textit{proyectivización} de $V$, i.e., el conjunto de todos los subespacios vectoriales de dimensión $1$ de $V$. El \textit{grupo multiplicativo} $\mathbb{G}_m := ( k^\times, \cdot)$.
 
 \section{Terminología de teoría de grupos y acciones}
-En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ un grupo, escribamos
+En esta sección introducimos notación clásica de Teoría de Grupos. Sea $G$ un grupo:
 \begin{itemize}
 \item $Z(G)$ es el \textbf{centro} de $G$, es decir, todos los $x \in G$ tales que $x g = g x$ para todo $g \in G$.
 \item $R(G)$ es el \textbf{radical} de $G$, es decir, el subgrupo conexo normal soluble de $G$. Donde estamos suponiendo que $G$ es un \textit{grupo algebraico}.
 \item Dado $S \subset G$, $C_G (S)$ es el \textbf{centralizador} de $S$, es decir, los $x \in G$ tales que $x g = g x$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $C_G (x)$ en lugar de $C_G (S)$. Dado $y \in G$, definimos la \textbf{clase de conjugación} (de $y$), como el conjunto de elementos de $G$ de la forma $z y z^{-1}$, $z \in G$. Las clases de conjugación particionan $G$.
 \item Dado $S \subset G$, $N_G (S)$ es el \textbf{normalizador} de $S$, es decir, los $x \in G$ tales que $x g x^{-1} \in S$ para todo $g \in S$. Cuando $S = \{x\}$ es un singleton, escribimos $N_G (x)$ en lugar de $N_G (S)$.
 \item $[G,G]$ es el \textbf{subgrupo derivado} de $G$, es decir, el subgrupo generado por los conmutadores $[x,y] := x y x^{-1}y^{-1}$ con $x,y \in G$. Más generalmente, si $S_1, S_2 \subset G$, escribimos $[S_1, S_2]$ para el subgrupo generado por los $[s_1,s_2]$ con $s_1 \in S_1 $ y $s_2 \in S_2$. Notar que $[S_1,S_2]$ es normal en $G$ si y solo si $S_1$ y $S_2$ son normales en $G$.
-\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$, o para no confundirnos con otras estructuras que aparecerán más adelante, que $G$ \textbf{actúa mórficamente} en $X$) es un mapa
+\item Dado un conjunto arbitrario $X$, una \textbf{acción} de $G$ (decimos también que $G$ \textbf{actúa} sobre $X$) es un mapa
 \begin{align*}
 \varphi : G \times X &\longrightarrow X \\
 (g,x) &\longmapsto g \cdot x
 \end{align*}
-tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} o \textbf{grupo de isotropía} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$; claramente es un subgrupo de $G$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G_S$. Quitando redundancias (i.e. $G \cdot x = G \cdot x'$), las órbitas particionan $X$.
+tal que $1 \cdot x = x$ y $(gh) \cdot x = g \cdot (h \cdot x)$ para todo $x \in X$ y $g,h \in G$. Dado un conjunto $S \subset X$, escribimos $G_S$ para el \textbf{estabilizador} o \textbf{grupo de isotropía} de $S$, es decir, los $g \in G$ tales que $g \cdot x = x$ para todo $x \in S$; claramente es un subgrupo de $G$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G_x$ en lugar de $G_S$. Por otro lado, $G \cdot S$ es la \textbf{órbita} de $S$, es decir, el conjunto de elementos $x \in X$ tales que $x = g \cdot s$ para algún $g \in G$ y $s \in S$. Cuando $S = \{x\}$ es un singleton, simplemente escribimos $G \cdot x$ en lugar de $G\cdot S$. Quitando redundancias (i.e. $G \cdot x = G \cdot x'$), las órbitas particionan $X$.
 \item Decimos que un grupo $G$ actúa \textbf{transitivamente} (sobre un conjunto $X$) si $G \cdot x = X$ para algún $x \in X$ (equivalentemente para todo $x \in X$). En particular, $G$ actúa transitivamente en cada órbita.
 \item Si $G$ actúa en $X$, entonces denotamos por $X^{G}$ al conjunto de \textbf{puntos fijos} de $G$, i.e., aquellos $x \in X$ tales que $G \cdot x = \{x\}$, en otras palabras, los elementos cuya órbita es un singleton.
 \item Dados $Y,Z \subset X$, definimos el \textbf{transportador}, como el conjunto $\operatorname{Tran}_G (Y, Z) := \set{g \in G | g \cdot Y \subset Z}$.
@@ -679,7 +737,7 @@ Fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y asociemos la base $\{v_
 \[
     v_1 \wedge \cdots \wedge v_d + \sum_{i = 1}^d (v_1 \wedge \cdots \wedge x_i (D) \wedge \cdots \wedge v_d) + (\star),
 \]
-donde $(\star)$ involucre una base de vectores con dos o más $v_1, \ldots, v_d$ omitidos. Aquí se tiene que $v_1 \wedge \cdots \wedge x_i (D) \wedge \cdots \wedge v_d = \sum_{j > d} a_{ij} (v_1 \wedge \cdots \wedge v_j \wedge \cdots \wedge v_d)$ con $v_j$ reemplazado por $v_i$. Por lo tanto $\pm a_{ij}$ ($ 1 \leq i \leq d, d + 1 \leq j \leq n$) puede recuperarse como el coeficiente de la base de elementos $v_1 \wedge \cdots \wedge \hat {v_i} \wedge \cdots \wedge v_d \wedge v_j$ ($v_i$ omitido), en el producto cuña de la base de $D$ dada arriba. Más aún, los coeficientes en $(\star)$ son obviamente funciones polinomiales de los $a_{ij}$, independientes de $D$.
+donde $(\star)$ involucre una base de vectores con dos o más $v_1, \ldots, v_d$ omitidos. Aquí se tiene que $v_1 \wedge \cdots \wedge x_i (D) \wedge \cdots \wedge v_d = \sum_{j > d} a_{ij} (v_1 \wedge \cdots \wedge v_j \wedge \cdots \wedge v_d)$ con $v_j$ en el $i$-ésimo lugar. Por lo tanto $\pm a_{ij}$ ($ 1 \leq i \leq d, d + 1 \leq j \leq n$) puede recuperarse como el coeficiente de la base de elementos $v_1 \wedge \cdots \wedge \hat {v_i} \wedge \cdots \wedge v_d \wedge v_j$ ($v_i$ omitido), en el producto cuña de la base de $D$ dada arriba. Más aún, los coeficientes en $(\star)$ son obviamente funciones polinomiales de los $a_{ij}$, independientes de $D$.
 
 Recíprocamente, dados $d (n-d)$ escalares $a_{ij}$ arbitrarios, claramente los vectores resultantes $v_i + x_i (D)$ generan un subespacio $d$-dimensional de $V$, cuya imagen bajo $\psi$ yace en $U$. Consecuentemente, $\Imagen \psi \cap U$ consiste de todos los puntos cuyas coordenadas afines son $(\ldots a_{ij} \ldots, f_k (a_{ij}) \ldots)$, donde los $a_{ij}$ son arbitrarios y los $f_k$ son funciones polinomiales en $\afine {d (n-d)}$. Este conjunto se puede ver como el \textit{grafo} de un morfismo de $\afine{d (n-d)}$ en otro espacio afín. Como los grafos son cerrados en la \textit{topología Zariski producto} (\cite[Teorema 2.6.12]{notas_pedro}), concluimos que $\Imagen \psi \cap U$ es cerrado en $U$.
 
@@ -694,7 +752,7 @@ de subespacios $k$-vectoriales de $V$, tales que las inclusiones son propias. Un
 
 Como vimos en \cite[Corolario 2.7.17]{notas_pedro}, el producto de grassmanianas $\mathfrak G_1 (V) \times \cdots \times \mathfrak G_n (V)$ tiene la estructura de variedad proyectiva. Por otro lado, $\mathfrak F (V)$ se identifica con un subconjunto en este producto de grassmanianas de manera obvia, luego para darle una estructura de variedad proyectiva basta ver que este conjunto es cerrado. Para simplificar la notación, consideremos solamente el producto $\mathfrak G _d (V) \times \mathfrak G_{d+1} (V)$, y probemos que el conjunto $S$ de pares $(D, D')$ con $D \subset D'$ es cerrado.
 
-Nuevamente como antes, fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y consideremos dos abiertos afines de $\mathbb{P} (\bigwedge^d (V))$ y $\mathbb{P} (\bigwedge^{d+1} (V))$, de tal suerte que los productos cubren la variedad $\mathfrak G _d (V) \times \mathfrak G _{d+1} (V)$. Otra vez para simplificar la notación, tomemos estos abiertos afines $U, U'$ definidos relativos a $v_1 \wedge \cdots \wedge v_d$, $v_1 \wedge \cdots \wedge v_{d+1}$ respectivamente. Si $D$ (respectivamente $D'$) es la imagen en $U$ (respectivamente $U'$), obtenemos como ante bases canónicas: $v_i + x_i (D)$ ($1 \leq i \leq d$); $v_i + y_i (D')$ ($1\leq i \leq d+ 1$). Con lo cual $x_i (D) = \sum_{j > d} a_{ij} v_j$, $y_i (D') = \sum_{j > d+1} b_{ij} v_j$. Notemos que $D \subset D'$ si y solo si $x_i (D) = y_i (D') + a_{i, d+1} (v_{d+1} + y_{d+1} (D'))$ para $1 \leq i \leq d$. Esto a su vez se convierte en condiciones polinomiales en los coeficientes $a_{ij}, b_{ij}$, con lo cual $S$ interseca $U \times U'$ en un cerrado de $U \times U'$.
+Nuevamente como antes, fijemos una base ordenada $(v_1, \ldots, v_n)$ de $V$, y consideremos dos abiertos afines de $\mathbb{P} (\bigwedge^d (V))$ y $\mathbb{P} (\bigwedge^{d+1} (V))$, de tal suerte que los productos cubren la variedad $\mathfrak G _d (V) \times \mathfrak G _{d+1} (V)$. Otra vez para simplificar la notación, tomemos estos abiertos afines $U, U'$ definidos relativos a $v_1 \wedge \cdots \wedge v_d$, $v_1 \wedge \cdots \wedge v_{d+1}$ respectivamente. Si $D$ (respectivamente $D'$) es la imagen en $U$ (respectivamente $U'$), obtenemos como antes bases canónicas: $v_i + x_i (D)$ ($1 \leq i \leq d$); $v_i + y_i (D')$ ($1\leq i \leq d+ 1$). Con lo cual $x_i (D) = \sum_{j > d} a_{ij} v_j$, $y_i (D') = \sum_{j > d+1} b_{ij} v_j$. Notemos que $D \subset D'$ si y solo si $x_i (D) = y_i (D') + a_{i, d+1} (v_{d+1} + y_{d+1} (D'))$ para $1 \leq i \leq d$. Esto a su vez se convierte en condiciones polinomiales en los coeficientes $a_{ij}, b_{ij}$, con lo cual $S$ interseca $U \times U'$ en un cerrado de $U \times U'$.
 
 
 
@@ -731,7 +789,7 @@ Sea $G$ una variedad algebraica dotada de estructura de grupo. Si los mapas
 \]
 son morfismos de variedades, decimos que $G$ es un \textbf{grupo algebraico}. Notar que un grupo algebraico \underline{no} es un grupo topológico, excepto cuando la dimensión es $0$. En efecto, para grupos topológicos, $T_1$ es equivalente a $T_2$, con lo cual si $G$ fuera un grupo topológico con la topología Zariski, entonces sería de dimensión $0$.
 
-Trasladar por un elemento $y \in G$, i.e. $x \mapsto x y$, es un isomorfismo de variedades algebraicas $G \to G$, entonces todas las propiedades geométricas que sucedan en un punto de $G$ se transfieren a cualquier otro punto al hacer variar $y$. Por ejemplo, como $G$ tiene algún punto suave (el conjunto de puntos suaves $G_{\textup{reg}}$ de la variedad $G$ es un abierto denso de $G$ por \cite[Teorema 2.13.12]{notas_pedro}), todos los puntos de $G$ son suaves, es decir, $G$ es suave.
+Trasladar por un elemento $y \in G$, i.e. $x \mapsto x y$, es un isomorfismo de variedades algebraicas $G \to G$, entonces todas las propiedades geométricas que sucedan en un punto de $G$ se transfieren a cualquier otro punto al hacer variar $y$. Por ejemplo, como $G$ tiene algún punto suave (el conjunto de puntos suaves $G_{\textup{reg}}$ de la variedad $G$ es un abierto denso de $G$ por \cite[Teorema 2.13.12]{notas_pedro}), todos los puntos de $G$ son suaves, es decir, $G$ es \textit{suave}.
 
 Definimos un \textbf{isomorfismo} de grupos algebraicos $G$ y $G'$, como un isomorfismo de variedades algebraicas $\varphi : G \to G'$ el cual es a su vez un isomorfismo de grupos. Así, un \textbf{automorfismo} de $G$ es un isomorfismo de $G$ en $G$. A partir de ahora nos concentraremos en el caso en el cual la estructura de variedad de $G$ sea afín, y seguiremos nombrándola ``grupo algebraico''.
 
@@ -742,7 +800,7 @@ Más en general, $\afine n$ es un grupo algebraico con la estructura aditiva.
 \end{example}
 
 \begin{example}
-Sea $\operatorname{GL}_n (k)$ el conjunto de todas las matrices invertibles con coeficientes en $k$ y de tamaño $n \times n$. Es un grupo con la multiplicación de matrices, y se lo suele llamar el \textbf{grupo general lineal}. El conjunto $M_n (k)$ de las matrices con coeficientes en $k$ y de tamaño $n \times n$ puede ser identificado con $\afine {n^2}$, y $\operatorname{GL}_n (k)$ con el abierto principal definido por la función polinomial $\det$. Así, visto como una variedad afín, $\operatorname{GL}_n (k)$ tiene su álgebra de funciones regulares generada por las restricciones de las $n^2$ funciones coordenada $T_{ij}$ junto con $1 / \det (T_{ij})$. Claramente la multiplicación e inversión de matrices son morfismos de variedades algebraicas, y por lo tanto $\operatorname{GL}_n (k)$ es un grupo algebraico.
+Sea $\operatorname{GL}_n (k)$ el conjunto de todas las matrices invertibles con coeficientes en $k$ y de tamaño $n \times n$. Es un grupo con la multiplicación de matrices, y se lo suele llamar el \textbf{grupo general lineal}. El conjunto $M_n (k)$ de las matrices con coeficientes en $k$ y de tamaño $n \times n$ puede ser identificado con $\afine {n^2}$, y $\operatorname{GL}_n (k)$ con el \textit{abierto principal} definido por la función polinomial $\det$. Así, visto como una variedad afín, $\operatorname{GL}_n (k)$ tiene su álgebra de funciones regulares generada por las restricciones de las $n^2$ funciones coordenada $T_{ij}$ junto con $1 / \det (T_{ij})$. Claramente la multiplicación e inversión de matrices son morfismos de variedades algebraicas, y por lo tanto $\operatorname{GL}_n (k)$ es un grupo algebraico.
 \end{example}
 
 \begin{obs}\label{obs:subrupo cerrado de grupo algebraico es algebraico}
@@ -775,14 +833,14 @@ Veamos solo el caso de producto de dos grupos algebraicos $G_1, G_2$, el caso ge
 son morfismos regulares. Pero por la propiedad universal del producto de variedades (ver \cite[Teorema 2.6.5]{notas_pedro}) basta ver que estos mapas son regulares cuando componemos por la proyección a la primera o segunda coordenada. Esto es obvio, pues $G_1$ y $G_2$ son grupos algebraicos, con lo cual sus respectivos mapas $\mu$ y $\iota$ son regulares.
 \end{proof}
 
-Finalmente, mencionamos algunos otros nombres de grupos algebraicos clásicos: el \textbf{grupo especial lineal} $\operatorname{SL}_n (k)$ de matrices de $\operatorname{GL}_n (k)$ con determinante $1$ (es el conjunto de ceros de $\det (T_{ij}) - 1$); el \textbf{grupo simpléctico} $\operatorname{Sp}_{2n} (k)$ dada por las matrices $x \in \operatorname{GL}_{2n} (k)$ tales que ${}^t x \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix} x = \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix}$, donde $J$ es la matriz de tamaño $n \times n$ que tiene $1$ en la antidiagonal y ceros en el resto de los lugares, y ${}^t x$ es la matriz transpuesta de $x$ (es el conjunto de ceros dada por ciertas condiciones polinomiales en $x$); el \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n + 1} (k)$ que en $\Char k \neq 2$ consiste de las matrices $x \in \operatorname{SL}_{2n+1} (k)$ tales que ${}^t x s x = s$, donde $s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & J \\ 0 & J & 0 \end{pmatrix}$, y también existe otro \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n} (k)$ dada por ${}^t x s x = s$, donde ahora $s = \begin{pmatrix} 0 & J \\ J & 0 \end{pmatrix}$ si $\Char k \neq 2$\footnote{En general los grupos simpléctico y especial ortogonales surgen geométricamente de grupos de transformaciones lineales que preservan ciertas formas bilineales, pero en característica $\Char k = 2$ hay que tener cierto cuidado al definirlos, cf \cite{dieudonne1956groupesDeLieEtHyperalgebresDeLieSurUnCorpsDeCaracteristiqueP}, \cite[Ch. 1]{carter1989simpleGroupsOfLieType}.}.
+Finalmente, mencionamos algunos otros nombres de grupos algebraicos clásicos: el \textbf{grupo especial lineal} $\operatorname{SL}_n (k)$ de matrices de $\operatorname{GL}_n (k)$ con determinante $1$ (es el conjunto de ceros de $\det (T_{ij}) - 1$); el \textbf{grupo simpléctico} $\operatorname{Sp}_{2n} (k)$ dada por las matrices $x \in \operatorname{GL}_{2n} (k)$ tales que ${}^t x \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix} x = \begin{pmatrix} 0 & J \\ - J & 0 \end{pmatrix}$, donde $J$ es la matriz de tamaño $n \times n$ que tiene $1$ en la antidiagonal y ceros en el resto de los lugares, y ${}^t x$ es la matriz transpuesta de $x$ (es el conjunto de ceros dada por ciertas condiciones polinomiales en $x$); el \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n + 1} (k)$ que en $\Char k \neq 2$ consiste de las matrices $x \in \operatorname{SL}_{2n+1} (k)$ tales que ${}^t x s x = s$, donde $s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & J \\ 0 & J & 0 \end{pmatrix}$, y también existe otro \textbf{grupo especial ortogonal} $\operatorname{SO}_{2n} (k)$ dada por ${}^t x s x = s$, donde ahora $s = \begin{pmatrix} 0 & J \\ J & 0 \end{pmatrix}$ si $\Char k \neq 2$\footnote{En general, el grupo simpléctico y el especial ortogonal surgen geométricamente de grupos de transformaciones lineales que preservan ciertas formas bilineales, pero en característica $\Char k = 2$ hay que tener cierto cuidado al definirlos, cf \cite{dieudonne1956groupesDeLieEtHyperalgebresDeLieSurUnCorpsDeCaracteristiqueP}, \cite[Ch. 1]{carter1989simpleGroupsOfLieType}.}.
 
 
 
 
 \section{La componente de la identidad}
 
-Sea $G$ un grupo algebraico. Afirmamos que una sola componente irreducible de $G$ (como variedad algebraica) puede pasar por $1$. En efecto, sea $X_1, \ldots, X_m$ las componentes distintas que contengan a $1$. La imagen de la variedad irreducible $X_1 \times \cdots \times X_m$ en $G$ bajo el morfismo producto es un subconjunto irreducible $X_1 \cdots X_m$ de $G$, que vuelve a contener a $e$. Por lo tanto $X_1 \cdots X_m$ está contenido en algún $X_i$. Por otro lado, claramente todas las componentes $X_1, \ldots, X_m$ están contenidas en $X_1 \cdots X_m$. Esto fuerza a que $m = 1$. Con lo cual, la siguiente definición tiene sentido:
+Sea $G$ un grupo algebraico. Afirmamos que una sola componente irreducible de $G$ (como variedad algebraica) puede pasar por $1$. En efecto, sean $X_1, \ldots, X_m$ las distintas componentes que contengan a $1$. La imagen de la variedad irreducible $X_1 \times \cdots \times X_m$ en $G$ bajo el morfismo producto es un subconjunto irreducible $X_1 \cdots X_m$ de $G$, que vuelve a contener a $1$. Por lo tanto $X_1 \cdots X_m$ está contenido en algún $X_i$. Por otro lado, claramente todas las componentes $X_1, \ldots, X_m$ están contenidas en $X_1 \cdots X_m$. Esto fuerza a que $m = 1$. Con lo cual, la siguiente definición tiene sentido:
 
 \begin{definition}
 Sea $G$ un grupo algebraico. Denotamos por $G^\circ$ a la única componente irreducible de $G$ que contiene a $1$. La llamaremos \textbf{componente de la identidad} de $G$.
@@ -791,14 +849,14 @@ Sea $G$ un grupo algebraico. Denotamos por $G^\circ$ a la única componente irre
 \begin{proposition}\label{proposicion:componente de la identidad}
 Sea $G$ un grupo algebraico. Entonces:
 \begin{enumerate}[(1)]
-\item $G^\circ$ es un subgrupo normal cerrado de índice finito en $G$, cuyos coclases son las componentes conexas, como también las componentes irreducibles de $G$.
+\item $G^\circ$ es un subgrupo normal cerrado de índice finito en $G$, cuyas coclases son las componentes conexas, como también las componentes irreducibles de $G$.
 \item Todo subgrupo cerrado de índice finito de $G$ contiene a $G^\circ$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(1)]
 \item Para cada $x \in G^\circ$, $x^{-1} G^\circ$ es una componente irreducible de $G$ que contiene a $1$, luego por unicidad $x^{-1} G^\circ = G^{\circ}$. Es decir, $G^\circ = (G^{\circ})^{-1}$ y por lo tanto $G^\circ G^\circ = G ^\circ$, i.e., $G^\circ$ es un subgrupo cerrado (es una componente irreducible) de $G$. Para todo $x \in G$, nuevamente $x G^{\circ} x^{-1}$ es una componente irreducible de $G$ que contiene a $1$, con lo cual la unicidad fuerza a que $x G^\circ x^{-1} = G^{\circ}$, i.e., $G^\circ$ es normal en $G$. Sus coclases a izquierda o derecha son traslaciones de $G^\circ$, y por lo tanto deben ser componentes irreducibles de $G$; solamente puede haber un número finito de estos ($G$ es un espacio Noetheriano; ver \cite[Teorema 2.8.9]{notas_pedro}), en particular $G^\circ$ tiene índice finito. Como estos conjuntos son disjuntos, deben ser también componentes conexas de $G$, ya que los conjuntos irreducibles en un espacio topológico son conexos, y al ser finitos cerrados (son componentes irreducibles) disjuntos también son abiertos.
-\item Si $H$ es un subgrupo cerrado de índice finito en $G$, entonces cada uno de sus finitas coclases a izquierda son también cerrados, con lo cual la unión de los coclases distintos de $H$ también lo es. Como el complemento de un cerrado es abierto, tenemos que $H$ es abierto. Consecuentemente, las coclases a izquierda de $H$ particionan $G^\circ$ en una unión finita de abiertos-cerrados, como $G^\circ$ es conexo e interseca $H$, debe ser que $G^\circ \subset H$.
+\item Si $H$ es un subgrupo cerrado de índice finito en $G$, entonces cada uno de sus finitas coclases a izquierda son también cerrados, con lo cual la unión de los coclases distintos de $H$ también lo es. Como el complemento de un cerrado es abierto, tenemos que $H$ es abierto. Consecuentemente, $H \cap G^\circ \ni 1$ es no vacío, cerrado y abierto de $G^\circ$, luego como la componente de la identidad conexa, se tiene que $G^\circ = H \cap G^\circ \subset H$.
 \end{enumerate}
 \end{proof}
 
@@ -828,9 +886,9 @@ Un \textbf{morfismo de grupos algebraicos} es un homomorfismo de grupos $\varphi
 \begin{proposition}
 Sea $H$ un subgrupo de un grupo algebraico $G$, sea $\bar H$ su clausura en la topología Zariski. Entonces:
 \begin{enumerate}[(a)]
-\item $\bar H$ es un subgrupo de $G$. En particular, como es cerrado es un subgrupo algebraico de $G$.
-\item Si $H$ es \textit{constructible}\footnote{Unión finita de conjuntos $U \cap V$ con $U$ abiertos y $V$ cerrado.}, entonces $H = \bar H$.
-\item Más en general, si $\varphi : G \to G'$ es un morfismo de variedades algebraicas y $H$ es un subgrupo constructible de $G$, entonces $\varphi (H)$ es cerrado en $G'$ (en particular, como los cerrados de $G$ son constructibles, $\varphi$ es \textit{cerrado}).
+\item $\bar H$ es un subgrupo de $G$. En particular, como es cerrado es un subgrupo algebraico de $G$ (Observación \ref{obs:subrupo cerrado de grupo algebraico es algebraico}).
+\item Si $H$ es \textit{constructible}\footnote{Unión finita de conjuntos $U \cap V$ con $U$ abierto y $V$ cerrado.}, entonces $H = \bar H$.
+\item Más en general, si $\varphi : G \to G'$ es un morfismo de variedades algebraicas y $H$ es un subgrupo constructible de $G$, entonces $\varphi (H)$ es cerrado en $G'$ (en particular, como los cerrados de $G$ son constructibles, $\varphi$ es \textit{cerrada}).
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -845,7 +903,7 @@ Sea $H$ un subgrupo de un grupo algebraico $G$, sea $\bar H$ su clausura en la t
 Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Si $B$ \textit{normaliza}\footnote{Es decir, $B \subset N_G (A)$.} $A$, entonces $AB$ es un subgrupo cerrado de $G$.
 \end{corollary}
 \begin{proof}
-Como $B \subset N_G (A)$, $AB$ es un subgrupo de $G$. Como $A \times B$ es un subgrupo cerrado, en particular constructible en $G \times G$, el ítem (c) de la proposición de arriba dice que la imagen $AB$ del morfismo de grupos $\mu : G \times G \to G$ es cerrado en $G$.
+Como $B \subset N_G (A)$, $AB$ es un subgrupo de $G$. Como $A \times B$ es un subgrupo cerrado (en particular constructible) en $G \times G$, el ítem (c) de la proposición de arriba dice que la imagen $AB$ del morfismo de grupos $\mu : G \times G \to G$ es cerrado en $G$.
 \end{proof}
 
 \begin{proposition}\label{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}
@@ -862,12 +920,12 @@ Sea $\varphi : G \to G'$ un morfismo de grupos algebraicos. Entonces:
 \item Como $\varphi$ es continuo y el $\Ker \varphi$ es por definición la preimagen del conjunto cerrado $\{1\}$, entonces $\Ker \varphi$ es cerrado. Ya sabemos que es un subgrupo.
 \item $\varphi (G)$ es un subgrupo de $G'$. Como $G$ es trivialmente constructible en $G$, el ítem (c) de la proposición de arriba implica que la imagen es cerrada.
 \item $\varphi (G^\circ)$ es cerrada por el ítem (c) de la proposición de arriba ($G^\circ$ es cerrado en $G$, en particular constructible) y es conexo ($G^\circ$ es conexo), como contiene al $1$, debe estar contenido en $\varphi (G)^\circ$ (esta notación cobra sentido pues el ítem (b) dice que la imagen de $\varphi$ es una subvariedad algebraica de $G'$), ya que las coclases de $\varphi (G)^\circ$ son las componentes conexas de $\varphi (G)$ (ítem (1) de la Proposición \ref{proposicion:componente de la identidad}). Por otro lado, como $G^\circ$ tiene índice finito en $G$, $\varphi (G^\circ)$ tiene índice finito en $\varphi (G)$, con lo cual contiene a $\varphi (G)^\circ$, i.e., $\varphi (G^\circ) = \varphi (G)^\circ$, por el ítem (b) de la Proposición \ref{proposicion:componente de la identidad}.
-\item \cite[Ítem (2) del Teorema 2.12.9]{notas_pedro} nos dice que para casi todo $x \in \varphi (G)$, $\dim G - \dim \varphi (G) = \dim \varphi^{-1} (x)$. Pero todas las fibras $\varphi^{-1} (x)$ tienen la dimensión de $\Ker \varphi$, y se sigue la afirmación. En efecto, $\varphi^{-1} (x) = x \Ker \varphi $, y trasladar por $x$ es un isomorfismo de variedades. Como las componentes irreducibles de $G$ son traslaciones de $\G^\circ$ (ítem (a) de la Proposición \ref{proposicion:componente de la identidad}), y trasladar es un isomorfismo de variedades algebraicas, tenemos que $\dim G = \dim G^\circ$ y $\dim \varphi (G) = \dim \varphi (G)^\circ$, por lo tanto el ítem anterior nos permite restringirnos a $\rest \varphi {G^\circ} : G^\circ \twoheadrightarrow \varphi (G)^\circ$, con lo cual podemos suponer que $\varphi$ es sobreyectiva y que $G$ y $G'$ son variedades irreducibles. El ítem (c) de la proposición de arriba dice que $\varphi$ es cerrado, por lo que podemos rematar la demostración utilizando \cite[Teorema 2.12.13]{notas_pedro}:
+\item \cite[Ítem (2) del Teorema 2.12.9]{notas_pedro} nos dice que para casi todo $x \in \varphi (G)$, $\dim G - \dim \varphi (G) = \dim \varphi^{-1} (x)$. Pero todas las fibras $\varphi^{-1} (x)$ tienen la dimensión de $\Ker \varphi$, y se sigue la afirmación. En efecto, $\varphi^{-1} (x) = x \Ker \varphi $, y trasladar por $x$ es un isomorfismo de variedades. Como las componentes irreducibles de $G$ son traslaciones de $G^\circ$ (ítem (a) de la Proposición \ref{proposicion:componente de la identidad}), y trasladar es un isomorfismo de variedades algebraicas, tenemos que $\dim G = \dim G^\circ$ y $\dim \varphi (G) = \dim \varphi (G)^\circ$, por lo tanto el ítem anterior nos permite restringirnos a $\rest \varphi {G^\circ} : G^\circ \twoheadrightarrow \varphi (G)^\circ$, con lo cual podemos suponer que $\varphi$ es sobreyectiva y que $G$ y $G'$ son variedades irreducibles. El ítem (c) de la proposición de arriba dice que $\varphi$ es cerrado, por lo que podemos rematar la demostración utilizando \cite[Teorema 2.12.13]{notas_pedro}:
 \begin{quote}
 Sea $f : X \twoheadrightarrow Y$ un morfismo regular sobreyectivo y cerrado entre variedades algebraicas. Supongamos que
 \begin{enumerate}[(i)]
 \item $Y$ es irreducible, y que
-\item Todas las fibras de $f$ son irreducibles de la misma dimensión $d \in \naturals N$.
+\item Todas las fibras de $f$ son irreducibles de la misma dimensión $d \in \naturals$ .
 \end{enumerate}
 Entonces, $X$ es irreducible y $\dim (X) = \dim (Y) + d$.
 \end{quote}
@@ -875,11 +933,11 @@ Entonces, $X$ es irreducible y $\dim (X) = \dim (Y) + d$.
 \end{proof}
 
 \begin{example}
-Consideremos el morfismo de grupos algebraicos $\varphi = \det : \operatorname{GL}_n (k) \to \operatorname{GL}_{1} (k)$ sobreyectivo y el núcleo es $\operatorname{SL}_n (k)$. Por el ítem (d) del corolario de arriba, tenemos que $\dim \operatorname{SL}_n (k) = n^2 -1$ (la dimensión de $\operatorname{GL}_n (k)$ es $n^2$ pues es un abierto de $\afine{n^2}$).
+Consideremos el morfismo de grupos algebraicos $\varphi = \det : \operatorname{GL}_n (k) \to \operatorname{GL}_{1} (k)$ sobreyectivo, cuyo núcleo es $\operatorname{SL}_n (k)$. Por el ítem (d) del corolario de arriba, tenemos que $\dim \operatorname{SL}_n (k) = n^2 -1$ (la dimensión de $\operatorname{GL}_n (k)$ es $n^2$ pues es un abierto de $\afine{n^2}$).
 \end{example}
 
 \begin{obs}
-Dado un $k$-espacio vectorial $n$-dimensional $V$, podemos fijar una base de $V$ e identificar al grupo transformaciones lineales invertibles $\operatorname{GL} (V)$ de $V$ con el grupo de matrices $\operatorname{GL}_n (k)$, y hacerle heredar la estructura de grupo algebraico proveniente del grupo general lineal; llamemos \textbf{topología Zariski} a esta topología en $\operatorname{GL}(V)$. Como cambiar de base en $k^n$ corresponde con aplicar un automorfismo $x \mapsto y x y^{-1}$ en $\operatorname{GL}_n (k)$, la topología Zariski de $\operatorname{GL} (V)$ no depende de la base de $V$ elegida.
+Dado un $k$-espacio vectorial $n$-dimensional $V$, podemos fijar una base de $V$ e identificar al grupo transformaciones lineales invertibles $\operatorname{GL} (V)$ de $V$ con el grupo de matrices $\operatorname{GL}_n (k)$, y hacerle heredar la estructura de grupo algebraico proveniente del grupo general lineal; llamemos \textbf{topología Zariski} a esta topología en $\operatorname{GL}(V)$. Como cambiar de base en $k^n$ corresponde con aplicar un automorfismo interior $x \mapsto y x y^{-1}$ en $\operatorname{GL}_n (k)$, la topología Zariski de $\operatorname{GL} (V)$ no depende de la base de $V$ elegida.
 \end{obs}
 
 Un resultado útil para probar que algunos grupos algebraicos son grupos conexos, es el siguiente:
@@ -891,7 +949,7 @@ La demostración de este resultado se obtiene como corolario de \cite[Proposici�
 \end{proof}
 
 \begin{example}\label{ejemplo:SL y U son conexos}
-Se tiene entonces que $\operatorname{SL}_n (k)$ y $U_n (k)$ son grupos conexos. En efecto, el primero está generado por los subgrupos $U_{ij}$ con $i \neq j$, donde $U_{ij}$ consiste de las matrices con $1$ en la diagonal, una entrada arbitraria en la posición $(i, j)$, y ceros en el resto; similarmente, el segundo grupo está generado por los $U_{ij}$ con $i < j$. Notar que $U_{ij}$ es isomorfo como grupo algebraico a $\mathbb{G}_a$ pues la multiplicación de matrices se convierte en $(k, +)$ en la coordenada $(i,j)$, i.e., $U_{ij}$ es conexo.
+Se tiene entonces que $\operatorname{SL}_n (k)$ y $U_n (k)$ son grupos conexos. En efecto, el primero está generado por los subgrupos $U_{ij}$ con $i \neq j$, donde $U_{ij}$ consiste de las matrices con $1$ en la diagonal, una entrada arbitraria en la posición $(i, j)$, y ceros en el resto; similarmente, el segundo grupo está generado por los $U_{ij}$ con $i < j$. Notar que $U_{ij}$ es isomorfo como grupo algebraico a $\mathbb{G}_a$, pues la multiplicación de matrices se convierte en $(k, +)$ en la coordenada $(i,j)$, i.e., $U_{ij}$ es conexo.
 \end{example}
 
 
@@ -946,7 +1004,7 @@ Sea $G$ un grupo algebraico actuando mórficamente en una variedad algebraica $X
 \end{proposition}
 
 \begin{proof}
-Sea $Y := G \cdot y$ la órbita de $y \in X$. Como la imagen de $G$ bajo el mapa de la órbita $\varphi_y : G \to X$, $Y$ es constructible, luego el Teorema de Chevalley dice que existe un abierto denso de $\bar Y$. Como $G$ actúa transitivamente en $Y$ (dejando $\bar Y$ estable), $Y$ tiene que ser suave (existe al menos un punto suave y podemos trasladarlo a cualquier punto de $Y$), así $Y$ es suave y contiene un abierto de $\bar Y$ en cada uno de sus puntos (trasladando), luego $Y$ es abierto en $\bar Y$. Por lo tanto $\bar Y \setminus Y$ es cerrado y de dimensión estrictamente menor que $\bar Y$. Como es $G$-estable, esta frontera es justamente la unión de las otras $G$-órbitas.
+Sea $Y := G \cdot y$ la órbita de $y \in X$. Como la imagen $Y$ de $G$ bajo el mapa de la órbita $\varphi_y : G \to X$ es constructible, el Teorema de Chevalley dice que existe un abierto denso de $\bar Y$. Como $G$ actúa transitivamente en $Y$ (dejando $\bar Y$ estable), $Y$ tiene que ser suave (existe al menos un punto suave y podemos trasladarlo a cualquier punto de $Y$), así $Y$ es suave y contiene un abierto de $\bar Y$ en cada uno de sus puntos (trasladando), luego $Y$ es abierto en $\bar Y$. Por lo tanto $\bar Y \setminus Y$ es cerrado y de dimensión estrictamente menor que $\bar Y$. Como es $G$-estable, esta frontera es justamente la unión de las otras $G$-órbitas.
 \end{proof}
 
 \subsection{Traslación de funciones}
@@ -965,10 +1023,10 @@ f &\longmapsto R_g (f) (y) = f(x \cdot g) , \forall x \in X
 para cualquier $g \in G$ fijo. A la función $L_g$ la llamamos \textbf{traslación a izquierda} y a $R_g$ \textbf{traslación a derecha} (por $g$). Así, $g \mapsto L_g$ y $g \mapsto R_g$ son acciones de $G$ en $\Gamma$. Estas operaciones son importantes, por ejemplo caracterizan contención en un subgrupo cerrado:
 
 \begin{proposition}\label{proposition:sea H subgrupo cerrado de grupo algebraico afin G entonces el ideal I de las funciones que se anulan en H determina H por traslacion}
-Sea $H$ un subgrupo cerrado de un grupo algebraico afín $G$. Sea $I$ el ideal de $\Gamma (G, \O_G)$ de las funciones regulares de $G$ que se anulan en $H$. Entonces $H = \set{g \in G | R_g (I) \subset I}$.
+Sea $H$ un subgrupo cerrado de un grupo algebraico afín $G$. Sea $I$ el ideal de $\Gamma (G, \O_G)$ de las funciones regulares de $G$ que se anulan en $H$. Entonces $H = \set{g \in G | R_g (I) \subset I}$. Similarmente, $H = \set{g \in G | L_g (I) \subset I}$.
 \end{proposition}
 \begin{proof}
-Por un lado, si $g \in H$ y $f \in I$, entonces $L_g (x) = f(x \cdot g) = 0$ para todo $x \in H$ pues $H$ es cerrado por el producto, i.e., $L_g (f) \in I$. Por otro lado, si $L_g (I) \subset I$, se tiene que $L_g (f)$ se anula en $1 \in H$ para todo $f \in I$, es decir, $f(g) = 0$, consecuentemente, $g \in \bar H = H$.
+Por un lado, si $g \in H$ y $f \in I$, entonces $R_g (x) = f(x \cdot g) = 0$ para todo $x \in H$ pues $H$ es cerrado por el producto, i.e., $R_g (f) \in I$. Por otro lado, si $R_g (I) \subset I$, se tiene que $R_g (f)$ se anula en $1 \in H$ para todo $f \in I$, es decir, $f(g) = 0$, consecuentemente, $g \in \bar H = H$. La última afimación se prueba de manera análoga.
 \end{proof}
 
 
@@ -978,7 +1036,7 @@ Por un lado, si $g \in H$ y $f \in I$, entonces $L_g (x) = f(x \cdot g) = 0$ par
 Habíamos observado (\ref{obs:subrupo cerrado de grupo algebraico es algebraico}) que todo subgrupo cerrado de $\operatorname{GL}_n (k)$ es un grupo algebraico (afín). Sin embargo, vale también la recíproca cuando $G$ es afín: construiremos un subespacio de dimensión finita de $\Gamma := \Gamma (G, \O_G)$, en el cual $G$ actuará por traslación. Antes necesitamos algunos resultados preliminares:
 
 \begin{proposition}
-Sea $G$ un grupo algebraico actuando afín mórficamente en una variedad afín $X$, y sea $V$ un subespacio de dimensión finito de $\Gamma(X, \O_X)$. Entonces:
+Sea $G$ un grupo algebraico afín actuando mórficamente en una variedad afín $X$, y sea $V$ un subespacio de dimensión finita de $\Gamma(X, \O_X)$. Entonces:
 \begin{enumerate}[(a)]
 \item Existe un subespacio de dimensión finita $W$ de $\Gamma (X,\O_X)$ conteniendo a $V$, el cual es estable por traslaciones $L_g$, $g \in G$.
 \item $V$ es estable por la acción de los $L_g$, $g \in G$ si y solo si $\psi^{*} (V) \subset \Gamma \otimes_k V$, donde $\psi : G \times X \to X$ está dada por $\psi (g,x) := g^{-1} \cdot x$.
@@ -987,8 +1045,8 @@ Sea $G$ un grupo algebraico actuando afín mórficamente en una variedad afín $
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(a)]
-\item Sin pérdida de generalidad podemos suponer que $V$ es $1$-dimensional y está generado por un solo elemento $f \in \Gamma (X, \O_X)$, pues podemos sumar los subespacios $W$ obtenidos. Escribamos $\psi^* (f) = \sum_i f_i \otimes g_i \in \Gamma \otimes_k \Gamma (X, \O_X)$. Para cada $g\in G$, $x \in X$, tenemos $L_g (f) (x) = f(g^{-1} \cdot x) = \sum_i f_i (g) g_i (x)$, y por lo tanto $L_g f = \sum_i f_i (g) g_i$. Las funciones $g_i$ por lo tanto genera un subespacio de dimensión finita de $\Gamma (X, \O_X)$, el cual contiene a $f$. Así, podemos tomar $W$ como el generado por los $L_g f$ funciona.
-\item Si $\psi^* V \subset \Gamma \otimes_k V$, entonces inspeccionando la demostración del ítem anterior vemos que las funciones $g_i$  pueden tomarse en $V$, es decir, $V$ es estable bajo los $L_g$, $g \in G$. Recíprocamente, sea $V$ estable por estas traslaciones, y extendamos una base $\{f_i\}_i$ del espacio vectorial $V$ a una base $\{f_i\}_i \cup \{g_j\}_j$ de $\Gamma (X, \O_X)$. Escribiendo $\psi^* f = \sum_i r_i \otimes f_i + \sum_j s_j \otimes g_j$, se sigue que $L_g f = \sum_i r_i (g) f_i + \sum_j s_j (g) g_j$. Como $L_g f$ pertenece a $V$, las funciones $s_j$ deben anularse en $G$ (y por lo tanto son cero porque $k$ es algebraicamente cerrado), es decir, $\psi^* V \subset \Gamma \otimes_k V$.
+\item Sin pérdida de generalidad podemos suponer que $V$ es $1$-dimensional y que está generado por un solo elemento $f \in \Gamma (X, \O_X)$, pues podemos sumar los subespacios $W$ obtenidos. Escribamos $\psi^* (f) = \sum_i f_i \otimes g_i \in \Gamma \otimes_k \Gamma (X, \O_X)$. Para cada $g\in G$, $x \in X$, tenemos $L_g (f) (x) = f(g^{-1} \cdot x) = \sum_i f_i (g) g_i (x)$, y por lo tanto $L_g (f) = \sum_i f_i (g) g_i$. Las funciones $g_i$ por lo tanto generan un subespacio de dimensión finita de $\Gamma (X, \O_X)$, el cual contiene a $f$. Así, podemos tomar $W$ como el generado por los $L_g (f)$.
+\item Si $\psi^* (V) \subset \Gamma \otimes_k V$, entonces inspeccionando la demostración del ítem anterior vemos que las funciones $g_i$  pueden tomarse en $V$, es decir, $V$ es estable bajo los $L_g$, $g \in G$. Recíprocamente, sea $V$ estable por estas traslaciones, y extendamos una base $\{f_i\}_i$ del espacio vectorial $V$ a una base $\{f_i\}_i \cup \{g_j\}_j$ de $\Gamma (X, \O_X)$. Escribiendo $\psi^* (f) = \sum_i r_i \otimes f_i + \sum_j s_j \otimes g_j$, se sigue que $L_g (f) = \sum_i r_i (g) f_i + \sum_j s_j (g) g_j$. Como $L_g (f)$ pertenece a $V$, las funciones $s_j$ deben anularse en $G$ (y por lo tanto son cero porque $k$ es algebraicamente cerrado), es decir, $\psi^* (V) \subset \Gamma \otimes_k V$.
 \item La demostración de este hecho es completamente análogo a lo que ya hicimos.
 \end{enumerate}
 \end{proof}
@@ -998,7 +1056,7 @@ Sea $G$ un grupo algebraico actuando afín mórficamente en una variedad afín $
 Sea $G$ un grupo algebraico afín. Entonces $G$ es isomorfo a un subgrupo cerrado para algún $\operatorname{GL}_n (k)$.
 \end{theorem}
 \begin{proof}
-Tomemos generadores $f_1, \ldots, f_n$ de la $k$-álgebra finitamente generada $\Gamma$. Por el ítem (c) de la proposición anterior, aplicado al subespacio $V$ generado por estos $f_i$, podemos encontrar un subespacio de dimensión finita $W$ de $\Gamma$, estable por las traslaciones $R_g$ con $g \in G$. Cambiando de notación, podemos suponer que los $f_i$ generan una base de $W$ (y también la $k$-álgebra $\Gamma$). Sea $\nu : G \times G \to G$ dada por $\nu (x,y) = yx$, el ítem (c) de la proposición de arriba, podemos escribir $\nu^* f_i = \sum_{j} m_{ij} \otimes f_j$, con $m_{ij} \in \Gamma$. Entonces $R_x f_i (y) = f_i (y x) = \sum_j m_{ij} (x) f_j (y)$, por lo tanto $R_x f_i = \sum_j m_{ij (x) f_j}$. En otras palabras, la matriz de $\rest{L_x} W$ relativa a la base $(f_1, \ldots,f_n)$ es $(m_ij (x))_{ij}$. Esto prueba que
+Tomemos generadores $f_1, \ldots, f_n$ de la $k$-álgebra finitamente generada $\Gamma:= \Gamma (G, \O_G)$. Por el ítem (c) de la proposición anterior, aplicado al subespacio $V$ generado por estos $f_i$, podemos encontrar un subespacio de dimensión finita $W$ de $\Gamma$, estable por las traslaciones $R_g$ con $g \in G$. Cambiando de notación, podemos suponer que los $f_i$ generan una base de $W$ (y también la $k$-álgebra $\Gamma$). Sea $\nu : G \times G \to G$ dada por $\nu (x,y) = yx$, el ítem (c) de la proposición de arriba, podemos escribir $\nu^* (f_i) = \sum_{j} m_{ij} \otimes f_j$, con $m_{ij} \in \Gamma$. Entonces $R_x (f_i) (y) = f_i (y x) = \sum_j m_{ij} (x) f_j (y)$, por lo tanto $R_x (f_i) = \sum_j m_{ij} (x) f_j$. En otras palabras, la matriz de $\rest{R_x} W$ relativa a la base $(f_1, \ldots,f_n)$ es $(m_{ij} (x))_{ij}$. Esto prueba que
 \begin{align*}
     \sigma : G &\longrightarrow \operatorname{GL}_n (k) \\
     x &\longmapsto (m_{ij} (x))_{ij}
@@ -1036,7 +1094,7 @@ Sea $x \in \operatorname {End} V$. Entonces:
 \end{enumerate}
 \end{lemma}
 
-Si $x \in \operatorname{GL} (V)$, entonces sus \textit{autovalores} (i.e., \textit{valores propios}) son no nulos y por lo tanto $x_s \in \operatorname{GL} (V)$ (ítem (d)). Así, tiene sentido escribir $x_u = 1 + x_s^{-1} x_n$, y obtenemos el \textit{Teorema de descomposición de Jordan (multiplicativo)}, i.e., $x$ se puede escribir de manera única como $x_s x_u = x_u x_s$, donde $x_s \in \operatorname{GL} (V)$ es un endomorfismo semisimple y $x_u \in \operatorname{GL}(V)$ un endomorfismo unipotente. En efecto, por construcción, $x_u := 1 + x_s^{-1} x_n$ y como $x_s$, $x_n$ conmutan entre sí, $x_s^{-1} x_n$ es nilpotente pues $x_n$ lo es. Recíprocamente, si $x = s u$ con $s$ semisimple, $u=1 + n$ unipotente (y $n$ nilpotente) tales que $s$ y $u$ conmutan entre sí, entonces $x = x_s + x_n$ con $x_s,x_n$ conmutando entre sí y $x_s := s$ semisimple, $x_n := s n$ nilpotente. Por lo tanto podemos el lema de arriba prueba:
+Si $x \in \operatorname{GL} (V)$, entonces sus \textit{autovalores} (i.e., \textit{valores propios}) son no nulos y por lo tanto $x_s \in \operatorname{GL} (V)$ (ítem (d)). Así, tiene sentido escribir $x_u = 1 + x_s^{-1} x_n$, y obtenemos el \textit{Teorema de descomposición de Jordan (multiplicativo)}, i.e., $x$ se puede escribir de manera única como $x_s x_u = x_u x_s$, donde $x_s \in \operatorname{GL} (V)$ es un endomorfismo semisimple y $x_u \in \operatorname{GL}(V)$ un endomorfismo unipotente. En efecto, por construcción, $x_u := 1 + x_s^{-1} x_n$ y como $x_s$, $x_n$ conmutan entre sí, $x_s^{-1} x_n$ es nilpotente pues $x_n$ lo es. Recíprocamente, si $x = s u$ con $s$ semisimple, $u=1 + n$ unipotente (y $n$ nilpotente) tales que $s$ y $u$ conmutan entre sí, entonces $x = x_s + x_n$ con $x_s,x_n$ conmutando entre sí y $x_s := s$ semisimple, $x_n := s n$ nilpotente. Por lo tanto el lema de arriba prueba:
 
 \begin{lemma}
 Sea $x \in \operatorname{GL} (V)$. Entonces:
@@ -1045,7 +1103,7 @@ Sea $x \in \operatorname{GL} (V)$. Entonces:
 \item $x_s$ y $x_u$ conmutan con cualquier endomorfismo de $V$ que conmute con $x$.
 \item Si $A$ es un subespacio de $V$ estable bajo $x$, entonces $A$ estable bajo $x_s$, $x_u$.
 \item $x$ y $x_s$ tienen los mismos autovalores.
-\item Si $xy = yx$ para algún $y \in \operatorname{GL} V$, luego $(xy)_s = x_s y_s$ y $(xy)_u = x_u y_u$.
+\item Si $xy = yx$ para algún $y \in \operatorname{GL} (V)$, luego $(xy)_s = x_s y_s$ y $(xy)_u = x_u y_u$.
 \end{enumerate}
 \end{lemma}
 
@@ -1054,10 +1112,10 @@ A los endomorfismos únicos que descomponen (aditiva o multiplicativa) a $x$, lo
 \end{notation}
 
 \begin{obs}
-Con la notación de arriba, si $V$ (no necesariamente de dimensión finita) es la unión de subespacios de dimensión finita estables bajo $x$, entonces las descomposiciones $\rest x W = (\rest x | W)_s (\rest x | W)_u$ y $\rest x W = (\rest x | W)_s + (\rest x W)_n$ existen para cualquiera de estos subespacios $W$. Más aún, la restricción de un endomorfismo semisimple, nilpotente, unipotente a una intersección $W \cap W'$ es del mismo tipo, respectivamente, por lo tanto podemos combinar estas descomposiciones para obtener un endomorfismo $x$, nuevamente a esta descomposición la podemos notar $x = x_s x_u$ o $x = x_s + x_n$. Es importante notar que por el ítem (c) de ambos lemas de arriba, $x_s$, $x_n$, $x_u$ dejan estables todo subespacio de $V$ (de dimensión finita o no) que sea estable por $x$.
+Con la notación de arriba, si $V$ (no necesariamente de dimensión finita) es la unión de subespacios de dimensión finita estables bajo $x$, entonces las descomposiciones $\rest x W = (\rest x  W)_s (\rest x  W)_u$ y $\rest x W = (\rest x  W)_s + (\rest x W)_n$ existen para cualquiera de estos subespacios $W$. Más aún, la restricción de un endomorfismo semisimple, nilpotente, unipotente a una intersección $W \cap W'$ es del mismo tipo, respectivamente, por lo tanto podemos combinar estas descomposiciones para obtener un endomorfismo $x$, nuevamente a esta descomposición la podemos notar $x = x_s x_u$ o $x = x_s + x_n$. Es importante notar que por el ítem (iii) de ambos lemas de arriba, $x_s$, $x_n$, $x_u$ dejan estables todo subespacio de $V$ (de dimensión finita o no) que sea estable por $x$.
 \end{obs}
 
-El comportamiento de endomorfismos semisimples a prácticamente idéntico cuando la característica de $k$ es cero o no. Sin embargo, no para endomorfismos unipotentes: si $\Char k = p > 0$, entonces $x \in \operatorname{GL} (V)$ es unipotente si y solo si $x^{p^i} = 1$ para algún $i$, en efecto, si $n$ es un endomorfismo nilpotente, se tiene que para todo $j \geq 1$ la identidad $(1+n^{p^j}) = (1 + n)^{p^j}$. En cambio, si $\Char k = 0$,  un endomorfismo unipotente distinto de $1$ tiene orden infinito: si tuviera orden finito sería semisimple, pues su polinomio minimal dividiría el polinomio $T^m - 1$ para algún $m$ que tiene todas sus raíces distintas, luego notar que el único endomorfismo unipotente semisimple es $1$. En este caso, tiene sentido definir las series de potencias \textit{exponencial} y \textit{logaritmo}: si $n$ es un endomorfismo nilpotente, luego $\exp n := \sum_{i = 0}^\infty n^i /i!$ es un polinomio y define un elemento de $\operatorname{GL}(V)$, que es unipotente; si $u$ es unipotente, entonces $u-1$ es nilpotente y la serie $\log u := \sum_{i = 1}^\infty (-1)^{i + 1} (u - 1)^i / i$ es un polinomio que define un endomorfismo nilpotente de $V$. Además, las identidades formales usuales de estas series de potencias implican las identidades $\exp \log u = u$ y $\log \exp n = n$.
+El comportamiento de endomorfismos semisimples es prácticamente idéntico cuando la característica de $k$ es cero o no. Sin embargo, no para endomorfismos unipotentes: si $\Char k = p > 0$, entonces $x \in \operatorname{GL} (V)$ es unipotente si y solo si $x^{p^i} = 1$ para algún $i$, en efecto, si $n$ es un endomorfismo nilpotente, se tiene que para todo $j \geq 1$ la identidad $(1+n^{p^j}) = (1 + n)^{p^j}$. En cambio, si $\Char k = 0$,  un endomorfismo unipotente distinto de $1$ tiene orden infinito: si tuviera orden finito sería semisimple, pues su polinomio minimal dividiría el polinomio $T^m - 1$ para algún $m$ que tiene todas sus raíces distintas, luego notar que el único endomorfismo unipotente semisimple es $1$. En este caso, tiene sentido definir las series de potencias \textit{exponencial} y \textit{logaritmo}: si $n$ es un endomorfismo nilpotente, luego $\exp n := \sum_{i = 0}^\infty n^i /i!$ es un polinomio y define un elemento de $\operatorname{GL}(V)$, que es unipotente; si $u$ es unipotente, entonces $u-1$ es nilpotente y la serie $\log u := \sum_{i = 1}^\infty (-1)^{i + 1} (u - 1)^i / i$ es un polinomio que define un endomorfismo nilpotente de $V$. Además, las identidades formales usuales de estas series de potencias implican las identidades $\exp \log u = u$ y $\log \exp n = n$.
 
 \begin{lemma}
 Supongamos que $\Char k = 0$. Si $1 \neq x \in \operatorname{GL} (V)$ es unipotente, el mapa
@@ -1065,14 +1123,14 @@ Supongamos que $\Char k = 0$. Si $1 \neq x \in \operatorname{GL} (V)$ es unipote
 \varphi : \mathbb{G}_a &\longrightarrow \operatorname{GL} (V) \\
 \lambda &\longmapsto \exp (\lambda \cdot n),
 \end{align*}
-donde $n := \log x$, define un isomorfismo $ \mathbb{G}_a$ en un subgrupo cerrado de $\operatorname{GL} (V)$, el cual es el único subgrupo cerrado más chico de $\operatorname{GL}(V)$ que contiene a $x$. En particular, todo subgrupo conexo cerrado $1$-dimensional de $\operatorname{GL} (V)$ que contiene un elemento unipotente distinto de $1$ debe ser isomorfo a $\mathbb{G}_a$.
+donde $n := \log x$, define un isomorfismo de $ \mathbb{G}_a$ en un subgrupo cerrado de $\operatorname{GL} (V)$, el cual es el único subgrupo cerrado más chico de $\operatorname{GL}(V)$ que contiene a $x$. En particular, todo subgrupo conexo cerrado $1$-dimensional de $\operatorname{GL} (V)$ que contiene un elemento unipotente distinto de $1$ debe ser isomorfo a $\mathbb{G}_a$.
 \end{lemma}
 \begin{proof}
-Claramente $\varphi$ define un morfismo de variedades, el cual más aún es un homomorfismo de grupos por las propiedades formales de la serie exponencial ($\exp ((T+T')n) = (\exp T n) (\exp T' n)$ en el anillo de series de potencias formales en las variables $T,T'$ sobre el subanillo conmutativo $k[n] \subset \operatorname{End} V$). Más aún, $\varphi (1) = x$. De hecho, $\varphi$ es un isomorfismo, ya que
+Claramente $\varphi$ define un morfismo de variedades, el cual más aún es un homomorfismo de grupos por las propiedades formales de la serie exponencial ($\exp ((T+T')n) = (\exp (T n)) (\exp (T' n))$ en el anillo de series de potencias formales en las variables $T,T'$ sobre el subanillo conmutativo $k[n] \subset \operatorname{End} (V)$). Más aún, $\varphi (1) = x$. De hecho, $\varphi$ es un isomorfismo, ya que
 \[
-    \lambda n = \log \exp (\lambda n) = \log \varphi (\lambda) = \sum_{i = 1}^\infty (-1)^{i+1} (\varphi (a)- 1)^i / i
+    \lambda n = \log \exp (\lambda n) = \log \varphi (\lambda) = \sum_{i = 1}^\infty (-1)^{i+1} (\varphi (\lambda)- 1)^i / i
 \]
-es polinomial en $\varphi (\lambda)$. Finalmente, como $x$ tiene orden finito (porque $x \neq 1$), la clausura del subgrupo generado por $x$ en $\operatorname{GL} (V)$ tiene dimensión al menos $1$, y por lo tanto debe coincidir con el subgrupo cerrado irreducible $\varphi (\mathbb{G}_a)$ de dimensión $1$.
+es polinomial en $\varphi (\lambda)$. Finalmente, como $x$ tiene orden infinito (porque $x \neq 1$), la clausura del subgrupo generado por $x$ en $\operatorname{GL} (V)$ tiene dimensión al menos $1$, y por lo tanto debe coincidir con el subgrupo cerrado irreducible $\varphi (\mathbb{G}_a)$ de dimensión $1$.
 \end{proof}
 
 
@@ -1088,32 +1146,32 @@ Sea $G = \operatorname{GL}_n (k)$. Si $x \in G$, entonces $R_x$ tiene descomposi
 \begin{proof}
 Como $\Gamma := \Gamma (G, \O_G)$ es la unión de subespacios de dimensión finita estables bajo $R_x$, tenemos descomposición de Jordan como discutimos en la subsección anterior. Más aún, $R_x = R_{x_s} R_{x_u}$, y los operadores conmutan, con lo cual basta ver que $R_{x_s}$ es semisimple y $R_{x_u}$ unipotente.
 
-$\Gamma$ se identifica con el anillo de cocientes de polinomios $k[T_{ij}]$ en $n^2$ variables por potencias del determinante $d = \det (T_{ij})$ en el denominador. Sabemos que $k[T_{ij}]$ es estable por traslación a derecha. Más aún, $(L_x d) (y) = \det (y x) = \det y \cdot \det x$, luego $\L_x d = \det x \cdot d$. Así, el espacio generado por $d$ es $G$-estable. De aquí vemos que es sencillo describir la acción de $L_x$ en $\Gamma$ a partir de la de $k[T_{ij}]$.
+$\Gamma$ se identifica con el anillo de cocientes de polinomios $k[T_{ij}]$ en $n^2$ variables por potencias del determinante $d = \det (T_{ij})$ en el denominador. Sabemos que $k[T_{ij}]$ es estable por traslación a derecha. Más aún, $(R_x d) (y) = \det (y x) = \det y \cdot \det x$, luego $R_x d = \det x \cdot d$. Así, el espacio generado por $d$ es $G$-estable. De aquí vemos que es sencillo describir la acción de $L_x$ en $\Gamma$ a partir de la de $k[T_{ij}]$.
 
-En particular, si $\rest{L_x}{k[T_{ij}]}$ es semisimple, entonces $L_x$ es semisimple ($d$ es un autovector de $L_x$ en cualquier caso). Si $\rest{L_x}{k[T_{ij}]}$ es unipotente, luego su autovalor $\det x$ en el espacio generado por $d$ debe ser $1$, con lo cual $L_x$ es unipotente. Con lo cual basta estudiar la acción de $L_x$ en $k[T_{ij}]$ en lugar de $\Gamma$.
+En particular, si $\rest{R_x}{k[T_{ij}]}$ es semisimple, entonces $R_x$ es semisimple ($d$ es un autovector de $R_x$ en cualquier caso). Si $\rest{R_x}{k[T_{ij}]}$ es unipotente, luego su autovalor $\det x$ en el espacio generado por $d$ debe ser $1$, con lo cual $R_x$ es unipotente. Con lo cual basta estudiar la acción de $R_x$ en $k[T_{ij}]$ en lugar de $\Gamma$.
 
-Sea $E = \operatorname{End} V$ con $V = k^n$, identifiquemos $G$ como un subconjunto de $\operatorname{GL}(V)$ de $E$. Así, identificamos $k[T_{ij}]$ como el \textit{álgebra simétrica} $\mathfrak S (E^*)$ del espacio dual $E^*$ de $E$. Si $x \in E$, definimos el endomorfismo $r_x : E \to E$ vía $r_{x} (y) = y x$, y escribimos $r_x^* : E^* \to E^*$ para su transpuesta. Notemos que $L_x$ es justamente la extensión canónica de $r_x^*$ a un automorfismo de $\mathfrak G (E^*)$. De esta forma basta verificar que la semisimplicidad y unipotencia se preserva en cada paso: $x$ a $r_x$ a $r_x^*$ a $L_x$. El paso de $r_x$ a $r_x^*$ es inmediato. Para pasar de la acción de $E^*$ a $\mathfrak G (E^*)$ primero actuamos sobre cada potencia tensorial de $E^*$, luego factorizamos el álgebra tensorial por el ideal apropiado estable bajo la acción para llegar a $\mathfrak G (E^*)$. Finalmente veamos el pasaje de $x$ a $r_x$ con $x \in E$.
+Sea $E = \operatorname{End} V$ con $V = k^n$, identifiquemos $G$ como un subconjunto de $E$. Así, identificamos $k[T_{ij}]$ como el \textit{álgebra simétrica} $\mathfrak S (E^*)$ del espacio dual $E^*$ de $E$. Si $x \in E$, definimos el endomorfismo $r_x : E \to E$ vía $r_{x} (y) = y x$, y escribimos $r_x^* : E^* \to E^*$ para su transpuesta. Notemos que $L_x$ es justamente la extensión canónica de $r_x^*$ a un automorfismo de $\mathfrak G (E^*)$. De esta forma basta verificar que la semisimplicidad y unipotencia se preserva en cada paso: $x$ a $r_x$ a $r_x^*$ a $R_x$. El paso de $r_x$ a $r_x^*$ es inmediato. Para pasar de la acción de $E^*$ a $\mathfrak G (E^*)$ primero actuamos sobre cada potencia tensorial de $E^*$, luego factorizamos el álgebra tensorial por el ideal apropiado estable bajo la acción para llegar a $\mathfrak G (E^*)$. Finalmente veamos el pasaje de $x$ a $r_x$ con $x \in E$.
 
-Consideremos ambos casos por separado. Si $ x\in E$ es semisimple, tomemos una base $(v_1, \ldots, v_n)$ de $V$ consistiendo de autovectores, digamos $x \cdot v_i = \lambda_i v_i$ con $\lambda_i \in k$. Tomemos la base correspondiente $e_{ij}$ de $E$, tal que $e_{ij} (v_k) = \delta_{jk} v_i$, entonces $r_x e_{ij} = \lambda_j e_{ij}$. Esto prueba que $r_x$ es semisimple. Si $x \in E$ es nilpotente, digamos $x^t = 0$, entonces $(r_x)^t (y) = y x^t = 0$ para todo $y \in E$, así $r_x$ es nilpotente. Ahora, si $x = 1 + n$ es unipotente con $n^t = 0$, entonces $r_x = 1 + r_n$, y por lo tanto $(r_x - 1)^t = 0$, i.e., $r_x $ es unipotente.
+Consideremos ambos casos por separado. Si $ x\in E$ es semisimple, tomemos una base $(v_1, \ldots, v_n)$ de $V$ consistiendo de autovectores, digamos $x \cdot v_i = \lambda_i v_i$ con $\lambda_i \in k$. Tomemos la base correspondiente $e_{ij}$ de $E$, tal que $e_{ij} (v_k) = \delta_{jk} v_i$, entonces $r_x e_{ij} = \lambda_j e_{ij}$. Esto prueba que $r_x$ es semisimple. Si $x \in E$ es nilpotente, digamos $x^t = 0$ ($t \in \naturals$), entonces $(r_x)^t (y) = y x^t = 0$ para todo $y \in E$, así $r_x$ es nilpotente. Ahora, si $x = 1 + n$ es unipotente con $n^t = 0$, entonces $r_x = 1 + r_n$, y por lo tanto $(r_x - 1)^t = 0$, i.e., $r_x $ es unipotente.
 \end{proof}
 
 
 
 \bigskip
 
-Queremos tratar ahora el caso general en el cual $G$ es un grupo algebraico afín arbitrario. Notemos que la traslación por multiplicación a derecha $L_x$ se lleva bien con los subgrupos cerrados $H$ de $G$, es decir, el siguiente diagrama conmuta:
+Queremos tratar ahora el caso general en el cual $G$ es un grupo algebraico afín arbitrario. Notemos que la traslación por multiplicación a derecha $R_x$ se lleva bien con los subgrupos cerrados $H$ de $G$, es decir, el siguiente diagrama conmuta:
 \[
     \begin{tikzcd}
-    \Gamma (G, \O_G) \arrow{r}{L_x} \arrow[d] & \Gamma (G, \O_G) \arrow[d] \\
-    \Gamma (H, \O_H) \arrow{r}{L_x} & \Gamma (H, \O_H)
+    \Gamma (G, \O_G) \arrow{r}{R_x} \arrow[d] & \Gamma (G, \O_G) \arrow[d] \\
+    \Gamma (H, \O_H) \arrow{r}{R_x} & \Gamma (H, \O_H)
     \end{tikzcd}
 \]
-Similarmente, si $\varphi : G \to G'$ es un epimorfismo de grupos algebraicos, es decir $\varphi^*$ identifica $\Gamma (G', \O_{G'})$ con un subanillo de $\Gamma (G, \O_G)$, luego si $x \in G$, claramente $L_{\varphi (x)}$ se puede identificar con la restricción de $L_x$ a este subanillo.
+Similarmente, si $\varphi : G \to G'$ es un epimorfismo de grupos algebraicos, es decir $\varphi^*$ identifica $\Gamma (G', \O_{G'})$ con un subanillo de $\Gamma (G, \O_G)$, luego si $x \in G$, claramente $R_{\varphi (x)}$ se puede identificar con la restricción de $R_x$ a este subanillo.
 
 \begin{theorem}
 Sea $G$ un grupo algebraico. Entonces:
 \begin{enumerate}[(a)]
-\item Si $x \in G$, luego existen elementos únicos $s,u \in G$ tales que $x = su$, tales que $s$ y $u$ conmutan entre sí, $L_s$ es semisimple y $L_u$ es unipotente. (Luego llamamos a $s$ la \textbf{parte semisimple} de $x$ y escribimos $x_s := s$, y a $u$ la \textbf{parte unipotente}, notada $x_u$).
+\item Si $x \in G$, luego existen elementos únicos $s,u \in G$ tales que $x = su$, tales que $s$ y $u$ conmutan entre sí, $R_s$ es semisimple y $R_u$ es unipotente. (Luego llamamos a $s$ la \textbf{parte semisimple} de $x$ y escribimos $x_s := s$, y a $u$ la \textbf{parte unipotente}, notada $x_u$).
 \item Si $\varphi : G \to G'$ es un morfismo de grupos algebraicos, entonces $\varphi (x)_s = \varphi (x_s)$ y $\varphi (x)_u = \varphi (x_u)$ para todo $x \in G$.
 \end{enumerate}
 \end{theorem}
@@ -1121,7 +1179,7 @@ Sea $G$ un grupo algebraico. Entonces:
 Ver la Sección 15.3 de \cite{humphreys2012linearAlgebraicGroups}.
 \end{proof}
 
-Este teorema nos muestra que dado cualquier grupo algebraico $G$, los subconjuntos $G_s := \set{x \in G | x = x_s}$ y $G_u = \set{x \in G | x = x_u}$ se pueden definir de manera intrínseca y su intersección es $\{1\}$. El ítem (b) garantiza que los morfismos de grupos algebraicos preservan estos conjuntos. Más aún, $G_u$ es cerrado: el conjunto de todas las matrices unipotentes en $\operatorname{GL}_n (k)$ es cerrado, pues es el conjunto de ceros de los polinomios $(x-1)^n = 0$. Sin embargo, $G_s$ no tiene por qué ser cerrado en $G$ (ni siquiera un subgrupo): por ejemplo $G = T_n (k)$ cuando $n > 1$.
+Este teorema nos muestra que dado cualquier grupo algebraico $G$, los subconjuntos $G_s := \set{x \in G | x = x_s}$ y $G_u = \set{x \in G | x = x_u}$ se pueden definir de manera intrínseca y su intersección es $\{1\}$. El ítem (b) garantiza que los morfismos de grupos algebraicos preservan estos conjuntos. Más aún, $G_u$ es cerrado: el conjunto de todas las matrices unipotentes en $\operatorname{GL}_n (k)$ es cerrado, pues es el conjunto de ceros de los polinomios $(x-1)^n = 0$. Sin embargo, $G_s$ no tiene por qué ser cerrado en $G$ (ni siquiera un subgrupo): por ejemplo $G = T_n (k)$ cuando $n > 1$ (cf. \ref{ejemplo:T es soluble conexo pero no nilpotente luego T_s no es un grupo}).
 
 
 
@@ -1133,7 +1191,7 @@ Este teorema nos muestra que dado cualquier grupo algebraico $G$, los subconjunt
 \begin{definition}
 Un grupo algebraico afín $G$ se dice \textbf{diagonalizable} si es isomorfo a un subgrupo cerrado del grupo de matrices diagonales $D_n (k)$ para algún $n$.
 \end{definition}
-Observemos que un grupo diagonalizable es conmutativo y consiste de elementos semisimples. Recíprocamente, si $G$ cumple ambas propiedades luego (15.4) implica que $G$ es conjugado en $\operatorname{GL}_n (k)$ a un subgrupo de $\operatorname{D}_n (k)$.
+Observemos que un grupo diagonalizable es conmutativo y consiste de elementos semisimples. Recíprocamente, si $G$ cumple ambas propiedades luego \cite[\S 15.4]{humphreys2012linearAlgebraicGroups} implica que $G$ es conjugado en $\operatorname{GL}_n (k)$ a un subgrupo de $\operatorname{D}_n (k)$.
 
 \begin{obs}
 Subgrupos cerrados e imágenes bajo homomorfismos de grupos diagonalizables son nuevamente diagonalizables, pues ser un grupo conmutativo y semisimple se preserva.
@@ -1157,7 +1215,7 @@ Ver \cite[Corolario 16.3]{humphreys2012linearAlgebraicGroups}.
 \end{proof}
 
 \begin{example}
-El normalizador de $D_n (k)$ en $\operatorname{GL}_n (k)$ es el grupo de matrices \textit{monomiales} (matrices donde cada fila y columna tienen una única entrada no nula); el centralizador de $D_n (k)$ es si mismo; el cociente es interesante\footnote{En el contexto de grupos algebraicos este grupo es importante y se conoce como el \textbf{grupo de Weyl}.}, este es isomorfo al grupo simétrico $\mathbb{S}_n$. Por otro lado, el normalizador de $D_n (k)$ es si mismo en el grupo $T_n (k)$.
+El normalizador de $D_n (k)$ en $\operatorname{GL}_n (k)$ es el grupo de matrices \textit{monomiales} (matrices donde cada fila y columna tiene una única entrada no nula); el centralizador de $D_n (k)$ es si mismo; el cociente es interesante\footnote{En el contexto de grupos algebraicos este grupo es importante y se conoce como el \textbf{grupo de Weyl}.}, este es isomorfo al grupo simétrico $\mathbb{S}_n$. Por otro lado, el normalizador de $D_n (k)$ es si mismo en el grupo $T_n (k)$.
 \end{example}
 
 
@@ -1188,7 +1246,7 @@ Sean $A,B$ subgrupos cerrados de un grupo algebraico $G$. Entonces
 \begin{proof}
 \begin{enumerate}[(a)]
 \item Asociado a cada $b \in B$ tenemos el morfismo $\psi_b : A \to G$ definido por $\psi_b (a) = [a,b]$. Como $A$ es conexo, y $\psi_b (1) = 1$, por la Proposición \cite[7.5]{humphreys2012linearAlgebraicGroups}, el grupo generado por todos los $\psi_b (A)$, $b \in B$ es cerrado y conexo; pero este grupo es $[A,B]$.
-\item Por el ítem anterior $[A^\circ, B]$ y $[A, B^\circ]$ son cerrados, conexos (y normales) en $G$, luego el producto, digamos $C$, también es cerrado, conexo (y normal) en $G$: lo primero es por el Corolario \ref{corollary:si A y B son cerrados entonces AB es cerrado}, lo segundo es porque el producto de variedades irreducibles es irreducible (ver \cite[Proposición 2.8.5]{notas_pedro}), y si $X,Y$ son subgrupos algebraicos de $G$ tales que $XY$ es un subgrupo, entonces $X \times Y \to XY$ es un isomorfismo algebraico. Con lo cual, para probar que $[A,B]$ es cerrado, basta ver que $C$ tiene índice finito en $[A,B]$; esta es una afirmación sobre grupos abstractos: en el grupo abstracto $G/C$, la imagen de $A^\circ$ (respectivamente $B^\circ$) centraliza la imagen de $B$ (respectivamente $A$). Como $[A : A^\circ]$ y $[B: B^\circ]$ son finitos, esto implica que existen finitos conmutadores en $G/C$ construidos a partir de las imágenes de $A$ y $B$. Así, el Lema \ref{lemma:lema util de teoria de grupos} garantiza que $[A,B]/C$ es finito, i.e., $C$ tiene índice finito en $[A,B]$ como queríamos.
+\item Por el ítem anterior $[A^\circ, B]$ y $[A, B^\circ]$ son cerrados, conexos (y normales) en $G$, luego el producto, digamos $C$, también es cerrado, conexo (y normal) en $G$: lo primero es por el Corolario \ref{corollary:si A y B son cerrados entonces AB es cerrado}, lo segundo es porque el producto de variedades irreducibles es irreducible (ver \cite[Proposición 2.8.5]{notas_pedro}), y si $X,Y$ son subgrupos algebraicos de $G$ tales que $XY$ es un subgrupo, entonces $X \times Y \to XY$ es un isomorfismo algebraico. Con lo cual, para probar que $[A,B]$ es cerrado, basta ver que $C$ tiene índice finito en $[A,B]$; esta es una afirmación sobre grupos abstractos: en el grupo abstracto $G/C$, la imagen de $A^\circ$ (respectivamente $B^\circ$) centraliza la imagen de $B$ (respectivamente $A$). Como $[A : A^\circ]$ y $[B: B^\circ]$ son finitos (Proposición \ref{proposicion:componente de la identidad}), esto implica que existen finitos conmutadores en $G/C$ construidos a partir de las imágenes de $A$ y $B$. Así, el Lema \ref{lemma:lema util de teoria de grupos} garantiza que $[A,B]/C$ es finito, i.e., $C$ tiene índice finito en $[A,B]$ como queríamos.
 \end{enumerate}
 \end{proof}
 
@@ -1207,7 +1265,7 @@ Cuando $G$ es un grupo algebraico, $\mathcal D^1 G := [G,G]$ es un subgrupo cerr
 \]
 de subgrupos cerrados tales que $[G_i,G_i] \subset G_{i+1}$.
 
-\begin{obs}
+\begin{obs}\label{obs:si es soluble y conexo la dimension del conmutador baja}
 Notemos que si $G$ es un grupo algebraico conexo soluble de dimensión positiva, entonces
 \[
     \dim [G,G] < \dim G.
@@ -1216,7 +1274,7 @@ En efecto, de lo contrario, como $G$ es irreducible y $[G,G] \subset G$ es cerra
 \end{obs}
 Esta observación es útil, pues nos permitirá realizar argumentos inductivos en la dimensión de $G$.
 
-Las siguientes hechos de grupos abstractos son buenos de tener presentes:
+Las siguientes hechos de grupos abstractos son buenos de tener presente:
 \begin{lemma}
 \begin{enumerate}[(a)]
 \item Subgrupos e imágenes de homomorfismos de grupos abstractos solubles son solubles.
@@ -1226,9 +1284,9 @@ Las siguientes hechos de grupos abstractos son buenos de tener presentes:
 \end{lemma}
 
 \begin{example}\label{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}
-El grupo de las matrices triangulares superiores $T_n (k)=:T$ es soluble. Es claro que $[T,T]$ está contenido en $U_n (k) =: U$. Escribamos $U_{ij} := \{1 + a_{e_{ij} | a \in k}\}$ si $i < j$, cada uno cerrado y conexo, pues es isomorfo a $\mathbb{G}_a$. Por lo tanto, el ítem (a) de la Proposición \ref{proposition: el conmutador de conexo es conexo} dice que $[D, U_{ij}] \subset U_{ij}$ es cerrado conexo, donde $D := D_n (k)$, y claramente este grupo es no trivial. Consecuentemente, $U_{ij} = [D, U_{ij}] \subset [T,T]$ para cada $i<j$, forzando a que $[T,T] = U$.
+El grupo de las matrices triangulares superiores $T_n (k)=:T$ es soluble. Es claro que $[T,T]$ está contenido en $U_n (k) =: U$. Escribamos $U_{ij} := \{1 + ae_{ij} | a \in k\}$ si $i < j$, cada uno cerrado y conexo, pues es isomorfo a $\mathbb{G}_a$. Por lo tanto, el ítem (a) de la Proposición \ref{proposition: el conmutador de conexo es conexo} dice que $[D, U_{ij}] \subset U_{ij}$ es cerrado conexo, donde $D := D_n (k)$, y claramente este grupo es no trivial. Consecuentemente, $U_{ij} = [D, U_{ij}] \subset [T,T]$ para cada $i<j$, forzando a que $[T,T] = U$.
 
-Ahora, consideremos $[U,U]$. Escribamos $\mathfrak I$ para el conjunto de matrices triangulares, visto como una subálgebra asociativa de $M_n (k)$ (el producto es el producto de matrices usual). Evidentemente, el subconjunto $\mathfrak R$ de matrices con $0$ en la diagonal es un ideal bilátero de $\mathfrak I$. Por lo tanto, los productos de ideales $\mathfrak R^h$ con $h \geq 1$, consistiendo de sumas de productos de $h$ matrices en $\mathfrak R$, son nuevamente un ideales biláteros. Pero $\mathfrak R^h$ está generado linealmente por los $E_{ij}$ con $j - i \geq h$ (matrices con $1$ en $(i,j)$ y $0$ en el resto). Ahora, $U = 1 + \mathfrak R$, con lo cual $U_h := 1 + \mathfrak R^h$ es un subgrupo cerrado normal de $U$, que además cumple $[U_h, U_l] \subset U_{h+ l}$. En particular, $U$ es soluble, y luego $T$ también.
+Ahora, consideremos $[U,U]$. Escribamos $\mathfrak I$ para el conjunto de matrices triangulares, visto como una subálgebra asociativa de $M_n (k)$ (el producto es el producto de matrices usual). Evidentemente, el subconjunto $\mathfrak R$ de matrices con $0$ en la diagonal es un ideal bilátero de $\mathfrak I$. Por lo tanto, los productos de ideales $\mathfrak R^h$ con $h \geq 1$, consistiendo de sumas de productos de $h$ matrices en $\mathfrak R$, son nuevamente un ideales biláteros. Pero $\mathfrak R^h$ está generado linealmente por los $e_{ij}$ con $j - i \geq h$ (matrices con $1$ en $(i,j)$ y $0$ en el resto). Ahora, $U = 1 + \mathfrak R$, con lo cual $U_h := 1 + \mathfrak R^h$ es un subgrupo cerrado normal de $U$, que además cumple $[U_h, U_l] \subset U_{h+ l}$. En particular, $U$ es soluble, y luego $T$ también.
 \end{example}
 
 De hecho, es interesante mencionar que al igual que el caso de grupos abstractos, intentar describir todos los grupos algebraicos solubles es una tarea formidable, sin embargo, veremos que los grupos algebraicos conexos solubles son isomorfos a un subgrupo cerrado de algún $T_n (k)$.
@@ -1245,12 +1303,12 @@ cumple que para $i$ lo suficientemente grande $\mathcal C^i G = \{1\}$ (notar qu
 
 Cuando $G$ es un grupo algebraico, $\mathcal C^1 G := [G,G]$ es un subgrupo cerrado normal de $G$, y más aún, si $G$ es conexo, luego $\mathcal C^1 G$ también lo es por la Proposición \ref{proposition: el conmutador de conexo es conexo}. Así, por inducción en $i$, se sigue que esto sigue valiendo para los $\mathcal C^i G$. Con lo cual, en el contexto de grupos algebraicos tiene sentido hablar de serie central, pues $\mathcal C^i G$ eventualmente es constante (no necesariamente $\{1\}$). Por ejemplo, los grupos conmutativos son nilpotentes: $\mathcal C^1 G = \{1\}$. Por otro lado, ser nilpotente implica ser soluble, pues $\mathcal D^i G \subset \mathcal C^i G$ para todo $i$.
 
-Las siguientes hechos de grupos abstractos son buenos de tener presentes:
+Las siguientes hechos de grupos abstractos son buenos de tener presente:
 \begin{lemma}\label{lema:hechos generales de teoria de grupos}
 \begin{enumerate}[(a)]
 \item Subgrupos e imágenes de homomorfismos de grupos abstractos nilpotentes son nilpotentes.
 \item Si $G/Z(G)$ es nilpotente, entonces $G$ es nilpotente.\footnote{Sin embargo, no necesariamente si $N$ es un subgrupo normal nilpotente de $G$ y $G/N$ es nilpotente, se puede concluir que $G$ es nilpotente. Por ejemplo, se tiene que el grupo simétrico $\mathbb{S}_3$ no es nilpotente pues $[\mathbb{S}_3, \mathbb{S}_3] = \mathbb A_3$ (el subgrupo normal de permutaciones pares), y $\mathbb{S}_3 / \mathbb{A}_3 \cong \integers /2 \integers$ es abeliano, luego nilpotente, y $\mathbb{A}_3$ también es nilpotente, pues es isomorfo a un grupo dihedral}
-\item Sea $G$ nilpotente. Si $r$ es el índice mas grande tal que $\mathcal C^r G \neq \{1\}$, entonces $\mathcal C^r G \subset \integers Z(G)$. En particular, $Z(G) \neq \{1\}$ si $G$ es no trivial.
+\item Sea $G$ nilpotente. Si $r$ es el índice mas grande tal que $\mathcal C^r G \neq \{1\}$, entonces $\mathcal C^r G \subset Z(G)$. En particular, $Z(G) \neq \{1\}$ si $G$ es no trivial.
 \item Sea $G$ nilpotente y $H$ un subgrupo propio de $G$. Entonces $H$ está incluido propiamente en $N_G (H)$.
 \end{enumerate}
 \end{lemma}
@@ -1259,19 +1317,19 @@ Para grupos algebraicos podemos decir un poco más:
 \begin{proposition}
 Sea $G$ un grupo algebraico conexo nilpotente con $\dim G > 0$. Entonces:
 \begin{enumerate}[(a)]
-\item $\dim (Z(G)) > 0$.
-\item Si $H$ es un subgrupo propio cerrado de $G$, entonces $\dim (H) < dim N_G (H)$. En particular, si $\operatorname{codim} H = 1$, entonces $H$ es normal en $G$.
+\item $\dim Z(G) > 0$.
+\item Si $H$ es un subgrupo propio cerrado de $G$, entonces $\dim H < \dim N_G (H)$. En particular, si $\operatorname{codim} H = 1$, entonces $H$ es normal en $G$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(a)]
-\item Como los $\mathcal C^i G$ son conexo, el ítem (c) del lema anterior implica que $Z(G)^\circ \neq \{1\}$, y por lo tanto, la dimensión de la componente de la identidad de $Z(G)$ es positiva, i.e., $Z(G)$ tiene dimensión positiva.
-\item Haremos inducción en $\dim G$. Si $Z = Z(G)^\circ$ está contenido en $H$, entonces cambiamos $G$ por el grupo algebraico conexo nilpotente $G/Z$ de menor dimensión que $G$ por el ítem (d) de la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}. Por inducción, la imagen de $H$ en $G/Z$ tiene menor dimensión que su normalizador pues $H$ es un subgrupo propio de $G/Z$; luego vale lo mismo para $H$ gracias a que $Z \subset H$ y el último ítem de . Por otro lado, si $Z$ no está contenido en $H$, entonces $ZH$ es un subgrupo de $N_G (H)$ de mayor dimensión que $H$, pues en este caso $ZH$ es isomorfo como grupo algebraico al producto semidirecto de grupos algebraicos $Z \rtimes H$, cuya estructura de variedad subyacente es la variedad producto $Z \times H$, y su dimensión es $\dim Z + \dim H > \dim H$ por el ítem anterior.
+\item Como los $\mathcal C^i G$ son conexos, el ítem (c) del lema anterior implica que $Z(G)^\circ \neq \{1\}$, y por lo tanto, la dimensión de la componente de la identidad de $Z(G)$ es positiva, i.e., $Z(G)$ tiene dimensión positiva.
+\item Haremos inducción en $\dim G$. Si $Z := Z(G)^\circ$ está contenido en $H$, entonces cambiamos $G$ por el grupo algebraico conexo nilpotente $G/Z$ de menor dimensión que $G$ por el ítem (d) de la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}. Por inducción, la imagen de $H$ en $G/Z$ tiene menor dimensión que su normalizador pues $H$ es un subgrupo propio de $G/Z$; luego vale lo mismo para $H$ gracias a que $Z \subset H$ y el último ítem de la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado} aplicado a la restricción correspondiente de $\varphi : G \to G/Z$. Por otro lado, si $Z$ no está contenido en $H$, entonces $ZH$ es un subgrupo de $N_G (H)$ de mayor dimensión que $H$, pues en este caso $ZH$ es isomorfo como grupo algebraico al producto semidirecto de grupos algebraicos $Z \rtimes H$, cuya estructura de variedad subyacente es la variedad producto $Z \times H$, y su dimensión es $\dim Z + \dim H > \dim H$ por el ítem anterior. Esto implica que $\dim H < \dim N_G (H)$.
 \end{enumerate}
 \end{proof}
 
 \begin{example}
-Inspeccionando el segundo párrafo del Ejemplo \ref{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}, podemos ver que de hecho $U_n (k)$ es nilpotente, sin embargo $T_n (k)$ no para todo $n \geq 2$. En efecto, utilizando la misma notación, por un lado vimos que $[T,T] = U$, con lo cual, $[T,[T,T]] = [T,U] \subset [T,T] = U$, y por otro lado, $U$ está generado por los $U_{ij}$, $i< j$, los cuales cumplen que $U_{ij} = [D, U_{ij}] \subset [T,U] = [T,[T,T]]$, con lo cual, $\mathcal C^i T = U \neq \{1\}$ para todo $i \geq 2$. Que $U$ es nilpotente se deduce de la identidad probada dicho ejemplo: $[U, U_h] = [U_1, U_h] \subset U_{h+1}$ para todo $h \geq 1$.
+Inspeccionando el segundo párrafo del Ejemplo \ref{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}, podemos ver que de hecho $U_n (k)$ es nilpotente, sin embargo $T_n (k)$ no lo es para todo $n \geq 2$. En efecto, utilizando la misma notación, por un lado vimos que $[T,T] = U$, con lo cual, $[T,[T,T]] = [T,U] \subset [T,T] = U$, y por otro lado, $U$ está generado por los $U_{ij}$, $i< j$, los cuales cumplen que $U_{ij} = [D, U_{ij}] \subset [T,U] = [T,[T,T]]$, con lo cual, $\mathcal C^i T = U \neq \{1\}$ para todo $i \geq 2$. Que $U$ es nilpotente se deduce de la identidad probada dicho ejemplo: $[U, U_h] = [U_1, U_h] \subset U_{h+1}$ para todo $h \geq 1$.
 \end{example}
 
 Estos dos resultados no los probaremos, pero nos serán de utilidad:
@@ -1283,6 +1341,10 @@ Sea $G$ un grupo algebraico soluble conexo. Entonces $G$ es nilpotente si y solo
 Ver \cite[\S 19.2]{humphreys2012linearAlgebraicGroups}.
 \end{proof}
 
+\begin{example}\label{ejemplo:T es soluble conexo pero no nilpotente luego T_s no es un grupo}
+Por ejemplo, $T := T_n (k)$ es un grupo algebraico soluble conexo, que de hecho no es nilpotente. Con lo cual, la proposición anterior implica que $T_s$ no es un subgrupo de $T$.
+\end{example}
+
 \begin{theorem}\label{th:19.3}
 Sea $G$ un grupo algebraico conexo soluble. Entonces:
 \begin{enumerate}[(a)]
@@ -1293,6 +1355,8 @@ Sea $G$ un grupo algebraico conexo soluble. Entonces:
 \begin{proof}
 Ver \cite[\S 19.3]{humphreys2012linearAlgebraicGroups}.
 \end{proof}
+
+Un caso particular se puede ilustrar tomando $G := T_n (k)$ (cf. Ejemplo \ref{example:matrices triangulares superiores es soluble y el de las matrices unipontentes es nilpotente}).
 
 
 
@@ -1334,7 +1398,7 @@ Decimos que una variedad algebraica (o simplemente variedad) $X$ es \textbf{comp
 es una función \textit{cerrada}.
 \end{definition}
 
-\begin{proposition}\label{proposicion:varios hechos sobre variedades completas}
+\begin{proposition}\label{proposicion:hechos sobre variedades completas}
 \begin{enumerate}[(a)]
 \item Una subvariedad cerrada de una variedad completa (respectivamente proyectiva) es completa (respectivamente proyectiva).
 \item Si $\varphi : X \to Y$ es un morfismo (regular) de variedades algebraicas, y $X$ es completo, entonces la imagen es cerrada en $Y$, y es completa.
@@ -1347,7 +1411,7 @@ es una función \textit{cerrada}.
 \begin{enumerate}[(a)]
 \item Se deduce inmediatamente de la definición de subvariedad cerrada.
 \item Es exactamente la misma demostración que el Corolario 2.7.10. de \cite{notas_pedro}; notar que usamos que la variedad algebraica $Y$ es \textit{separada}.
-\item En efecto, como $X$ es afín, podemos suponer sin pérdida de generalidad que es un cerrado de $\afine m$ para algún $m \geq 1$, luego basta ver que la imagen de cada proyección a la $i$-ésima coordenada es finita, digamos $f_i : X \to \afine 1$, ahora, considerando la incrustación $\afine 1 \hookrightarrow \projective 1$, $x \mapsto [x, 1]$, tenemos que por el ítem anterior que la composición $X \to \afine 1 \hookrightarrow \projective 1$ tiene imagen cerrada, y como no es sobreyectiva, debe ser finita, i.e., la imagen de $f_i$ es finita como queríamos probar.
+\item En efecto, como $X$ es afín, podemos suponer sin pérdida de generalidad que es un cerrado de $\afine m$ para algún $m \geq 1$, luego basta ver que la imagen de cada proyección a la $i$-ésima coordenada es finita, digamos $f_i : X \to \afine 1$, ahora, considerando la incrustación $\afine 1 \hookrightarrow \projective 1$, $x \mapsto [x, 1]$, tenemos por el ítem anterior que la composición $X \to \afine 1 \hookrightarrow \projective 1$ tiene imagen cerrada, y como no es sobreyectiva, debe ser finita por dimensión, i.e., la imagen de $f_i$ es finita como queríamos probar.
 \item Que las \textit{variedades proyectivas} son completas ya lo vimos en \cite[Teorema \emph{2.7.9}]{notas_pedro}. Más generalmente, si $X$ es quasi-proyectiva, es decir, isomorfa a un abierto Zariski $U$ de una variedad algebraica proyectiva $Y$, entonces el morfismo inclusión $U \hookrightarrow Y$ tiene imagen cerrada por el ítem (b), y por lo tanto es una subvariedad cerrada de una variedad proyectiva, y concluimos utilizando el ítem (a).
 \item Una demostración de que las variedades banderas son proyectivas se puede encontrar en \cite[Teorema 3.3.11]{geckMeinolf2013introductionToAlgebraicGeometryAndAlgebraicGroups}.
 \end{enumerate}
@@ -1371,11 +1435,11 @@ En esta sección probaremos el teorema principal de este artículo:
 Sea $G$ un grupo algebraico conexo soluble, y sea $X$ una variedad completa (no vacía) donde actúa $G$. Entonces $G$ tiene un punto fijo en $X$.
 \end{theorem}
 \begin{proof}
-Si $\dim G = 0$, entonces $G = \{1\}$ y no hay nada que probar. Luego procedemos por inducción en la dimensión de $G$. Sea $H := [G, G]$, es conexo (ver la Proposición \ref{proposition: el conmutador de conexo es conexo}), soluble, y de menor dimensión que $G$ (pues $G$ es soluble), con lo cual, por hipótesis inductiva, el conjunto $Y$ de puntos fijos de $H$ en $X$ es no vacío. $Y$ es cerrado (ver la Proposición \ref{proposition:8.2 humphrey}), con lo cual es completo por el ítem (a) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Como $G$ deja estable a $Y$, ya que $H$ es normal en $G$, basta ver que $G$ tiene un punto fijo en $Y$, así, reemplacemos $X$ por $Y$.
+Si $\dim G = 0$, entonces $G = \{1\}$ y no hay nada que probar. Luego procedemos por inducción en la dimensión de $G$. Sea $H := [G, G]$, es conexo (ver la Proposición \ref{proposition: el conmutador de conexo es conexo}), soluble, y de menor dimensión que $G$ (Observación \ref{obs:si es soluble y conexo la dimension del conmutador baja}), con lo cual, por hipótesis inductiva, el conjunto $Y$ de puntos fijos de $H$ en $X$ es no vacío. $Y$ es cerrado (ver la Proposición \ref{proposition:8.2 humphrey}), con lo cual es completo por el ítem (a) de la Proposición \ref{proposicion:hechos sobre variedades completas}. Como $G$ deja estable a $Y$, ya que $H$ es normal en $G$, basta ver que $G$ tiene un punto fijo en $Y$, así, reemplacemos $X$ por $Y$.
 
-Estamos entonces en el siguiente caso: $H \subset G_x$ para todo $x \in X$. En particular, todos los \textit{grupos de isotropía} son normales en $G$, por lo tanto $G/G_x$ es una variedad \textit{afín}. Que los grupos de isotropía son normales se deducen de lo siguiente, esto equivale a probar que para todo $g \in G$, $G_x \subset g G_x g^{-1}$, luego sea $z \in G_x$, i.e., $z \cdot x = x$, tenemos que $g^{-1}z g z^{-1} \in H \subset G_{z \cdot x}$, consecuentemente $x = z \cdot x = g^{-1} z g z^{-1} (z \cdot x) = g^{-1} z g \cdot x$, i.e. $g ^{-1} z g \in G_x$, o sea, $z \in g G_x g^{-1}$, como $z$ era arbitrario se prueba la inclusión deseada.
+Estamos entonces en el siguiente caso: $H \subset G_x$ para todo $x \in X$. En particular, todos los \textit{grupos de isotropía} son normales en $G$, por lo tanto $G/G_x$ es una variedad \textit{afín}. Que los grupos de isotropía son normales se deduce de lo siguiente, esto equivale a probar que para todo $g \in G$, $G_x \subset g G_x g^{-1}$, luego sea $z \in G_x$, i.e., $z \cdot x = x$, tenemos que $g^{-1}z g z^{-1} \in H \subset G_{z \cdot x}$, consecuentemente $x = z \cdot x = g^{-1} z g z^{-1} (z \cdot x) = g^{-1} z g \cdot x$, i.e. $g ^{-1} z g \in G_x$, o sea, $z \in g G_x g^{-1}$, como $z$ era arbitrario se prueba la inclusión deseada.
 
-Tomemos $x \in X$ cuya órbita $G \cdot x$ sea cerrada, y por lo tanto nuevamente completo: esto se puede hacer, por la Proposición \ref{proposition:orbita cerrada}. Ahora el morfismo canónico $G / G_x \to G \cdot X$ es biyectivo, con el lado izquierdo afín y el derecho completo. El Lema \ref{lema:lema para variedades completas} implica que $G/G_x$ es completo. Pero el ítem (c) de \ref{proposicion:varios hechos sobre variedades completas} implica que $G/G_x$ es un grupo algebraico $0$-dimensional, i.e. trivial, es decir, $G_x = G$, y por lo tanto $x$ es un punto fijo.
+Tomemos $x \in X$ cuya órbita $G \cdot x$ sea cerrada, y por lo tanto nuevamente completo: esto se puede hacer, por la Proposición \ref{proposition:orbita cerrada}. Ahora el morfismo canónico $G / G_x \to G \cdot X$ es biyectivo, con el lado izquierdo afín y el derecho completo. El Lema \ref{lema:lema para variedades completas} implica que $G/G_x$ es completo. Pero el ítem (c) de \ref{proposicion:hechos sobre variedades completas} implica que $G/G_x$ es un grupo algebraico $0$-dimensional, i.e. trivial, es decir, $G_x = G$, y por lo tanto $x$ es un punto fijo.
 \end{proof}
 
 \section{Consecuencias}
@@ -1387,9 +1451,9 @@ El siguiente teorema es un análogo del Teorema de Lie\footnote{Este teorema dic
 Sea $G$ un subgrupo algebraico conexo soluble de $\operatorname{GL} (V)$ para un espacio vectorial de dimensión finita no trivial. Entonces existe una bandera $V = V_0 \supset V_1 \supset \cdots \supset V_n = 0$ de subespacios $G$-invariantes con $\operatorname{codim} V_i = i$. En particular, $V_{n-1}$ es $1$-dimensional, y por lo tanto contiene un vector $v$ que es autovector simultáneo de cada $g$ para todo $g \in G$.
 \end{theorem}
 \begin{proof}
-Sea $G$ un subgrupo cerrado conexo soluble de $\operatorname{GL} (V)$. Entonces $G$ actúa en la variedad bandera de $V$, la cual es completa por el ítem (e) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, con lo cual el Teorema \ref{teorema:punto fijo de borel} implica que la acción de $G$ deja fija una bandera
+Sea $G$ un subgrupo cerrado conexo soluble de $\operatorname{GL} (V)$. Entonces $G$ actúa en la variedad bandera de $V$, la cual es completa por el ítem (e) de la Proposición \ref{proposicion:hechos sobre variedades completas}, con lo cual el Teorema \ref{teorema:punto fijo de borel} implica que la acción de $G$ deja fija una bandera
 \[
-    V = V_n \supset \cdots V_1 \supset V_0 = 0.
+    V = V_n \supset \cdots \supset V_1 \supset V_0 = 0.
 \]
 Es decir, vale el enunciado del teorema.
 \end{proof}
@@ -1405,7 +1469,7 @@ Como los subgrupos de Borel de $G$ y $G^{\circ}$ coinciden, supondremos a partir
 Sea $B$ un subgrupo de Borel de $G$. Entonces $G/B$ es una variedad proyectiva, y todos los otros subgrupos de Borel son conjugados a $B$. En particular, son todos isomorfos entre sí y tienen la misma dimensión.
 \end{theorem}
 \begin{proof}
-Sea $S$ un subgrupo de Borel de dimensión máxima. Representemos a $G$ en $\operatorname{GL} (V)$ con un subespacio $1$-dimensional $V_1$ cuyo estabilizador en $G$ es precisamente $S$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). La acción inducida de $S$ en $V/V_1$ es \textit{trigonalizable} por el Teorema \ref{teorema:Lie-Kolchin}, co lo cual existe una bandera \textit{completa} $0 \subset V_1 \subset \cdots \subset V$ estabilizada por $S$, llamemoslá $f$. De hecho, $S$ es el grupo de isotropía de $f$ en $G$, por cómo elegimos $V_1$. Con lo cual el morfismo inducido de $G/S$ sobre la órbita de $f$ en la variedad bandera de $V$ es biyectiva. Por otro lado, el estabilizador de toda variedad bandera es soluble y por lo tanto tiene dimensión no mayor a $\dim S$. Consecuentemente, la órbita de $f$ tiene la dimensión más chica posible, por lo tanto es cerrado (ver la Proposición \ref{proposition:orbita cerrada}). Así, la órbita es completa por los ítems (a) y (e) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Esto fuerza a que $G/S$ sea completo por el Lema \ref{lema:lema para variedades completas}, o sea, es proyectivo por el ítem (d) de \ref{proposicion:varios hechos sobre variedades completas}.
+Sea $S$ un subgrupo de Borel de dimensión máxima. Representemos a $G$ en $\operatorname{GL} (V)$ con un subespacio $1$-dimensional $V_1$ cuyo estabilizador en $G$ es precisamente $S$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). La acción inducida de $S$ en $V/V_1$ es \textit{trigonalizable} por el Teorema \ref{teorema:Lie-Kolchin}, con lo cual existe una bandera \textit{completa} $0 \subset V_1 \subset \cdots \subset V$ estabilizada por $S$, llamemoslá $f$. De hecho, $S$ es el grupo de isotropía de $f$ en $G$, por cómo elegimos $V_1$. Con lo cual el morfismo inducido de $G/S$ sobre la órbita de $f$ en la variedad bandera de $V$ es biyectiva. Por otro lado, el estabilizador de toda variedad bandera es soluble y por lo tanto tiene dimensión no mayor a $\dim S$. Consecuentemente, la órbita de $f$ tiene la dimensión más chica posible, por lo tanto es cerrado (ver la Proposición \ref{proposition:orbita cerrada}). Así, la órbita es completa por los ítems (a) y (e) de la Proposición \ref{proposicion:hechos sobre variedades completas}. Esto fuerza a que $G/S$ sea completo por el Lema \ref{lema:lema para variedades completas}, o sea, es proyectivo por el ítem (d) de \ref{proposicion:hechos sobre variedades completas}.
 
 Ahora tomemos un subgrupo de Borel $B$, este actúa por multiplicación a izquierda en la variedad completa $G/S$. Luego el Teorema \ref{teorema:punto fijo de borel} implica que deja fijo un punto $xS$, es decir, $BxS = xS$, equivalentemente, $x^{-1} B x \subset S$. Como ambos son subgrupos de Borel, concluimos que $x^{-1} B x = S$ por maximalidad. Esto concluye ambas afirmaciones del teorema.
 \end{proof}
@@ -1426,14 +1490,14 @@ El rango de $\operatorname{SL}_n (k)$ es $n-1$.
 \end{example}
 
 \begin{definition}
-Decimos que un subgrupo cerrado $P$ de $G$ es \textbf{parabólico}, si el \textit{espacio homogéneo} $G/P$ es proyectivo (equivalentemente completo por el ítem (d) de \ref{proposicion:varios hechos sobre variedades completas}).
+Decimos que un subgrupo cerrado $P$ de $G$ es \textbf{parabólico}, si el \textit{espacio homogéneo} $G/P$ es proyectivo (equivalentemente completo por el ítem (d) de \ref{proposicion:hechos sobre variedades completas}).
 \end{definition}
 
 \begin{corollary}\label{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel}
 Un subgrupo cerrado $P$ de $G$ es parabólico si y solo si contiene un subgrupo de Borel. En particular, todo subgrupo conexo $H$ de $G$ es un subgrupo de Borel si y solo si $H$ es soluble y $G/H$ es proyectivo.
 \end{corollary}
 \begin{proof}
-Si $H$ es un subgrupo cerrado de $G$ tal que $G/H$ es proyectivo, entonces $B$ deja fijo un punto por el Teorema \ref{teorema:punto fijo de borel}, y por lo tanto tiene un conjugado en $H$, esto fuerza a que $\dim G/H \leq \dim G/B$. Recíprocamente, si $H$ es un subgrupo cerrado incluyendo un subgrupo de Borel $B$ de $G$, entonces $G/B \to G/H$ es un morfismo sobreyectivo con dominio una variedad completa, forzando a $G/H$ a ser completo (ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}). Pero $G/H$ es proyectivo (ítem (d) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}), ya que todos los espacios homogéneos son quasi-proyectivos por construcción (ver \cite[\S 11.3]{humphreys2012linearAlgebraicGroups}). Esto prueba el Corolario.
+Si $H$ es un subgrupo cerrado de $G$ tal que $G/H$ es proyectivo, entonces $B$ deja fijo un punto por el Teorema \ref{teorema:punto fijo de borel}, y por lo tanto tiene un conjugado en $H$, esto fuerza a que $\dim G/H \leq \dim G/B$. Recíprocamente, si $H$ es un subgrupo cerrado incluyendo un subgrupo de Borel $B$ de $G$, entonces $G/B \to G/H$ es un morfismo sobreyectivo con dominio una variedad completa, forzando a $G/H$ a ser completo (ítem (b) de la Proposición \ref{proposicion:hechos sobre variedades completas}). Pero $G/H$ es proyectivo (ítem (d) de la Proposición \ref{proposicion:hechos sobre variedades completas}), ya que todos los espacios homogéneos son quasi-proyectivos por construcción (ver \cite[\S 11.3]{humphreys2012linearAlgebraicGroups}). Esto prueba el corolario.
 \end{proof}
 
 \begin{example}
@@ -1458,11 +1522,11 @@ Más concretamente, si $G = \operatorname{GL}_3 (k)$, entonces existen solamente
 Sea $\varphi : G \to G'$ un epimorfismo de grupos algebraicos conexos. Sea $H$ un subgrupo de Borel (respectivamente un subgrupo parabólico, un toro maximal, o un subgrupo conexo unipotente maximal) de $G$. Entonces $\varphi (H)$ es un subgrupo  de Borel (respectivamente un subgrupo parabólico, un toro maximal, o un subgrupo conexo unipotente maximal) de $G'$ y todos los subgrupos de este tipo en $G'$ se obtienen de esta manera.
 \end{corollary}
 \begin{proof}
-Debido a los Corolarios \ref{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}, \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel}, basta ver que esto vale en el caso $H = B$ subgrupo de Borel de $G$. Claramente $B' := \varphi (B)$ es conexo y soluble. Pero el mapa natural $G \to G' \to G'/B'$ induce un morfismo sobreyectivo $G/B \to G'/B'$, y por lo tanto $G'/B'$ es completo por el ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, es decir, $B'$ es un subgrupo parabólico de $G'$. El Corolario \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel} implica luego que es un subgrupo de Borel de $G'$. Como algún subgrupo de Borel de $G'$ tiene que ser de la forma $\varphi (B)$, se sigue del Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} aplicado a $G'$ que son todos conjugados a $\varphi (B)$, consecuentemente, por sobreyectividad de $\varphi$, deben ser de esta forma.
+Debido a los Corolarios \ref{corolario:los toros maximales de G son toros maximales de un Borel y son todos conjugados entre si}, \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel}, basta ver que esto vale en el caso $H = B$ subgrupo de Borel de $G$. Claramente $B' := \varphi (B)$ es conexo y soluble. Pero el mapa natural $G \to G' \to G'/B'$ induce un morfismo sobreyectivo $G/B \to G'/B'$, y por lo tanto $G'/B'$ es completo por el ítem (b) de la Proposición \ref{proposicion:hechos sobre variedades completas}, es decir, $B'$ es un subgrupo parabólico de $G'$. El Corolario \ref{corolario:un subgrupo cerrado es parabolico si y solo si incluye un subgrupo de borel} implica luego que es un subgrupo de Borel de $G'$. Como algún subgrupo de Borel de $G'$ tiene que ser de la forma $\varphi (B)$, se sigue del Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} aplicado a $G'$ que son todos conjugados a $\varphi (B)$, consecuentemente, por sobreyectividad de $\varphi$, deben ser de esta forma.
 \end{proof}
 
 \subsection{Más consecuencias}
-En esta subsección supongamos que $G$ es un grupo algebraico conexo.
+En esta subsección supongamos que $G$ es un grupo algebraico afín conexo.
 
 
 \begin{proposition}
@@ -1474,7 +1538,7 @@ El morfismo
 \varphi : G &\longrightarrow G \\
 x &\longmapsto \sigma(x)x^{-1},
 \end{align*}
-envía $B$ en $1$, y por lo tanto se factoriza por la proyección a través del cociente $G \to G/B$. Por el Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} y el ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}, $\varphi (G)$ es cerrado (y por lo tanto afín) y completo. Así, es un grupo algebraico $0$-dimensional, i.e. $\varphi (G) = \{1\}$.
+envía $B$ en $1$, y por lo tanto se factoriza por la proyección a través del cociente $G \to G/B$. Por el Teorema \ref{teorema:los subgrupos de borel son conjugados y G/B es una variedad proyectiva} y el ítem (b) de la Proposición \ref{proposicion:hechos sobre variedades completas}, $\varphi (G)$ es cerrado (y por lo tanto afín) y completo. Así, es un grupo algebraico $0$-dimensional, i.e. $\varphi (G) = \{1\}$.
 \end{proof}
 
 \begin{corollary}
@@ -1511,7 +1575,7 @@ $T$ es el único toro maximal de $C$, gracias al Corolario \ref{corolario:los to
 \end{proof}
 
 \begin{definition}
-Sea $T$ un toro maximal de $G$, y $C := C_G (T)^\circ$. El grupo $C$ se lo suele llamar \textbf{subgrupo de Cartan}\footnote{En analogía con las subálgebras de Cartan en Teoría de Álgebras de Lie.}.
+Sea $T$ un toro maximal de $G$, y $C := C_G (T)^\circ$. Al grupo $C$ se lo suele llamar \textbf{subgrupo de Cartan}\footnote{En analogía con las subálgebras de Cartan en Teoría de Álgebras de Lie.}.
 \end{definition}
 
 \begin{remark}
@@ -1519,8 +1583,8 @@ De hecho, los subgrupos de Cartan son conexos (ver el Teorema \cite[\S 22.3]{hum
 \end{remark}
 
 
-\subsubsection{El Teorema del Normalizador}
-Nuevamente $G$ es un grupo algebraico conexo.
+\subsection{El Teorema del Normalizador}
+Nuevamente $G$ es un grupo algebraico afín conexo.
 
 Primero probamos un lema:
 
@@ -1547,7 +1611,7 @@ t &\longmapsto t x t^{-1}x^{-1}
 \end{align*}
 es de hecho un morfismo de grupos con núcleo $C_T (x)$. Este es finito, ya que $S = \{1\}$, así que $\gamma_x$ debe ser sobreyectivo por un argumento de dimensión (ver la Proposición \ref{proposition:la imagen de un morfismo de grupos algebraicos es cerrado}). Consecuentemente, $T$ yace dentro de $[M, M]$, donde $M$ es el subgrupo de $N$ generado por $x$ y $B$. Así, $B = T B_u$ yace contenido en el subgrupo de $M$ generado por $B_u$ y $[M,M]$.
 
-Ahora, tomemos una representación racional $\rho : G \rightarrow \operatorname{GL}(V)$, donde $V$ contiene una recta $D$ cuyo grupo de isotropía en $G$ es precisamente $M$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). Sea $\chi : M \to \mathbb{G}_m$ su caracter asociado. Entonces $\chi$ es trivial en $[M,M]$ y en grupo unipotente $B_u$; ergo, $\chi$ es trivial en $B$. Si $0 \neq v \in V$ genera $D$, se tiene que $\rho$ induce un morfismo $G/B \to Y =$ la órbita de $v$ bajo la acción de $\rho (G)$. Como $G/B$ es completo, su imagen $Y$ es cerrada en $V$ (y por lo tanto afín) y también completa gracias al ítem (b) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Pero esto implica que $Y$ es un punto por el ítem (c) de la Proposición \ref{proposicion:varios hechos sobre variedades completas}. Entonces $G = M$. Como $G$ es conexo y $[M : B] < \infty$ (lema anterior), no queda otra alternativa que $G$ sea igual a $B$, lo cual es imposible.
+Ahora, tomemos una representación racional $\rho : G \rightarrow \operatorname{GL}(V)$, donde $V$ contiene una recta $D$ cuyo grupo de isotropía en $G$ es precisamente $M$ (ver \cite[Teorema 11.2]{humphreys2012linearAlgebraicGroups}). Sea $\chi : M \to \mathbb{G}_m$ su caracter asociado. Entonces $\chi$ es trivial en $[M,M]$ y en grupo unipotente $B_u$; ergo, $\chi$ es trivial en $B$. Si $0 \neq v \in V$ genera $D$, se tiene que $\rho$ induce un morfismo $G/B \to Y =$ la órbita de $v$ bajo la acción de $\rho (G)$. Como $G/B$ es completo, su imagen $Y$ es cerrada en $V$ (y por lo tanto afín) y también completa gracias al ítem (b) de la Proposición \ref{proposicion:hechos sobre variedades completas}. Pero esto implica que $Y$ es un punto por el ítem (c) de la Proposición \ref{proposicion:hechos sobre variedades completas}. Entonces $G = M$. Como $G$ es conexo y $[M : B] < \infty$ (lema anterior), no queda otra alternativa que $G$ sea igual a $B$, lo cual es imposible.
 \end{enumerate}
 \end{proof}
 
